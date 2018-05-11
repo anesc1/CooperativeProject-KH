@@ -11,11 +11,12 @@ public class Member implements Serializable {
     int age;
     String phoneNum;
     String password;
-    Map<Team, Boolean> admin;
+    Boolean admin;
     List<String> team;
 
-    public Member(String name, int age, String phoneNum, String password, Map<Team, Boolean> admin, List<String> team) {
+    public Member(String name, int age, String phoneNum, String password, Boolean admin, List<String> team) {
         this.name = name;
+
         this.age = age;
         this.phoneNum = phoneNum;
         this.password = password;
@@ -23,6 +24,13 @@ public class Member implements Serializable {
         this.team = team;
     }
 
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
     public String getName() {
         return name;
     }

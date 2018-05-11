@@ -9,8 +9,26 @@ public class Team implements Serializable {
     String teamName;
     String teamNum;
     Member leader;
+    String agenda;
+    String projectName;
 
-    public Team(List<Member> members, List<Place> places, String teamName, String teamNum, Member leader) {
+    public String getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(String agenda) {
+        this.agenda = agenda;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public Team(String agenda, String projectName, List<Member> members, List<Place> places, String teamName, String teamNum, Member leader) {
         this.members = members;
         this.places = places;
         this.teamName = teamName;

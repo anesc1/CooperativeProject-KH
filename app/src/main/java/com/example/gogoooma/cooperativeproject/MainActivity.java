@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         boolean admin = false;
         List<String> team = null;
 
-//        Member user = new Member(name, age, phoneNum, password, admin, team);
+        Member user = new Member(name, age, phoneNum, password, admin, team);
     }
 
     @Override
