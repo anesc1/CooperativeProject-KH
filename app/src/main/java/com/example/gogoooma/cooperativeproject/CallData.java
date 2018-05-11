@@ -17,6 +17,7 @@ import java.util.StringTokenizer;
  * Created by anesc on 2018-04-06.
  */
 
+// 등희 어깨 듬직보스
 public class CallData extends AppCompatActivity {
     TextView getData;
     phpDown get;
