@@ -25,48 +25,47 @@ public class SecondActivity extends Fragment {
     View v;
     private static String TAG = "phptest_WriteData";
 
-    EditText edit_ID;
-    EditText edit_agenda1;
-    EditText edit_agenda2;
-    EditText edit_agenda3;
-    EditText edit_agenda4;
-    EditText edit_agenda5;
+    EditText edit_projectName;
+    EditText edit_projectNum;
+    EditText edit_teamNum;
+    EditText edit_agenda;
+    EditText edit_agendaNum;
     Button insertbtn;
     Button getbtn;
     TextView insert_result;
-    InsertData insert;
+    PlaceInsertData insert;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_second, container, false);
-        edit_ID = (EditText)v.findViewById(R.id.edit_ID);
-        edit_agenda1 = (EditText)v.findViewById(R.id.edit_agenda1);
-        edit_agenda2 = (EditText)v.findViewById(R.id.edit_agenda2);
-        edit_agenda3 = (EditText)v.findViewById(R.id.edit_agenda3);
-        edit_agenda4 = (EditText)v.findViewById(R.id.edit_agenda4);
-        edit_agenda5 = (EditText)v.findViewById(R.id.edit_agenda5);
+
+        edit_projectName = (EditText)v.findViewById(R.id.edit_projectName);
+        edit_projectNum = (EditText)v.findViewById(R.id.edit_projectNum);
+        edit_teamNum = (EditText)v.findViewById(R.id.edit_teamNum);
+        edit_agenda = (EditText)v.findViewById(R.id.edit_agenda);
+        edit_agendaNum = (EditText)v.findViewById(R.id.edit_agendaNum);
         insert_result = (TextView)v.findViewById(R.id.insert_result);
         insertbtn = (Button)v.findViewById(R.id.insertdata_btn);
         insertbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String ID = edit_ID.getText().toString();
-                String agenda1 = edit_agenda1.getText().toString();
-                String agenda2 = edit_agenda2.getText().toString();
-                String agenda3 = edit_agenda3.getText().toString();
-                String agenda4 = edit_agenda4.getText().toString();
-                String agenda5 = edit_agenda5.getText().toString();
 
-        insert = new InsertData();
-        insert.execute(ID,agenda1,agenda2,agenda3,agenda4,agenda5);
+                String projectName = edit_projectName.getText().toString();
+                String projectNum = edit_projectNum.getText().toString();
+                String teamNum = edit_teamNum.getText().toString();
+                String agenda = edit_agenda.getText().toString();
+                String agendaNum = edit_agendaNum.getText().toString();
+
+        insert = new PlaceInsertData();
+        insert.execute(projectName,projectNum,teamNum,agenda,agendaNum);
 
 
-                edit_ID.setText("");
-                edit_agenda1.setText("");
-                edit_agenda2.setText("");
-                edit_agenda3.setText("");
-                edit_agenda4.setText("");
-                edit_agenda5.setText("");
+
+                edit_projectName.setText("");
+                edit_projectNum.setText("");
+                edit_teamNum.setText("");
+                edit_agenda.setText("");
+                edit_agendaNum.setText("");
             }
         });
         getbtn = (Button)v.findViewById(R.id.getdata_btn);
@@ -82,7 +81,7 @@ public class SecondActivity extends Fragment {
 
 
 
-    class InsertData extends AsyncTask<String, Void, String> {
+    class PlaceInsertData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
 
         @Override
@@ -107,17 +106,17 @@ public class SecondActivity extends Fragment {
         @Override
         protected String doInBackground(String... params) {
 
-            String ID = (String)params[0];
-            String agenda1 = (String)params[1];
-            String agenda2 = (String)params[2];
-            String agenda3 = (String)params[3];
-            String agenda4 = (String)params[4];
-            String agenda5 = (String)params[5];
+            String  projectName= (String)params[0];
+            String projectNum = (String)params[1];
+            String teamNum = (String)params[2];
+            String agenda = (String)params[3];
+            String agendaNum = (String)params[4];
 
 
 
-            String serverURL = "http://anesc1.cafe24.com/signup.php";
-            String postParameters = "ID=" + ID + "&agenda1=" + agenda1 + "&agenda2=" + agenda2 + "&agenda3=" + agenda3 + "&agenda4=" + agenda4 + "&agenda5=" + agenda5;
+
+            String serverURL = "http://anesc1.cafe24.com/projectup.php";
+            String postParameters = "&projectName=" + projectName + "&projectNum=" + projectNum + "&teamNum=" + teamNum + "&agenda=" + agenda + "&agendaNum=" + agendaNum;
 
 
             try {

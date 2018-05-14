@@ -8,69 +8,60 @@
     android:orientation="vertical"
     tools:context=".SecondActivity">
 
+
     <TextView
-        android:id="@+id/text_ID"
-        android:text="ID"
+        android:id="@+id/text_projectName"
+        android:text="ProjectName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
-        android:id="@+id/edit_ID"
-        android:hint="ID"
+        android:id="@+id/edit_projectName"
+        android:hint="ProjectName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/text_agenda1"
-        android:text="Agenda1"
+        android:id="@+id/text_projectNum"
+        android:text="projectNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
-        android:id="@+id/edit_agenda1"
-        android:hint="Agenda1"
+        android:id="@+id/edit_projectNum"
+        android:hint="projectNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/text_agenda2"
-        android:text="Agenda2"
+        android:id="@+id/text_teamNum"
+        android:text="teamNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
-        android:id="@+id/edit_agenda2"
-        android:hint="Agenda2"
+        android:id="@+id/edit_teamNum"
+        android:hint="teamNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/text_agenda3"
-        android:text="Agenda3"
+        android:id="@+id/text_agenda"
+        android:text="agenda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
-        android:id="@+id/edit_agenda3"
-        android:hint="Agenda3"
+        android:id="@+id/edit_agenda"
+        android:hint="agenda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/text_agenda4"
-        android:text="Agenda4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/edit_agenda4"
-        android:hint="Agenda4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/text_agenda5"
-        android:text="Agenda5"
+        android:id="@+id/text_agendaNum"
+        android:text="agendaNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
-        android:id="@+id/edit_agenda5"
-        android:hint="Agenda5"
+        android:id="@+id/edit_agendaNum"
+        android:hint="agendaNum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -82,14 +73,12 @@
         <Button
             android:id="@+id/insertdata_btn"
             android:text="데이터 저장하기"
-            android:onClick="SaveData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/getdata_btn"
             android:text="데이터 불러오기"
-            android:onClick="CallData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

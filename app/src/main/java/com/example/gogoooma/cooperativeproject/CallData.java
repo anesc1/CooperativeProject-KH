@@ -31,7 +31,7 @@ public class CallData extends AppCompatActivity {
         getData = (TextView) findViewById(R.id.getdata);
 
         get = new phpDown();
-        get.execute("http://anesc1.cafe24.com/signdown.php").toString();
+        get.execute("http://anesc1.cafe24.com/projectdown.php").toString();
 
     }
 
