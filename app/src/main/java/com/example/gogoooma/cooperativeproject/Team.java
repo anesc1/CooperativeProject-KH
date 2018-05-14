@@ -7,18 +7,38 @@ public class Team implements Serializable {
     List<Member> members;
     List<Place> places;
     String teamName;
-    String teamNum;
+    int teamNum;
     Member leader;
-    String agenda;
-    String projectName;
+    int agendaNum;
+    List<String> agenda;
 
-    public String getAgenda() {
+    public int getTeamNum() {
+        return teamNum;
+    }
+
+    public void setTeamNum(int teamNum) {
+        this.teamNum = teamNum;
+    }
+
+    public int getAgendaNum() {
+        return agendaNum;
+    }
+
+    public void setAgendaNum(int agendaNum) {
+        this.agendaNum = agendaNum;
+    }
+
+    public List<String> getAgenda() {
         return agenda;
     }
 
-    public void setAgenda(String agenda) {
+    public void setAgenda(List<String> agenda) {
         this.agenda = agenda;
     }
+
+    String projectName;
+
+
 
     public String getProjectName() {
         return projectName;
@@ -28,12 +48,13 @@ public class Team implements Serializable {
         this.projectName = projectName;
     }
 
-    public Team(String agenda, String projectName, List<Member> members, List<Place> places, String teamName, String teamNum, Member leader) {
+    public Team(List<String> agenda, String projectName, List<Member> members, List<Place> places, String teamName, int teamNum, Member leader) {
         this.members = members;
         this.places = places;
         this.teamName = teamName;
         this.teamNum = teamNum;
         this.leader = leader;
+        this.agenda = agenda;
     }
 
     public List<Member> getMembers() {
@@ -58,14 +79,6 @@ public class Team implements Serializable {
 
     public void setTeamName(String teamName) {
         this.teamName = teamName;
-    }
-
-    public String getTeamNum() {
-        return teamNum;
-    }
-
-    public void setTeamNum(String teamNum) {
-        this.teamNum = teamNum;
     }
 
     public Member getLeader() {

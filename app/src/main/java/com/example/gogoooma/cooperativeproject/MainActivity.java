@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         boolean admin = false;
         List<String> team = null;
 
-        Member user = new Member(name, age, phoneNum, password, admin, team);
+        GlobalVariable.g_user = new Member(name, age, phoneNum, password, admin, team);
     }
 
     @Override
@@ -89,6 +89,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        else if(id == R.id.profile){
+            FragmentManager manager = getFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main, new ProfileActivity()).commit();
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -100,13 +104,13 @@ public class MainActivity extends AppCompatActivity
         FragmentManager manager = getFragmentManager();
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.firstActivity) {
             manager.beginTransaction().replace(R.id.content_main, new FirstActivity()).commit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.secondActivity) {
             manager.beginTransaction().replace(R.id.content_main, new SecondActivity()).commit();
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.thirdActivity) {
             manager.beginTransaction().replace(R.id.content_main, new ThirdActivity()).commit();
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.fourthActivity) {
             manager.beginTransaction().replace(R.id.content_main, new FourthActivity()).commit();
         } else if (id == R.id.nav_share) {
 
@@ -117,10 +121,5 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void onProfile(MenuItem item) {
-        FragmentManager manager = getFragmentManager();
-        manager.beginTransaction().replace(R.id.content_main, new ProfileActivity()).commit();
     }
 }

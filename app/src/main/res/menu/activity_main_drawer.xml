@@ -5,19 +5,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/firstActivity"
             android:icon="@drawable/handshake"
             android:title="1번" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/secondActivity"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="2번" />
+            android:title="프로젝트 생성" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/thirdActivity"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="3번" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/fourthActivity"
             android:icon="@drawable/ic_menu_manage"
             android:title="4번" />
     </group>

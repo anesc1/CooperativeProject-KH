@@ -113,8 +113,6 @@ public class SecondActivity extends Fragment {
             String agendaNum = (String)params[4];
 
 
-
-
             String serverURL = "http://anesc1.cafe24.com/projectup.php";
             String postParameters = "&projectName=" + projectName + "&projectNum=" + projectNum + "&teamNum=" + teamNum + "&agenda=" + agenda + "&agendaNum=" + agendaNum;
 

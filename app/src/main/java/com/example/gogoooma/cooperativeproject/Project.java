@@ -5,23 +5,31 @@ import java.util.List;
 
 public class Project implements Serializable{
     String projectName;
-    String projectNum;
-    String teamNum;
-
-    public String getTeamNum() {
-        return teamNum;
-    }
-
-    public void setTeamNum(String teamNum) {
-        this.teamNum = teamNum;
-    }
+    int projectNum;
+    int teamNum;
 
     List<String> agenda;
 
-    public Project(String projectName, String projectNum, List<String> agenda, String teamNum) {
+    public Project(String projectName, int projectNum, List<String> agenda, int teamNum) {
         this.projectName = projectName;
         this.projectNum = projectNum;
         this.agenda = agenda;
+        this.teamNum = teamNum;
+    }
+
+    public int getProjectNum() {
+        return projectNum;
+    }
+
+    public void setProjectNum(int projectNum) {
+        this.projectNum = projectNum;
+    }
+
+    public int getTeamNum() {
+        return teamNum;
+    }
+
+    public void setTeamNum(int teamNum) {
         this.teamNum = teamNum;
     }
 
@@ -31,14 +39,6 @@ public class Project implements Serializable{
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
-    }
-
-    public String getProjectNum() {
-        return projectNum;
-    }
-
-    public void setProjectNum(String projectNum) {
-        this.projectNum = projectNum;
     }
 
     public List<String> getAgenda() {

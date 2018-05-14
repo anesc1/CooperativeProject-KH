@@ -11,9 +11,9 @@
 
     <TextView
         android:id="@+id/text_projectName"
-        android:text="ProjectName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="프로젝트 이름" />
     <EditText
         android:id="@+id/edit_projectName"
         android:hint="ProjectName"

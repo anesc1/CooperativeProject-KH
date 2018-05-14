@@ -8,6 +8,5 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/profile"
-        android:title="Profile"
-        android:onClick="onProfile"/>
+        android:title="Profile" />
 </menu>
