@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "이미 존재하는 번호입니다.", Toast.LENGTH_SHORT).show();
                 }
             }
-            
+
             if (pass.equals(passconf)) {
                 insert = new RegisterData();
                 insert.execute(Name, phoneNum, pass, age);
