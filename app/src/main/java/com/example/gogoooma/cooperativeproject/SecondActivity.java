@@ -5,7 +5,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -24,6 +27,7 @@ import java.net.URL;
 public class SecondActivity extends Fragment {
     View v;
     private static String TAG = "phptest_WriteData";
+    CallData callData = new CallData("http://anesc1.cafe24.com/projectdown.php");
 
     EditText edit_projectName;
     EditText edit_projectNum;
@@ -58,9 +62,6 @@ public class SecondActivity extends Fragment {
 
         insert = new PlaceInsertData();
         insert.execute(projectName,projectNum,teamNum,agenda,agendaNum);
-
-
-
                 edit_projectName.setText("");
                 edit_projectNum.setText("");
                 edit_teamNum.setText("");
@@ -72,8 +73,7 @@ public class SecondActivity extends Fragment {
         getbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),CallData.class);
-                getActivity().startActivity(intent);
+                Toast.makeText(v.getContext(), GlobalVariable.g_projectArr.toString(), Toast.LENGTH_SHORT).show();
             }
         });
         return v;
