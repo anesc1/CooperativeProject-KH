@@ -2,27 +2,27 @@ package com.example.gogoooma.cooperativeproject;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
-import android.text.util.Linkify;
 import android.view.View;
-import android.widget.TabHost;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class LoginActivity extends AppCompatActivity {
+    String  phoneNum, pass;
 
+    EditText edit_phoneNum;
+    EditText edit_pass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        edit_phoneNum = (EditText)findViewById(R.id.editText2);
+        edit_pass = (EditText)findViewById(R.id.editText3);
         createTab();
         link();
     }
@@ -56,7 +56,12 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLogin(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        phoneNum = edit_phoneNum.getText().toString();
+        pass = edit_pass.getText().toString();
+        if(phoneNum !=""&& pass !="")
+        {
 
+        }
         startActivity(intent);
     }
 }
