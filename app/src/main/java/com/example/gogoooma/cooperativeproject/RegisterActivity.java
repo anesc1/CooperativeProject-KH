@@ -60,19 +60,18 @@ public class RegisterActivity extends AppCompatActivity {
         Name = Name.replaceAll("-","");
         phoneNum = phoneNum.replaceAll(" ","");
         phoneNum = phoneNum.replaceAll("-","");
+        int indexOf = phoneNum.indexOf("010");
+        phoneNum = phoneNum.substring(indexOf, 11);
+
         pass = pass.replaceAll(" ","");
-        pass = pass.replaceAll("-","");
         passconf = passconf.replaceAll(" ","");
-        passconf = passconf.replaceAll("-","");
         age = age.replaceAll(" ","");
-        age = age.replaceAll("-","");
         num_mem = callData.arr.size() / 4;
         for (int i = 0; i < num_mem; i++) {
             String temp = callData.arr.get(i * 4 + 1);
             temp = temp.replaceAll(" ","");
             phoneNumList.add(temp);
         }
-
 
         if(Name!="" && phoneNum!="" && pass!="" && passconf!="" && age!="")
         {
