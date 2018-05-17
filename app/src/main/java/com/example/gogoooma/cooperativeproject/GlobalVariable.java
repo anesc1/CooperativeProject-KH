@@ -6,5 +6,5 @@ public class GlobalVariable {
     static Member g_user;
     static int g_projectNum = 0;
     static int g_teamNum = 0;
-    static ArrayList<String> g_projectArr = new ArrayList<>();
+    static ArrayList<Member> g_member = new ArrayList<Member>();
 }

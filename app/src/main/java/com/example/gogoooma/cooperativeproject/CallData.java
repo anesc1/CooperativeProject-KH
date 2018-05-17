@@ -1,11 +1,7 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -23,7 +19,8 @@ public class CallData extends AppCompatActivity {
     phpDown get;
     ArrayList<String> arr;
 
-    CallData(String url){
+    CallData(String str){
+        String url = "http://anesc1.cafe24.com/" + str + "down.php";
         arr = new ArrayList<>();
         get = new phpDown();
         get.execute(url).toString();
@@ -75,7 +72,6 @@ public class CallData extends AppCompatActivity {
         }
 
         protected void onPostExecute(String str) {
-            GlobalVariable.g_projectArr = arr;
         }
     }
 

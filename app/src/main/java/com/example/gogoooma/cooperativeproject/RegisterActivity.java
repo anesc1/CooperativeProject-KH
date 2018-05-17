@@ -19,7 +19,6 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class RegisterActivity extends AppCompatActivity {
-    CallData callData = new CallData("http://anesc1.cafe24.com/memberdown.php");
     ArrayList<String> phoneNumList;
     int num_mem;
     int check;
@@ -31,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText edit_passconf;
     Button regbtn;
     RegisterData insert;
+    CallData callData = new CallData("member");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +60,21 @@ public class RegisterActivity extends AppCompatActivity {
         Name = Name.replaceAll("-","");
         phoneNum = phoneNum.replaceAll(" ","");
         phoneNum = phoneNum.replaceAll("-","");
-        int indexOf = phoneNum.indexOf("010");
-        phoneNum = phoneNum.substring(indexOf, 11);
-
+        if(phoneNum.length()==11)
+        {
+            int indexOf = phoneNum.indexOf("010");
+            phoneNum = phoneNum.substring(indexOf, 11);
+        }
+        else
+        {
+            Toast.makeText(RegisterActivity.this,"번호는 11자리로 해주세요.",Toast.LENGTH_SHORT).show();
+            edit_phoneNum.setText("");
+            phoneNum="";
+        }
         pass = pass.replaceAll(" ","");
         passconf = passconf.replaceAll(" ","");
         age = age.replaceAll(" ","");
+
         num_mem = callData.arr.size() / 4;
         for (int i = 0; i < num_mem; i++) {
             String temp = callData.arr.get(i * 4 + 1);

@@ -2,12 +2,9 @@ package com.example.gogoooma.cooperativeproject;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.telecom.Call;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +24,7 @@ import java.net.URL;
 public class SecondActivity extends Fragment {
     View v;
     private static String TAG = "phptest_WriteData";
-    CallData callData = new CallData("http://anesc1.cafe24.com/projectdown.php");
+    CallData callData = new CallData("project");
 
     EditText edit_projectName;
     EditText edit_projectNum;
@@ -73,7 +70,7 @@ public class SecondActivity extends Fragment {
         getbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), GlobalVariable.g_projectArr.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), callData.arr.toString(), Toast.LENGTH_SHORT).show();
             }
         });
         return v;
