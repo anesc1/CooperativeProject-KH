@@ -3,6 +3,7 @@ package com.example.gogoooma.cooperativeproject;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -16,28 +17,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
-    String  phoneNum, pass;
+    String phoneNum, pass;
     EditText edit_phoneNum;
     EditText edit_pass;
     CallData callData = new CallData("member");
+    CallData callData2 = new CallData("team");
     int num_mem;
-    ArrayList<String> phoneNumList;
-    ArrayList<String> passList;
-    HashMap<String,String> Numpass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        edit_phoneNum = (EditText)findViewById(R.id.editText2);
-        edit_pass = (EditText)findViewById(R.id.editText3);
-        phoneNumList = new ArrayList<>();
-        passList = new ArrayList<>();
-        Numpass = new HashMap<>();
+        edit_phoneNum = (EditText) findViewById(R.id.editText2);
+        edit_pass = (EditText) findViewById(R.id.editText3);
 
         link();
     }
 
-    public void link(){
+    public void link() {
         TextView linkText = (TextView) findViewById(R.id.linkText);
         String str = "가입하려면 여기를 누르세요";
         SpannableStringBuilder ssb = new SpannableStringBuilder(str);
@@ -55,8 +52,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
-            if(resultCode == 1){
+        if (requestCode == 1) {
+            if (resultCode == 1) {
                 Toast.makeText(this, "가입된 아이디로 로그인해주세요", Toast.LENGTH_SHORT).show();
                 callData = new CallData("member");
             }
@@ -64,50 +61,45 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLogin(View view) {
-
-
-
         phoneNum = edit_phoneNum.getText().toString();
         pass = edit_pass.getText().toString();
         num_mem = callData.arr.size() / 4;
 
-//        for(int i=0; i<num_mem; i++){
-//            String name = callData.arr.get(i*4);
-//            String phoneNum = callData.arr.get(i*4+1);
-//            String password = callData.arr.get(i*4+2);
-//            int age = Integer.parseInt(callData.arr.get(i*4+3));
-//            Member tempMember = new Member(name, age, phoneNum, password, false, null);
-//            GlobalVariable.g_member.add(tempMember);
-//        }
-
+        int saveInt = -1;
         for (int i = 0; i < num_mem; i++) {
             String temp = callData.arr.get(i * 4 + 1);
-            temp = temp.replaceAll(" ","");
-            phoneNumList.add(temp);
-        }
-
-        for (int i = 0; i < num_mem; i++) {
-            String temp = callData.arr.get(i * 4 + 2);
-            temp = temp.replaceAll(" ","");
-            passList.add(temp);
-        }
-
-        for(int i=0; i< num_mem; i++)
-        {
-            Numpass.put(phoneNumList.get(i),passList.get(i));
-        }
-        if(phoneNum !=""&& pass !="")
-        {
-            if(pass.equals(Numpass.get(phoneNum)))
-            {
-                Intent intent = new Intent(this, MainActivity.class);
-                            startActivity(intent);
-            }else
-            {
-                Toast.makeText(LoginActivity.this,"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
-                edit_phoneNum.setText("");
-                edit_pass.setText("");
+            temp = temp.replaceAll(" ", "");
+            String temp2 = callData.arr.get(i * 4 + 2);
+            temp2 = temp2.replaceAll(" ", "");
+            if (phoneNum != "" && pass != "") {
+                if (phoneNum.equals(temp) && pass.equals(temp2)) {
+                    saveInt = i * 4;
+                }
             }
         }
+
+        if (saveInt != -1) {
+            String name = callData.arr.get(saveInt);
+            String ageStr = callData.arr.get(saveInt + 3).replaceAll(" ", "");
+            int age = Integer.parseInt(ageStr);
+            GlobalVariable.g_user = new Member(name, age, phoneNum, pass, false, null);
+
+            for(int i=0; i<callData2.arr.size(); i+=5){
+                int indexOf = callData2.arr.get(i+4).indexOf(phoneNum);
+                if(indexOf > -1){
+                    String tempStr = callData2.arr.get(i+1).replaceAll(" ", "");
+                    GlobalVariable.g_team.add(new Team(null, null, callData2.arr.get(i),
+                            Integer.parseInt(tempStr), null, null));
+                }
+            }
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(LoginActivity.this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+            edit_phoneNum.setText("");
+            edit_pass.setText("");
+        }
+
     }
 }

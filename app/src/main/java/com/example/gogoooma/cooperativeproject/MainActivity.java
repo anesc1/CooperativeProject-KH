@@ -41,15 +41,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        String name = "송교희";
-        int age = 24;
-        String phoneNum = "01011112222";
-        String password = "abc0123";
-        boolean admin = false;
-        List<String> team = null;
-
-        GlobalVariable.g_user = new Member(name, age, phoneNum, password, admin, team);
     }
 
     @Override
