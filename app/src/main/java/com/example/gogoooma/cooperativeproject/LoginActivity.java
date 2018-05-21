@@ -2,6 +2,7 @@ package com.example.gogoooma.cooperativeproject;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
@@ -24,8 +25,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        int color = Color.WHITE;
         edit_phoneNum = (EditText) findViewById(R.id.editText2);
         edit_pass = (EditText) findViewById(R.id.editText3);
+        edit_phoneNum.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        edit_pass.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
 
         link();
     }
@@ -83,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             GlobalVariable.g_user = new Member(name, age, phoneNum, pass, false, null);
 
             for(int i=0; i<callData2.arr.size(); i+=5){
-                    int indexOf = callData2.arr.get(i+4).indexOf(phoneNum);
+                int indexOf = callData2.arr.get(i+4).indexOf(phoneNum);
                 if(indexOf > -1){
                     String tempStr = callData2.arr.get(i+1).replaceAll(" ", "");
                     GlobalVariable.g_team.add(new Team(null, null, callData2.arr.get(i),
