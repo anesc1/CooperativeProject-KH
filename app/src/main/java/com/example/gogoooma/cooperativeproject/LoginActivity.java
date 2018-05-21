@@ -3,7 +3,6 @@ package com.example.gogoooma.cooperativeproject;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -12,9 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
     String phoneNum, pass;
@@ -62,7 +58,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLogin(View view) {
         phoneNum = edit_phoneNum.getText().toString();
+        phoneNum = phoneNum.replaceAll(" ","");
         pass = edit_pass.getText().toString();
+        pass = pass.replaceAll(" ","");
         num_mem = callData.arr.size() / 4;
 
         int saveInt = -1;
@@ -85,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
             GlobalVariable.g_user = new Member(name, age, phoneNum, pass, false, null);
 
             for(int i=0; i<callData2.arr.size(); i+=5){
-                int indexOf = callData2.arr.get(i+4).indexOf(phoneNum);
+                    int indexOf = callData2.arr.get(i+4).indexOf(phoneNum);
                 if(indexOf > -1){
                     String tempStr = callData2.arr.get(i+1).replaceAll(" ", "");
                     GlobalVariable.g_team.add(new Team(null, null, callData2.arr.get(i),
