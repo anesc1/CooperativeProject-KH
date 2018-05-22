@@ -51,7 +51,7 @@ public class TeamActivity extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(v.getContext(), ProjectActivity.class);
-                intent.putExtra("teamNum", position);
+                intent.putExtra("team", position);
                 startActivity(intent);
             }
         });
