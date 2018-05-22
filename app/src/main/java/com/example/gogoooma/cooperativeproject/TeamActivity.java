@@ -35,7 +35,6 @@ public class TeamActivity extends Fragment {
                 startActivity(addTeam);
             }
         });
-
         return v;
     }
 
