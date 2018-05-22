@@ -27,11 +27,7 @@ public class AddTeam extends AppCompatActivity {
         setTitle("팀 생성");
         setContentView(R.layout.activity_add_team);
         user = GlobalVariable.g_user;
-<<<<<<< HEAD
         editText = (EditText)findViewById(R.id.edit_teamName);
-=======
-      editText = (EditText)findViewById(R.id.edit_teamName);
->>>>>>> origin/master
     }
 
     public void Save(View view) {
@@ -132,8 +128,4 @@ public class AddTeam extends AppCompatActivity {
 
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master
