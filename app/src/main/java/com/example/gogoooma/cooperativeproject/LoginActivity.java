@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 public class LoginActivity extends AppCompatActivity {
     String phoneNum, pass;
     EditText edit_phoneNum;
@@ -90,9 +93,32 @@ public class LoginActivity extends AppCompatActivity {
                 int indexOf = callData2.arr.get(i+4).indexOf(phoneNum);
                 if(indexOf > -1){
                     String tempStr = callData2.arr.get(i+1).replaceAll(" ", "");
-                    GlobalVariable.g_team.add(new Team(null, null, callData2.arr.get(i),
+
+                    // 팀에 팀원 할당
+                    ArrayList<Member> list = new ArrayList<>();
+                    StringTokenizer st = new StringTokenizer(callData2.arr.get(i+4).toString(), "/");
+                    while (st.hasMoreTokens()) {
+                        String str = st.nextToken().trim();
+
+                        if(str!=null && str!="" && !str.equals(phoneNum)) {
+                            for (int j = 0; j < callData.arr.size(); j += 4) {
+                                if (callData.arr.get(j+1).equals(str)) {
+                                    name = callData.arr.get(j).trim();
+                                    String phone = callData.arr.get(j + 1).trim();
+                                    String password = callData.arr.get(j + 2).trim();
+                                    ageStr = callData.arr.get(j + 3).trim();
+                                    age = Integer.parseInt(ageStr);
+                                    list.add(new Member(name, age, phone, password, false, null));
+                                }
+                            }
+                        }
+                    }
+                    list.add(GlobalVariable.g_user);
+
+                    GlobalVariable.g_team.add(new Team(list, null, callData2.arr.get(i),
                             Integer.parseInt(tempStr), null, null));
                 }
+
             }
 
             Intent intent = new Intent(this, MainActivity.class);

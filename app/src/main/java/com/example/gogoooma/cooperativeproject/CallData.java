@@ -53,7 +53,7 @@ public class CallData extends AppCompatActivity {
                               jsonHtml.append(line);
                              StringTokenizer st = new StringTokenizer(jsonHtml.toString(), ",");
                              while (st.hasMoreTokens()) {
-                                 String str = st.nextToken();
+                                 String str = st.nextToken().trim();
                                 if(str!=null)
                                     arr.add(str);
                              }

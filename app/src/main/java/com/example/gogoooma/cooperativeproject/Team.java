@@ -32,6 +32,18 @@ public class Team implements Serializable {
         return members;
     }
 
+    public String printMember(){
+        String str = "";
+        if(members != null) {
+            for (int i = 0; i < members.size(); i++) {
+                str = str + members.get(i).getName();
+                if(i != members.size() - 1)
+                    str = str + " / ";
+            }
+        }
+        return str;
+    }
+
     public void setMembers(List<Member> members) {
         this.members = members;
     }

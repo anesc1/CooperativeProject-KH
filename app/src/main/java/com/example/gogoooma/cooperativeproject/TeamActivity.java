@@ -19,7 +19,7 @@ public class TeamActivity extends Fragment {
     View v;
     ListView listView;
     List<String> teamNameList;
-    ArrayAdapter<String> adapter;
+    TeamAdapter adapter;
 
     @Nullable
     @Override
@@ -39,12 +39,8 @@ public class TeamActivity extends Fragment {
     }
 
     public void init(){
-        teamNameList = new ArrayList<>();
-        for(int i=0; i<GlobalVariable.g_team.size(); i++){
-            teamNameList.add(GlobalVariable.g_team.get(i).getTeamName());
-        }
         listView = (ListView) v.findViewById(R.id.listView);
-        adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_list_item_1, teamNameList);
+        adapter = new TeamAdapter(v.getContext(), R.layout.row, GlobalVariable.g_team);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

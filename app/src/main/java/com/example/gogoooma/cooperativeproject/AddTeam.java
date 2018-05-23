@@ -1,8 +1,12 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -27,7 +31,10 @@ public class AddTeam extends AppCompatActivity {
         setTitle("팀 생성");
         setContentView(R.layout.activity_add_team);
         user = GlobalVariable.g_user;
+        int color = Color.parseColor("#0f357d");
         editText = (EditText)findViewById(R.id.edit_teamName);
+        editText.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+
     }
 
     public void Save(View view) {
