@@ -73,9 +73,9 @@ public class LoginActivity extends AppCompatActivity {
         int saveInt = -1;
         for (int i = 0; i < num_mem; i++) {
             String temp = callData.arr.get(i * 4 + 1);
-            temp = temp.replaceAll(" ", "");
+
             String temp2 = callData.arr.get(i * 4 + 2);
-            temp2 = temp2.replaceAll(" ", "");
+
             if (phoneNum != "" && pass != "") {
                 if (phoneNum.equals(temp) && pass.equals(temp2)) {
                     saveInt = i * 4;

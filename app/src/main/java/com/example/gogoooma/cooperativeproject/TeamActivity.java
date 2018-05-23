@@ -18,7 +18,6 @@ import java.util.List;
 public class TeamActivity extends Fragment {
     View v;
     ListView listView;
-    List<String> teamNameList;
     TeamAdapter adapter;
 
     @Nullable
@@ -32,10 +31,19 @@ public class TeamActivity extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent addTeam = new Intent(v.getContext(), AddTeam.class);
-                startActivity(addTeam);
+                startActivityForResult(addTeam, 123);
             }
         });
         return v;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 123){
+            adapter = new TeamAdapter(v.getContext(), R.layout.row, GlobalVariable.g_team);
+            listView.setAdapter(adapter);
+        }
     }
 
     public void init(){

@@ -1,6 +1,7 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -17,6 +18,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddTeam extends AppCompatActivity {
     String teamName, teamNum,initmember;
@@ -25,6 +28,7 @@ public class AddTeam extends AppCompatActivity {
     RegisterTeam insert;
     Member user;
     CallData callData = new CallData("team");
+    CallData callData2 = new CallData("member");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +45,14 @@ public class AddTeam extends AppCompatActivity {
         teamName = editText.getText().toString();
         teamSize = callData.arr.size()/5;
         teamNum = String.valueOf(teamSize);
-        initmember = "1/"+user.getPhoneNum()+"/";
+        initmember = user.getPhoneNum();
         insert = new RegisterTeam();
         insert.execute(teamName, teamNum, user.getPhoneNum(), "",initmember);
+        List<Member> list = new ArrayList<>();
+        list.add(user);
+        GlobalVariable.g_team.add(new Team(list, null, teamName, Integer.parseInt(teamNum), null, null));
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
         finish();
     }
 
