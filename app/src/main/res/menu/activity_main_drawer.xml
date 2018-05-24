@@ -7,7 +7,7 @@
         <item
             android:id="@+id/firstActivity"
             android:icon="@drawable/handshake"
-            android:title="1번" />
+            android:title="홈으로" />
         <item
             android:id="@+id/secondActivity"
             android:icon="@drawable/ic_menu_gallery"

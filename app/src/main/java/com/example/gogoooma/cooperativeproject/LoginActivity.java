@@ -125,8 +125,9 @@ public class LoginActivity extends AppCompatActivity {
 
             }
 
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, TeamActivity.class);
             startActivity(intent);
+
         } else {
             Toast.makeText(LoginActivity.this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
             edit_phoneNum.setText("");

@@ -1,46 +1,49 @@
 package com.example.gogoooma.cooperativeproject;
 
-import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-public class ProjectActivity extends AppCompatActivity implements View.OnClickListener {
+public class ProjectActivity extends Fragment implements View.OnClickListener {
     private Boolean isFabOpen = false;
     private FloatingActionButton fab,fab1,fab2;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
     Team team;
+    View v;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        fab = (FloatingActionButton)findViewById(R.id.fab);
-        fab1 = (FloatingActionButton)findViewById(R.id.fab1);
-        fab2 = (FloatingActionButton)findViewById(R.id.fab2);
-        fab_open = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
-        fab_close = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_close);
-        rotate_forward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_forward);
-        rotate_backward = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_backward);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        v = inflater.inflate(R.layout.activity_project, container, false);
+
+        Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
+        fab = (FloatingActionButton)v.findViewById(R.id.fab);
+        fab1 = (FloatingActionButton)v.findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton)v.findViewById(R.id.fab2);
+        fab_open = AnimationUtils.loadAnimation(v.getContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(v.getContext(),R.anim.fab_close);
+        rotate_forward = AnimationUtils.loadAnimation(v.getContext(),R.anim.rotate_forward);
+        rotate_backward = AnimationUtils.loadAnimation(v.getContext(),R.anim.rotate_backward);
         fab.setOnClickListener(this);
         fab1.setOnClickListener(this);
         fab2.setOnClickListener(this);
         init();
+
+        return v;
     }
 
     public void init(){
-        Intent intent = getIntent();
-        team = (Team) intent.getSerializableExtra("team");
-        TextView teamName = (TextView) findViewById(R.id.projectTeamName);
-        teamName.setText(team.getTeamName());
+        TextView teamName = (TextView) v.findViewById(R.id.projectTeamName);
+        teamName.setText(GlobalVariable.g_nowTeam.getTeamName());
     }
 
 
