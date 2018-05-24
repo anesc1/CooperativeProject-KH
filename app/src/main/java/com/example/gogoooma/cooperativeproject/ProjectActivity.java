@@ -1,5 +1,6 @@
 package com.example.gogoooma.cooperativeproject;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,11 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 public class ProjectActivity extends AppCompatActivity implements View.OnClickListener {
     private Boolean isFabOpen = false;
     private FloatingActionButton fab,fab1,fab2;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
+    Team team;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +33,17 @@ public class ProjectActivity extends AppCompatActivity implements View.OnClickLi
         fab.setOnClickListener(this);
         fab1.setOnClickListener(this);
         fab2.setOnClickListener(this);
-
+        init();
     }
+
+    public void init(){
+        Intent intent = getIntent();
+        team = (Team) intent.getSerializableExtra("team");
+        TextView teamName = (TextView) findViewById(R.id.projectTeamName);
+        teamName.setText(team.getTeamName());
+    }
+
+
     @Override
     public void onClick(View v) {
         int id = v.getId();

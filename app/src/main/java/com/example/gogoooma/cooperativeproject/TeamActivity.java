@@ -9,11 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TeamActivity extends Fragment {
     View v;
@@ -54,7 +50,7 @@ public class TeamActivity extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(v.getContext(), ProjectActivity.class);
-                intent.putExtra("team", position);
+                intent.putExtra("team", GlobalVariable.g_team.get(position));
                 startActivity(intent);
             }
         });
