@@ -68,17 +68,17 @@ public class LoginActivity extends AppCompatActivity {
         phoneNum = phoneNum.replaceAll(" ","");
         pass = edit_pass.getText().toString();
         pass = pass.replaceAll(" ","");
-        num_mem = callData.arr.size() / 4;
+        num_mem = callData.arr.size() / 5;
 
         int saveInt = -1;
         for (int i = 0; i < num_mem; i++) {
-            String temp = callData.arr.get(i * 4 + 1);
+            String temp = callData.arr.get(i * 5 + 1);
 
-            String temp2 = callData.arr.get(i * 4 + 2);
+            String temp2 = callData.arr.get(i * 5 + 2);
 
             if (phoneNum != "" && pass != "") {
                 if (phoneNum.equals(temp) && pass.equals(temp2)) {
-                    saveInt = i * 4;
+                    saveInt = i * 5;
                 }
             }
         }
@@ -87,7 +87,11 @@ public class LoginActivity extends AppCompatActivity {
             String name = callData.arr.get(saveInt);
             String ageStr = callData.arr.get(saveInt + 3).replaceAll(" ", "");
             int age = Integer.parseInt(ageStr);
-            GlobalVariable.g_user = new Member(name, age, phoneNum, pass, false, null);
+            if(callData.arr.get(saveInt + 4).equals("t"))
+                GlobalVariable.g_user = new Member(name, age, phoneNum, pass, true, null);
+            else
+                GlobalVariable.g_user = new Member(name, age, phoneNum, pass, false, null);
+
 
             for(int i=0; i<callData2.arr.size(); i+=5){
                 int indexOf = callData2.arr.get(i+4).indexOf(phoneNum);
@@ -101,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                         String str = st.nextToken().trim();
 
                         if(str!=null && str!="" && !str.equals(phoneNum)) {
-                            for (int j = 0; j < callData.arr.size(); j += 4) {
+                            for (int j = 0; j < callData.arr.size(); j += 5) {
                                 if (callData.arr.get(j+1).equals(str)) {
                                     name = callData.arr.get(j).trim();
                                     String phone = callData.arr.get(j + 1).trim();

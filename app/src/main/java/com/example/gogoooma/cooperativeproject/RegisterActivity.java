@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,15 +24,16 @@ public class RegisterActivity extends AppCompatActivity {
     ArrayList<String> phoneNumList;
     int num_mem;
     int check;
-    String Name, phoneNum, pass, passconf, age;
+    String Name, phoneNum, pass, passconf, age, admin;
     EditText edit_Name;
     EditText edit_phoneNum;
     EditText edit_pass;
     EditText edit_age;
     EditText edit_passconf;
-    Button regbtn;
+    CheckBox checkBox;
     RegisterData insert;
     CallData callData = new CallData("member");
+    boolean checked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,18 @@ public class RegisterActivity extends AppCompatActivity {
         edit_pass = (EditText) findViewById(R.id.editText7);
         edit_age = (EditText) findViewById(R.id.editText4);
         edit_passconf = (EditText) findViewById(R.id.editText8);
+        checkBox = (CheckBox) findViewById(R.id.checkBox);
         phoneNumList = new ArrayList<>();
         check =0;
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(checked)
+                    checked = false;
+                else
+                    checked = true;
+            }
+        });
 
 
     }
@@ -75,9 +88,9 @@ public class RegisterActivity extends AppCompatActivity {
         passconf = passconf.replaceAll(" ","");
         age = age.replaceAll(" ","");
 
-        num_mem = callData.arr.size() / 4;
+        num_mem = callData.arr.size() / 5;
         for (int i = 0; i < num_mem; i++) {
-            String temp = callData.arr.get(i * 4 + 1);
+            String temp = callData.arr.get(i * 5 + 1);
             temp = temp.replaceAll(" ","");
             phoneNumList.add(temp);
         }
@@ -98,8 +111,13 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
             if (pass.equals(passconf) && check==0) {
+                admin = null;
+                if(checked)
+                    admin = "t";
+                else
+                    admin = "f";
                 insert = new RegisterData();
-                insert.execute(Name, phoneNum, pass, age);
+                insert.execute(Name, phoneNum, pass, age, admin);
                 Intent intent = new Intent();
                 setResult(1, intent);
                 finish();
@@ -143,9 +161,10 @@ public class RegisterActivity extends AppCompatActivity {
             String phpphoneNum = (String) params[1];
             String phppassword = (String) params[2];
             String phpage = (String) params[3];
+            String phpadmin = (String) params[4];
 
             String serverURL = "http://anesc1.cafe24.com/memberup.php";
-            String postParameters = "&name=" + phpname + "&phoneNum=" + phpphoneNum + "&password=" + phppassword + "&age=" + phpage;
+            String postParameters = "&name=" + phpname + "&phoneNum=" + phpphoneNum + "&password=" + phppassword + "&age=" + phpage + "&admin=" + phpadmin;
 
 
             try {
