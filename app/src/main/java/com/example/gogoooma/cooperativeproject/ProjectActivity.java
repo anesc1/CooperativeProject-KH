@@ -11,13 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProjectActivity extends Fragment implements View.OnClickListener {
     private Boolean isFabOpen = false;
     private FloatingActionButton fab,fab1,fab2;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
     Team team;
+    ListView listView;
+    ArrayAdapter<String> adapter;
     View v;
 
     @Nullable
@@ -25,6 +31,7 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_project, container, false);
 
+        team = GlobalVariable.g_nowTeam;
         Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
         fab = (FloatingActionButton)v.findViewById(R.id.fab);
         fab1 = (FloatingActionButton)v.findViewById(R.id.fab1);
@@ -42,8 +49,13 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
     }
 
     public void init(){
-        TextView teamName = (TextView) v.findViewById(R.id.projectTeamName);
-        teamName.setText(GlobalVariable.g_nowTeam.getTeamName());
+        listView = (ListView) v.findViewById(R.id.teamMemberListView);
+        List<String> data = new ArrayList<>();
+        for(int i=0; i<team.getMembers().size(); i++){
+            data.add(team.getMembers().get(i).getName() + "\n\n" + team.getMembers().get(i).getPhoneNum());
+        }
+        adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_dropdown_item_1line, data);
+        listView.setAdapter(adapter);
     }
 
 

@@ -1,8 +1,10 @@
 package com.example.gogoooma.cooperativeproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,6 +39,25 @@ public class TeamActivity extends AppCompatActivity {
             adapter = new TeamAdapter(this, R.layout.row, GlobalVariable.g_team);
             listView.setAdapter(adapter);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("종료")
+                .setMessage("종료하시겠습니까?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        moveTaskToBack(true);
+                        finish();
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     public void init() {
