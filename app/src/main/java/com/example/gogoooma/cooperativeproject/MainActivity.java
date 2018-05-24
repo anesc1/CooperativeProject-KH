@@ -2,6 +2,7 @@ package com.example.gogoooma.cooperativeproject;
 
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -89,8 +90,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.profile) {
-            FragmentManager manager = getFragmentManager();
-            manager.beginTransaction().replace(R.id.content_main, new ProfileActivity()).commit();
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

@@ -28,7 +28,6 @@ public class AddTeam extends AppCompatActivity {
     RegisterTeam insert;
     Member user;
     CallData callData = new CallData("team");
-    CallData callData2 = new CallData("member");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +37,6 @@ public class AddTeam extends AppCompatActivity {
         int color = Color.parseColor("#0f357d");
         editText = (EditText)findViewById(R.id.edit_teamName);
         editText.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
-
     }
 
     public void Save(View view) {

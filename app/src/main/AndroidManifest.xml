@@ -33,7 +33,9 @@
         <activity android:name=".CallData" />
         <activity android:name=".TeamActivity" />
         <activity android:name=".ProjectActivity" />
-        <activity android:name=".AddTeam" android:theme="@style/Theme.AppCompat.Dialog"></activity>
+        <activity
+            android:name=".AddTeam"
+            android:theme="@style/Theme.AppCompat.Dialog" />
     </application>
 
 </manifest>
