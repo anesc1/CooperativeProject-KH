@@ -40,7 +40,7 @@
             android:name=".AddProjectNum"
             android:theme="@style/Theme.AppCompat.Dialog" />
         />
-        <activity android:name=".AddProject"></activity>
+        <activity android:name=".AddProject" />
     </application>
 
 </manifest>
