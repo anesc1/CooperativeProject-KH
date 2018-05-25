@@ -1,16 +1,14 @@
 package com.example.gogoooma.cooperativeproject;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Project implements Serializable{
     String projectName;
     int projectNum;
     int teamNum;
+    int agenda;
 
-    List<String> agenda;
-
-    public Project(String projectName, int projectNum, List<String> agenda, int teamNum) {
+    public Project(String projectName, int projectNum, int agenda, int teamNum) {
         this.projectName = projectName;
         this.projectNum = projectNum;
         this.agenda = agenda;
@@ -41,11 +39,11 @@ public class Project implements Serializable{
         this.projectName = projectName;
     }
 
-    public List<String> getAgenda() {
+    public int getAgenda() {
         return agenda;
     }
 
-    public void setAgenda(List<String> agenda) {
+    public void setAgenda(int agenda) {
         this.agenda = agenda;
     }
 }

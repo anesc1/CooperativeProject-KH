@@ -27,7 +27,7 @@ public class MemberAdapter extends ArrayAdapter<Member>{
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        v = inflater.inflate(R.layout.row, null);
+        v = inflater.inflate(R.layout.team_member, null);
         now = list.get(position);
 
         TextView name = (TextView) v.findViewById(R.id.projMemberName);
