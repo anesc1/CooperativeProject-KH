@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     android:gravity="bottom"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -15,6 +14,7 @@
         android:layout_height="@dimen/nav_header_height">
 
         <ImageView
+            android:layout_marginTop="40dp"
             android:layout_marginHorizontal="16dp"
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
@@ -38,15 +38,14 @@
             android:layout_height="wrap_content"
             android:text="@string/nav_header_subtitle" />
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
+        android:layout_height="wrap_content">
+        <ListView
+            android:id="@+id/projectListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
+            android:layout_height="wrap_content"></ListView>
     </LinearLayout>
+
 
 </LinearLayout>

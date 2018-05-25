@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class TeamAdapter extends ArrayAdapter<Team> {
+public class MemberAdapter extends ArrayAdapter<Member>{
     View v;
     Context context;
-    List<Team> list;
-    Team now;
+    List<Member> list;
+    Member now;
 
-    public TeamAdapter(@NonNull Context context, int resource, @NonNull List<Team> objects) {
+    public MemberAdapter(@NonNull Context context, int resource, @NonNull List<Member> objects) {
         super(context, resource, objects);
         this.context = context;
         list = objects;
@@ -30,10 +30,10 @@ public class TeamAdapter extends ArrayAdapter<Team> {
         v = inflater.inflate(R.layout.row, null);
         now = list.get(position);
 
-        TextView teamName = (TextView) v.findViewById(R.id.teamName);
-        TextView teamMember = (TextView) v.findViewById(R.id.teamMember);
-        teamName.setText(now.getTeamName());
-        teamMember.setText(now.printMember());
+        TextView name = (TextView) v.findViewById(R.id.projMemberName);
+        TextView phone = (TextView) v.findViewById(R.id.projMemberPhone);
+        name.setText(now.getName());
+        phone.setText(now.getPhoneNum());
 
         return v;
     }

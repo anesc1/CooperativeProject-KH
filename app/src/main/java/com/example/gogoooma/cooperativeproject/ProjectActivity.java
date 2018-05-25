@@ -11,11 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProjectActivity extends Fragment implements View.OnClickListener {
     private Boolean isFabOpen = false;
@@ -23,7 +19,7 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
     Team team;
     ListView listView;
-    ArrayAdapter<String> adapter;
+    MemberAdapter adapter;
     View v;
 
     @Nullable
@@ -50,14 +46,9 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
 
     public void init(){
         listView = (ListView) v.findViewById(R.id.teamMemberListView);
-        List<String> data = new ArrayList<>();
-        for(int i=0; i<team.getMembers().size(); i++){
-            data.add(team.getMembers().get(i).getName() + "\n\n" + team.getMembers().get(i).getPhoneNum());
-        }
-        adapter = new ArrayAdapter<String>(v.getContext(), android.R.layout.simple_dropdown_item_1line, data);
+        adapter = new MemberAdapter(v.getContext(), R.layout.team_member, team.getMembers());
         listView.setAdapter(adapter);
     }
-
 
     @Override
     public void onClick(View v) {
