@@ -56,8 +56,9 @@ public class ProfileActivity extends AppCompatActivity {
             teamMember = teamMember + team.getMembers().get(i).getPhoneNum()+"/";
         }
         teamMember = teamMember + newMember;
+        Toast.makeText(this, teamMember, Toast.LENGTH_SHORT).show();
         insert.execute(team.getTeamName(),
-                "" + team.getTeamNum(), team.getLeader().getPhoneNum(), "", teamMember);
+                "" + team.getTeamNum(), "", "", teamMember);
         GlobalVariable.g_nowTeam.members.add(member);
         finish();
     }
