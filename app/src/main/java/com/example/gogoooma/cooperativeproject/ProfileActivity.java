@@ -48,17 +48,24 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     public void onInvite(View view) {
+        // 현재 팀 받아오기
         Team team = GlobalVariable.g_nowTeam;
+        // 새로운 멤버의 폰넘버 member 변수가 새 멤버
         String newMember = member.getPhoneNum();
+        // 이거 insert 모르겠다
         insert = new RegisterTeam();
         String teamMember = "";
+        // teamMember에 팀에 있는 멤버랑 새로운 멤버 폰넘버 /로 구분해서 저장
         for(int i=0; i<team.getMembers().size(); i++){
             teamMember = teamMember + team.getMembers().get(i).getPhoneNum()+"/";
         }
         teamMember = teamMember + newMember;
+        // 토스트에서는 잘 들어온 거 확인
         Toast.makeText(this, teamMember, Toast.LENGTH_SHORT).show();
+        //근데 여기 안 들어가
         insert.execute(team.getTeamName(),
                 "" + team.getTeamNum(), "", "", teamMember);
+        // 여기도 잘 저장돼서 팀 리스트에는 잘 들어가
         GlobalVariable.g_nowTeam.members.add(member);
         finish();
     }
