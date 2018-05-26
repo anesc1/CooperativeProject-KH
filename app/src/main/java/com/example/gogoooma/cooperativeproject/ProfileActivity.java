@@ -64,9 +64,10 @@ public class ProfileActivity extends AppCompatActivity {
         Toast.makeText(this, teamMember, Toast.LENGTH_SHORT).show();
         //근데 여기 안 들어가
         insert.execute(team.getTeamName(),
-                "" + team.getTeamNum(), "", "", teamMember);
+                String.valueOf(3), "", "", teamMember);
         // 여기도 잘 저장돼서 팀 리스트에는 잘 들어가
         GlobalVariable.g_nowTeam.members.add(member);
+        GlobalVariable.g_team.get(team.getTeamNum()).members.add(member);
         finish();
     }
 
