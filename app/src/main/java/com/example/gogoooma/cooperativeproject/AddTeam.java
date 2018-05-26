@@ -27,6 +27,7 @@ public class AddTeam extends AppCompatActivity {
     Integer teamSize;
     EditText editText;
     RegisterTeam insert;
+    DeleteTeam delete;
     Member user;
     CallData callData = new CallData("team");
     CallData callData2 = new CallData("member");
@@ -60,8 +61,10 @@ public class AddTeam extends AppCompatActivity {
             teamSize = callData.arr.size() / 5;
             teamNum = String.valueOf(teamSize);
             initmember = user.getPhoneNum();
+            delete = new DeleteTeam();
+            delete.execute("3");
             insert = new RegisterTeam();
-            insert.execute(teamName, teamNum, user.getPhoneNum(), "", initmember);
+            insert.execute("3", "3", "3","3" , "3");
             List<Member> list = new ArrayList<>();
             list.add(user);
             GlobalVariable.g_team.add(new Team(list, null, teamName, Integer.parseInt(teamNum),
@@ -191,4 +194,89 @@ public class AddTeam extends AppCompatActivity {
 
         }
     }
+
+    class DeleteTeam extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(AddTeam.this,
+                    "Please Wait", null, true, true);
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String phpteamNum1 = (String) params[0];
+
+            String serverURL = "http://anesc1.cafe24.com/teamup1.php";
+            String postParameters = "&teamNum=" + phpteamNum1;
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                //httpURLConnection.setRequestProperty("content-type", "application/json");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+                return new String("Error: " + e.getMessage());
+            }
+
+        }
+    }
+
 }

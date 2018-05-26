@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="프로젝트 입력"
             android:textColor="@color/colorPrimary"
-            android:textSize="25dp"
+            android:textSize="23dp"
             />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="일정 입력"
             android:textColor="@color/colorPrimary"
-            android:textSize="25dp"/>
+            android:textSize="23dp"/>
     </LinearLayout>
 
     <LinearLayout
