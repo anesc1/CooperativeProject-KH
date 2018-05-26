@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity
             return true;
         } else if (id == R.id.profile) {
             Intent intent = new Intent(this, ProfileActivity.class);
+            intent.putExtra("member", GlobalVariable.g_user);
             startActivity(intent);
         }
 

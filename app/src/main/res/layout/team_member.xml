@@ -4,19 +4,21 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_marginLeft="15dp"
         android:id="@+id/projMemberName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
         android:id="@+id/projMemberPhone"
-        android:layout_marginRight="15dp"
-        android:gravity="right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:gravity="right"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 </LinearLayout>

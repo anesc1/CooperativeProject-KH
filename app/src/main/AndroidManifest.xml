@@ -35,10 +35,10 @@
         <activity android:name=".ProjectActivity" />
         <activity
             android:name=".AddTeam"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/Theme.MyDialog" />
         <activity
             android:name=".AddProjectNum"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/Theme.MyDialog" />
         />
         <activity android:name=".AddProject" />
     </application>
