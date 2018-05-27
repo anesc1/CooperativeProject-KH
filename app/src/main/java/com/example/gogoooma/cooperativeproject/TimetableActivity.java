@@ -57,7 +57,10 @@ public class TimetableActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 st = Starttime.getSelectedItem().toString();
-                starttime = st.charAt(0) - 48;
+                if (st.charAt(1) < 58) {
+                    starttime = st.charAt(1) - 48 + 10;
+                } else
+                    starttime = st.charAt(0) - 48;
             }
 
             @Override
@@ -69,7 +72,10 @@ public class TimetableActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 et = Endtime.getSelectedItem().toString();
-                endtime = et.charAt(0) - 48;
+                if (et.charAt(1) < 58) {
+                    endtime = et.charAt(1) - 48 + 10;
+                } else
+                    endtime = et.charAt(0) - 48;
             }
 
             @Override

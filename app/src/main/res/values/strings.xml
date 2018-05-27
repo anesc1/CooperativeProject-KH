@@ -20,5 +20,32 @@
         completions."
     </string>
 
+    <!-- Strings related to Timetable -->
+    <string name="spin_week">WeekDay</string>
+    <string name="spin_starttime">Start Time</string>
+    <string name="spin_endtime">End Time</string>
+
+    <string-array name="weekday">
+        <item>monday</item>
+        <item>tuesday</item>
+        <item>wednesday</item>
+        <item>thursday</item>
+        <item>friday</item>
+    </string-array>
+
+    <string-array name="time">
+        <item>9AM</item>
+        <item>10AM</item>
+        <item>11AM</item>
+        <item>12PM</item>
+        <item>1PM</item>
+        <item>2PM</item>
+        <item>3PM</item>
+        <item>4PM</item>
+        <item>5PM</item>
+        <item>6PM</item>
+        <item>7PM</item>
+        <item>8PM</item>
+    </string-array>
 
 </resources>
