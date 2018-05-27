@@ -16,6 +16,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ProjectActivity extends Fragment implements View.OnClickListener {
     private Boolean isFabOpen = false;
@@ -32,6 +33,7 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
         v = inflater.inflate(R.layout.activity_project, container, false);
         listView = (ListView) v.findViewById(R.id.teamMemberListView);
         team = GlobalVariable.g_nowTeam;
+        Toast.makeText(v.getContext(), team.getLeader().getPhoneNum(), Toast.LENGTH_SHORT).show();
         Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
         fab = (FloatingActionButton)v.findViewById(R.id.fab);
         fab1 = (FloatingActionButton)v.findViewById(R.id.fab1);
@@ -49,7 +51,12 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
     }
 
     public void init(){
-        adapter = new MemberAdapter(v.getContext(), R.layout.team_member, team.getMembers());
+        int num = 0;
+        for(int i=0; i<team.getMembers().size(); i++){
+            if(team.getMembers().get(i).getPhoneNum().equals(team.getLeader()))
+                num = i;
+        }
+        adapter = new MemberAdapter(v.getContext(), R.layout.team_member, team.getMembers(), num);
         listView.setAdapter(adapter);
         setListViewHeightBasedOnChildren(listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

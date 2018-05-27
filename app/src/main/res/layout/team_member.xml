@@ -10,15 +10,26 @@
         android:layout_height="30dp"
         android:layout_weight="1"
         app:srcCompat="@drawable/user" />
+
+    <ImageView
+        android:id="@+id/star"
+        android:layout_width="20dp"
+        android:layout_height="25dp"
+        android:layout_weight="1"
+        android:paddingTop="5dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/star" />
+
     <TextView
         android:id="@+id/projMemberName"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_weight="2"
+
         android:paddingTop="5dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Button" />
-    
+
     <TextView
         android:id="@+id/projMemberPhone"
         android:layout_width="wrap_content"

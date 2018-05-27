@@ -119,9 +119,15 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                     list.add(GlobalVariable.g_user);
+                    Member leader = null;
+                    for(int k=0; k<list.size(); k++){
+                        if(list.get(k).getPhoneNum().equals(callData2.arr.get(i+2))){
+                            leader = list.get(k);
+                        }
+                    }
 
                     GlobalVariable.g_team.add(new Team(list, null, callData2.arr.get(i),
-                            Integer.parseInt(tempStr), null, null));
+                            Integer.parseInt(tempStr), leader, null));
                 }
 
             }
