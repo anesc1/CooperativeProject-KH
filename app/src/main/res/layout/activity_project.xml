@@ -8,10 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-
-
     <include layout="@layout/content_main" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab2"
         android:layout_width="wrap_content"
@@ -24,20 +21,19 @@
         app:backgroundTint="@android:color/holo_orange_dark"
         app:elevation="6dp"
         app:pressedTranslationZ="12dp" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="90dp"
+
         android:layout_marginRight="@dimen/fab_margin"
         android:src="@drawable/project"
         android:visibility="invisible"
         app:backgroundTint="@color/colorPrimaryDark"
         app:elevation="6dp"
         app:pressedTranslationZ="12dp" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -48,27 +44,39 @@
         app:backgroundTint="@color/colorAccent"
         app:elevation="6dp"
         app:pressedTranslationZ="12dp" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView3"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:text="팀원" />
-
-        <ListView
-            android:layout_marginHorizontal="25dp"
-            android:id="@+id/teamMemberListView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-</android.support.design.widget.CoordinatorLayout>
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="270dp"
+                android:layout_height="34dp"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@drawable/team_one" />
+            <ListView
+                android:id="@+id/teamMemberListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp">
+            </ListView>
+            <ImageView
+            android:id="@+id/imageView8"
+                android:layout_width="270dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/team_proj" />
+            <ListView
+                android:id="@+id/teamProjListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginTop="5dp">
+            </ListView>
+        </LinearLayout>
+    </ScrollView></android.support.design.widget.CoordinatorLayout>

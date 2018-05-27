@@ -93,9 +93,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.firstActivity) {
-            manager.beginTransaction().replace(R.id.content_main, new FirstActivity()).commit();
-        } else if (id == R.id.secondActivity) {
             manager.beginTransaction().replace(R.id.content_main, new ProjectActivity()).commit();
+        } else if (id == R.id.secondActivity) {
+            Intent intent = new Intent(this, TimetableActivity.class);
+            startActivity(intent);
         } else if (id == R.id.thirdActivity) {
             manager.beginTransaction().replace(R.id.content_main, new ThirdActivity()).commit();
         } else if (id == R.id.fourthActivity) {
