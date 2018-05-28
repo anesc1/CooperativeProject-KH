@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.home) {
             manager.beginTransaction().replace(R.id.content_main, new ProjectActivity()).commit();
         } else if (id == R.id.timeTable) {
-            Intent intent = new Intent(this, TimetableActivity.class);
+            Intent intent = new Intent(getApplicationContext(), TimetableActivity.class);
             startActivity(intent);
         } else if (id == R.id.thirdActivity) {
             manager.beginTransaction().replace(R.id.content_main, new ThirdActivity()).commit();
