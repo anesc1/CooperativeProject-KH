@@ -1,6 +1,7 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -70,43 +71,43 @@ public class TimetableActivity extends AppCompatActivity {
             case "monday":
                 for (int i = start; i <= end; i++) {
                     monday[i].setText(todo);
-                    monday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable1));
+                    monday[i].setBackgroundColor(Color.rgb(153, 102, 204));
                 }
                 break;
             case "tuesday":
                 for (int i = start; i <= end; i++) {
                     tuesday[i].setText(todo);
-                    tuesday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable2));
+                    tuesday[i].setBackgroundColor(Color.rgb(195, 205, 230));
                 }
                 break;
             case "wednesday":
                 for (int i = start; i <= end; i++) {
                     wednesday[i].setText(todo);
-                    wednesday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable1));
+                    wednesday[i].setBackgroundColor(Color.rgb(153, 102, 204));
                 }
                 break;
             case "thursday":
                 for (int i = start; i <= end; i++) {
                     thursday[i].setText(todo);
-                    thursday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable2));
+                    thursday[i].setBackgroundColor(Color.rgb(195, 205, 230));
                 }
                 break;
             case "friday":
                 for (int i = start; i <= end; i++) {
                     friday[i].setText(todo);
-                    friday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable1));
+                    friday[i].setBackgroundColor(Color.rgb(153, 102, 204));
                 }
                 break;
             case "saturday":
                 for (int i = start; i <= end; i++) {
                     saturday[i].setText(todo);
-                    saturday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable2));
+                    saturday[i].setBackgroundColor(Color.rgb(195, 205, 230));
                 }
                 break;
             case "sunday":
                 for (int i = start; i <= end; i++) {
                     sunday[i].setText(todo);
-                    sunday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable1));
+                    sunday[i].setBackgroundColor(Color.rgb(153, 102, 204));
                 }
                 break;
         }
