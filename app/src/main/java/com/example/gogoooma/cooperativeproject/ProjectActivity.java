@@ -16,7 +16,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class ProjectActivity extends Fragment implements View.OnClickListener {
     private Boolean isFabOpen = false;
@@ -24,6 +24,7 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
     Team team;
     ListView listView;
+    TextView projAdminName, projAdminPhone;
     MemberAdapter adapter;
     View v;
 
@@ -32,6 +33,8 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_project, container, false);
         listView = (ListView) v.findViewById(R.id.teamMemberListView);
+        projAdminName = (TextView) v.findViewById(R.id.projAdminName);
+        projAdminPhone = (TextView) v.findViewById(R.id.projAdminPhone);
         team = GlobalVariable.g_nowTeam;
         Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
         fab = (FloatingActionButton)v.findViewById(R.id.fab);
@@ -50,6 +53,8 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
     }
 
     public void init(){
+        projAdminName.setText(team.getAdmin().getName());
+        projAdminPhone.setText(team.getAdmin().getPhoneNum());
         int num = 0;
         for(int i=0; i<team.getMembers().size(); i++){
             if(team.getMembers().get(i).getPhoneNum().equals(team.getLeader().getPhoneNum())){

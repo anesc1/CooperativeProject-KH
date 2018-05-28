@@ -36,6 +36,24 @@
         android:layout_marginTop="10dp"
         android:hint="팀 이름" />
 
+    <TextView
+        android:id="@+id/textContent2"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="관리자의 연락처를 입력하세요"
+        android:textColor="@color/colorPrimary"
+        android:textSize="17dp" />
+
+    <EditText
+        android:id="@+id/edit_teamAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:hint="연락처" />
+
     <Button
         android:id="@+id/btnAdding"
         android:layout_width="match_parent"

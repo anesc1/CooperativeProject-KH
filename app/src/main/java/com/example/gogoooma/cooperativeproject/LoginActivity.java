@@ -98,9 +98,11 @@ public class LoginActivity extends AppCompatActivity {
                 int indexOf = callData2.arr.get(i+4).indexOf(phoneNum);
                 if(indexOf > -1){
                     String tempStr = callData2.arr.get(i+1).replaceAll(" ", "");
-
+                    // 팀에 관리자 할당
+                    String adminPhone = callData2.arr.get(i+3);
                     // 팀에 팀원 할당
                     ArrayList<Member> list = new ArrayList<>();
+                    Member admin = null;
                     StringTokenizer st = new StringTokenizer(callData2.arr.get(i+4).toString(), "/");
                     while (st.hasMoreTokens()) {
                         String str = st.nextToken().trim();
@@ -114,6 +116,13 @@ public class LoginActivity extends AppCompatActivity {
                                     ageStr = callData.arr.get(j + 3).trim();
                                     age = Integer.parseInt(ageStr);
                                     list.add(new Member(name, age, phone, password, false, null));
+                                } else if(callData.arr.get(j+1).equals(adminPhone)){
+                                    name = callData.arr.get(j).trim();
+                                    String phone = callData.arr.get(j + 1).trim();
+                                    String password = callData.arr.get(j + 2).trim();
+                                    ageStr = callData.arr.get(j + 3).trim();
+                                    age = Integer.parseInt(ageStr);
+                                    admin = new Member(name, age, phone, password, false, null);
                                 }
                             }
                         }
@@ -127,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     GlobalVariable.g_team.add(new Team(list, null, callData2.arr.get(i),
-                            Integer.parseInt(tempStr), leader, null));
+                            Integer.parseInt(tempStr), leader, admin));
                 }
             }
 

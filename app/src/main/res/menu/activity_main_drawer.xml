@@ -15,14 +15,14 @@
         <item
             android:id="@+id/thirdActivity"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="3번" />
+            android:title="모임 설정" />
         <item
             android:id="@+id/fourthActivity"
             android:icon="@drawable/ic_menu_manage"
             android:title="4번" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="관리 목록">
         <menu>
             <item
                 android:id="@+id/adminFirst"
