@@ -17,15 +17,15 @@ public class ThirdActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_third, container, false);
         //프로젝트 정보가 없을 때 생성
-        if(check.equals(GlobalVariable.g_project.size()))
-        {
+//        if(check.equals(GlobalVariable.g_project.size()))
+//        {
             Intent intent = new Intent(getActivity(),AddProjectNum.class);
             startActivityForResult(intent,123);
-        }
-        else //프로젝트 정보가 이미 있을 때 차트
-        {
-
-        }
+//        }
+//        else //프로젝트 정보가 이미 있을 때 차트
+//        {
+//
+//        }
         return v;
     }
 

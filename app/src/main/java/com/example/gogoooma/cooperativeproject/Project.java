@@ -6,9 +6,9 @@ public class Project implements Serializable{
     String projectName;
     int projectNum;
     int teamNum;
-    int agenda;
+    String agenda;
 
-    public Project(String projectName, int projectNum, int agenda, int teamNum) {
+    public Project(String projectName, int projectNum, String agenda, int teamNum) {
         this.projectName = projectName;
         this.projectNum = projectNum;
         this.agenda = agenda;
@@ -39,11 +39,11 @@ public class Project implements Serializable{
         this.projectName = projectName;
     }
 
-    public int getAgenda() {
+    public String getAgenda() {
         return agenda;
     }
 
-    public void setAgenda(int agenda) {
+    public void setAgenda(String agenda) {
         this.agenda = agenda;
     }
 }

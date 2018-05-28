@@ -32,8 +32,18 @@
         android:id="@+id/prj1btn"
         android:layout_weight="1"
         android:layout_width="0dp"
+        android:onClick="prj1start"
         android:layout_height="wrap_content"
-        android:text="추가"/>
+        android:text="시작일"/>
+
+        <Button
+            android:id="@+id/prj1btn_"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:onClick="prj1end"
+            android:layout_height="wrap_content"
+            android:text="종료일"/>
+
 
 </LinearLayout>
     <TextView
@@ -59,8 +69,17 @@
             android:id="@+id/prj2btn"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:onClick="prj2start"
             android:layout_height="wrap_content"
-            android:text="추가"/>
+            android:text="시작일"/>
+
+        <Button
+            android:id="@+id/prj2btn_"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:onClick="prj2end"
+            android:layout_height="wrap_content"
+            android:text="종료일"/>>
 
     </LinearLayout>
     <TextView
@@ -86,8 +105,17 @@
             android:id="@+id/prj3btn"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:onClick="prj3start"
             android:layout_height="wrap_content"
-            android:text="추가"/>
+            android:text="시작일"/>
+
+        <Button
+            android:id="@+id/prj3btn_"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:onClick="prj3end"
+            android:layout_height="wrap_content"
+            android:text="종료일"/>
 
     </LinearLayout>
     <TextView
@@ -113,8 +141,17 @@
             android:id="@+id/prj4btn"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:onClick="prj4start"
             android:layout_height="wrap_content"
-            android:text="추가"/>
+            android:text="시작일"/>
+
+        <Button
+            android:id="@+id/prj4btn_"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:onClick="prj4end"
+            android:layout_height="wrap_content"
+            android:text="종료일"/>
 
     </LinearLayout>
     <TextView
@@ -140,8 +177,17 @@
             android:id="@+id/prj5btn"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:onClick="prj5start"
             android:layout_height="wrap_content"
-            android:text="추가"/>
+            android:text="시작일"/>
+
+        <Button
+            android:id="@+id/prj5btn_"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:onClick="prj5end"
+            android:layout_height="wrap_content"
+            android:text="종료일"/>
 
     </LinearLayout>
     <TextView
@@ -166,8 +212,17 @@
             android:id="@+id/prj6btn"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:onClick="prj6start"
             android:layout_height="wrap_content"
-            android:text="추가"/>
+            android:text="시작일"/>
+
+        <Button
+            android:id="@+id/prj6btn_"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:onClick="prj6end"
+            android:layout_height="wrap_content"
+            android:text="종료일"/>
 
     </LinearLayout>
     <TextView
@@ -193,8 +248,17 @@
             android:id="@+id/prj7btn"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:onClick="prj7start"
             android:layout_height="wrap_content"
-            android:text="추가"/>
+            android:text="시작일"/>
+
+        <Button
+            android:id="@+id/prj7btn_"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:onClick="prj7end"
+            android:layout_height="wrap_content"
+            android:text="종료일"/>
 
     </LinearLayout>
     <TextView
@@ -204,4 +268,9 @@
         android:layout_height="wrap_content"
         android:textSize="10dp"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="저장"
+        android:onClick="agendaSave"/>
 </LinearLayout>

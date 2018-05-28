@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity
         for(int i=0; i<callData3.arr.size(); i+=4){
             String projectName = callData3.arr.get(i).trim();
             Integer projectNum = Integer.parseInt(callData3.arr.get(i+1).trim());
-            Integer agenda = Integer.parseInt(callData3.arr.get(i+3).trim());
+            String agenda = callData3.arr.get(i+3).trim();
             Integer teamNum = Integer.parseInt(callData3.arr.get(i+2).trim());
 
-                if(teamNum.equals(GlobalVariable.g_nowTeam))
+                if(teamNum.equals(GlobalVariable.g_nowTeam.getTeamNum()))
                 {
                     GlobalVariable.g_project.add(new Project(projectName,projectNum,agenda,teamNum));
                 }
