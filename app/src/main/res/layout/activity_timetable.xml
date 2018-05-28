@@ -5,9 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:layout_marginHorizontal="3dp"
+    android:layout_marginVertical="3dp"
+    tools:context=".TimetableActivity">
 
     <LinearLayout
+        android:layout_marginHorizontal="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -17,24 +20,32 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"
             android:entries="@array/weekday"
             android:prompt="@string/spin_week"></Spinner>
 
-        <Spinner
-            android:id="@+id/selectStartTime"
+        <Button
+            android:id="@+id/button4"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="35dp"
             android:layout_weight="1"
-            android:entries="@array/time"
-            android:prompt="@string/spin_starttime"></Spinner>
+            android:layout_marginHorizontal="5dp"
+            android:background="@android:color/holo_purple"
+            android:text="시작시간"
+            android:onClick="onClickStart"
+            android:textColor="@android:color/white" />
 
-        <Spinner
-            android:id="@+id/selectEndTime"
+        <Button
+            android:id="@+id/button5"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="35dp"
             android:layout_weight="1"
-            android:entries="@array/time"
-            android:prompt="@string/spin_endtime"></Spinner>
+            android:background="@android:color/holo_purple"
+            android:text="종료시간"
+            android:onClick="onClickEnd"
+            android:textColor="@android:color/white" />
+
+
     </LinearLayout>
 
 
@@ -47,15 +58,19 @@
             android:id="@+id/editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_weight="5"
             android:hint="TO-DO" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
+            android:background="@android:color/holo_purple"
             android:onClick="btnClick"
-            android:text="SELECT" />
+            android:text="SELECT"
+            android:layout_marginRight="5dp"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
 
