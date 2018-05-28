@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".FirstActivity" />
+        <activity android:name=".TimetableActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".ThirdActivity" />
@@ -41,7 +41,8 @@
             android:theme="@style/Theme.MyDialog" />
         />
         <activity android:name=".AddProject" />
-        <activity android:name=".AdminActivity"></activity>
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".AddAgenda"></activity>
     </application>
 
 </manifest>

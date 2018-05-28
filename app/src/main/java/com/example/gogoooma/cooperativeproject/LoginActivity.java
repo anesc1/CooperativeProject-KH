@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText edit_pass;
     CallData callData = new CallData("member");
     CallData callData2 = new CallData("team");
-    CallData callData3 = new CallData("project");
+
     int num_mem;
 
     @Override
@@ -140,20 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
 
-            //같은 teamNum에 대한 project할당
-            for(int i=0; i<callData3.arr.size(); i+=4){
-               String projectName = callData3.arr.get(i).trim();
-               Integer projectNum = Integer.parseInt(callData3.arr.get(i+1).trim());
-               Integer agenda = Integer.parseInt(callData3.arr.get(i+3).trim());
-               Integer teamNum = Integer.parseInt(callData3.arr.get(i+2).trim());
-               for(int j=0;j<GlobalVariable.g_team.size();j++)
-               {
-                   if(teamNum.equals(GlobalVariable.g_team.get(j).getTeamNum()))
-                   {
-                       GlobalVariable.g_project.add(new Project(projectName,projectNum,agenda,teamNum));
-                   }
-               }
-            }
+
 
 
             if(GlobalVariable.g_user.getAdmin()) {

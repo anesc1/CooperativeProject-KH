@@ -1,6 +1,6 @@
 package com.example.gogoooma.cooperativeproject;
 
-import android.content.Context;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,13 +8,13 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 public class TimetableActivity extends AppCompatActivity {
     Spinner Weekday;
-    Spinner Starttime;
-    Spinner Endtime;
     EditText edittext;
 
+    Boolean isStart = true;
     String weekday;
     String st;
     String et;
@@ -34,12 +34,12 @@ public class TimetableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timetable);
         init();
         createArray();
+
     }
+
 
     public void init() {
         Weekday = (Spinner) findViewById(R.id.selectDay);
-        Starttime = (Spinner) findViewById(R.id.selectStartTime);
-        Endtime = (Spinner) findViewById(R.id.selectEndTime);
         edittext = (EditText) findViewById(R.id.editText);
 
         Weekday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -52,41 +52,14 @@ public class TimetableActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
-        Starttime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                st = Starttime.getSelectedItem().toString();
-                if (st.charAt(1) < 58) {
-                    starttime = st.charAt(1) - 48 + 10;
-                } else
-                    starttime = st.charAt(0) - 48;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        Endtime.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                et = Endtime.getSelectedItem().toString();
-                if (et.charAt(1) < 58) {
-                    endtime = et.charAt(1) - 48 + 10;
-                } else
-                    endtime = et.charAt(0) - 48;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
     }
 
     public void btnClick(View view) {
+        if(starttime > 12) starttime -= 12;
+        if(endtime > 12) endtime -= 12;
         int start = findIndex(starttime);
         int end = findIndex(endtime);
+
         String todo = edittext.getText().toString();
 
         switch (weekday) {
@@ -232,35 +205,29 @@ public class TimetableActivity extends AppCompatActivity {
         friday[9] = (TextView) findViewById(R.id.friday6);
         friday[10] = (TextView) findViewById(R.id.friday7);
         friday[11] = (TextView) findViewById(R.id.friday8);
-
     }
 
-    public void setting(TextView[] monday, TextView[] tuesday, TextView[] wednesday, TextView[] thursday, TextView[] friday, Context context) {
-        for (int i = 0; i < 12; i++) {
-            if (!this.monday[i].equals("")) {
-                monday[i].setText(this.monday[i].toString());
-                monday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-            }
+    public void onClickStart(View view) {
+        isStart = true;
+        TimePickerDialog dialog = new TimePickerDialog(this, listener, 15, 24, false);
+        dialog.show();
+    }
 
-            if (!this.tuesday[i].equals("")) {
-                monday[i].setText(this.tuesday[i].toString());
-                monday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-            }
+    public void onClickEnd(View view) {
+        isStart = false;
+        TimePickerDialog dialog = new TimePickerDialog(this, listener, 15, 24, false);
+        dialog.show();
+    }
 
-            if (!this.wednesday[i].equals("")) {
-                wednesday[i].setText(this.wednesday[i].toString());
-                wednesday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-            }
+    private TimePickerDialog.OnTimeSetListener listener = new TimePickerDialog.OnTimeSetListener() {
 
-            if (!this.thursday[i].equals("")) {
-                thursday[i].setText(this.thursday[i].toString());
-                thursday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-            }
-
-            if (!this.friday[i].equals("")) {
-                friday[i].setText(this.friday[i].toString());
-                friday[i].setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-            }
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            // 설정버튼 눌렀을 때
+            if(isStart)
+                starttime = hourOfDay;
+            else
+                endtime = hourOfDay;
         }
-    }
+    };
 }
