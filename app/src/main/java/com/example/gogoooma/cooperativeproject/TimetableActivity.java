@@ -253,13 +253,13 @@ public class TimetableActivity extends AppCompatActivity {
 
     public void onClickStart(View view) {
         isStart = true;
-        TimePickerDialog dialog = new TimePickerDialog(this, listener, 15, 24, false);
+        TimePickerDialog dialog = new TimePickerDialog(this, listener, 12, 0, false);
         dialog.show();
     }
 
     public void onClickEnd(View view) {
         isStart = false;
-        TimePickerDialog dialog = new TimePickerDialog(this, listener, 15, 24, false);
+        TimePickerDialog dialog = new TimePickerDialog(this, listener, 12, 0, false);
         dialog.show();
     }
 
