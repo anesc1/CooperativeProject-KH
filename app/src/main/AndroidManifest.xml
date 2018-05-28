@@ -41,7 +41,9 @@
             android:theme="@style/Theme.MyDialog" />
         />
         <activity android:name=".AddProject" />
-        <activity android:name=".AdminActivity"></activity>
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".ScheduleActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
