@@ -73,7 +73,7 @@ public class AddProject extends AppCompatActivity {
         intent.putExtra("projectName4",prjName4);
         intent.putExtra("projectName5",prjName5);
         intent.putExtra("projectName6",prjName6);
-        intent.putExtra("projectName7",prjName7);
+        intent.putExtra("projectName7",prjName6);
         startActivityForResult(intent,123);
     }
 
@@ -88,6 +88,6 @@ public class AddProject extends AppCompatActivity {
     }
 
 
-
+//
 }
 
