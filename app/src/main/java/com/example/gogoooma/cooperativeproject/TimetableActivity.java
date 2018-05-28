@@ -19,8 +19,10 @@ public class TimetableActivity extends AppCompatActivity {
     String st;
     String et;
 
-    int starttime;
-    int endtime;
+    int startHour;
+    int startMin;
+    int endHour;
+    int endMin;
 
     TextView monday[] = new TextView[12];
     TextView tuesday[] = new TextView[12];
@@ -55,10 +57,10 @@ public class TimetableActivity extends AppCompatActivity {
     }
 
     public void btnClick(View view) {
-        if(starttime > 12) starttime -= 12;
-        if(endtime > 12) endtime -= 12;
-        int start = findIndex(starttime);
-        int end = findIndex(endtime);
+        if(startHour > 12) startHour -= 12;
+        if(endHour > 12) endHour -= 12;
+        int start = findIndex(startHour);
+        int end = findIndex(endHour);
 
         String todo = edittext.getText().toString();
 
@@ -224,10 +226,14 @@ public class TimetableActivity extends AppCompatActivity {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             // 설정버튼 눌렀을 때
-            if(isStart)
-                starttime = hourOfDay;
-            else
-                endtime = hourOfDay;
+            if(isStart) {
+                startHour = hourOfDay;
+                startMin = minute;
+            }
+            else {
+                endHour = hourOfDay;
+                endMin = minute;
+            }
         }
     };
 }
