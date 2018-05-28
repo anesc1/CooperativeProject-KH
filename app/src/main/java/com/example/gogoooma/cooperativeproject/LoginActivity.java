@@ -116,13 +116,6 @@ public class LoginActivity extends AppCompatActivity {
                                     ageStr = callData.arr.get(j + 3).trim();
                                     age = Integer.parseInt(ageStr);
                                     list.add(new Member(name, age, phone, password, false, null));
-                                } else if(callData.arr.get(j+1).equals(adminPhone)){
-                                    name = callData.arr.get(j).trim();
-                                    String phone = callData.arr.get(j + 1).trim();
-                                    String password = callData.arr.get(j + 2).trim();
-                                    ageStr = callData.arr.get(j + 3).trim();
-                                    age = Integer.parseInt(ageStr);
-                                    admin = new Member(name, age, phone, password, false, null);
                                 }
                             }
                         }
@@ -134,7 +127,16 @@ public class LoginActivity extends AppCompatActivity {
                             leader = list.get(k);
                         }
                     }
-
+                    for (int j = 0; j < callData.arr.size(); j += 5) {
+                        if(callData.arr.get(j+1).equals(adminPhone)) {
+                            name = callData.arr.get(j).trim();
+                            String phone = callData.arr.get(j + 1).trim();
+                            String password = callData.arr.get(j + 2).trim();
+                            ageStr = callData.arr.get(j + 3).trim();
+                            age = Integer.parseInt(ageStr);
+                            admin = new Member(name, age, phone, password, false, null);
+                        }
+                    }
                     GlobalVariable.g_team.add(new Team(list, null, callData2.arr.get(i),
                             Integer.parseInt(tempStr), leader, admin));
                 }
