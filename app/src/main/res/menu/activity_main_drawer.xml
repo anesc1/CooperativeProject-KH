@@ -5,11 +5,11 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/firstActivity"
+            android:id="@+id/home"
             android:icon="@drawable/handshake"
             android:title="홈으로" />
         <item
-            android:id="@+id/secondActivity"
+            android:id="@+id/timeTable"
             android:icon="@drawable/ic_menu_gallery"
             android:title="시간표" />
         <item
@@ -25,13 +25,15 @@
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/adminFirst"
+                android:visible="false"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="1" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/adminSecond"
+                android:visible="false"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="2" />
         </menu>
     </item>
 

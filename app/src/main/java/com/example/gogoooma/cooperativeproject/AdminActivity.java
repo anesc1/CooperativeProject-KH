@@ -7,14 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FirstActivity extends Fragment {
+public class AdminActivity extends Fragment {
     View v;
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.activity_first, container, false);
+        v = inflater.inflate(R.layout.activity_admin, container, false);
         return v;
     }
 }

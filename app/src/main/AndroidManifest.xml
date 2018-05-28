@@ -41,6 +41,7 @@
             android:theme="@style/Theme.MyDialog" />
         />
         <activity android:name=".AddProject" />
+        <activity android:name=".AdminActivity"></activity>
     </application>
 
 </manifest>

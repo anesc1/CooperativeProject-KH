@@ -78,22 +78,28 @@ public class AddTeam extends AppCompatActivity {
                 if(str.equals(callData2.arr.get(i+1))) {
                     isIn = true;
                     for(int j=0; j<GlobalVariable.g_nowTeam.getMembers().size(); j++){
-                        if(str.equals(GlobalVariable.g_nowTeam.getMembers().get(j).getName()))
+                        if(str.equals(GlobalVariable.g_nowTeam.getMembers().get(j).getPhoneNum()))
                             isOrigin = true;
                     }
                     if(isOrigin) {
                         editText.setText("");
                         Toast.makeText(view.getContext(), "이미 팀원으로 등록된 사용자입니다.", Toast.LENGTH_SHORT).show();
                     } else {
-                        String name = callData2.arr.get(i);
-                        String pass = callData2.arr.get(i + 2);
-                        int age = Integer.parseInt(callData2.arr.get(i+3));
+                        if(callData2.arr.get(i+4).equals("t")){
+                            Toast.makeText(view.getContext(), "관리자는 초대할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                            editText.setText("");
+                        } else {
 
-                        Member member = new Member(name, age, str, pass, false, null);
-                        intent = new Intent();
-                        intent.putExtra("member", member);
-                        setResult(1, intent);
-                        finish();
+                            String name = callData2.arr.get(i);
+                            String pass = callData2.arr.get(i + 2);
+                            int age = Integer.parseInt(callData2.arr.get(i + 3));
+
+                            Member member = new Member(name, age, str, pass, false, null);
+                            intent = new Intent();
+                            intent.putExtra("member", member);
+                            setResult(1, intent);
+                            finish();
+                        }
                     }
                 }
             }

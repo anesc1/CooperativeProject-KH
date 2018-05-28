@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity
 
         ActionBar ab = getSupportActionBar();
 
-        ab.setTitle("\t"+GlobalVariable.g_nowTeam.getTeamName() + " 팀");
+        if(GlobalVariable.g_nowTeam != null)
+            ab.setTitle("\t"+GlobalVariable.g_nowTeam.getTeamName() + " 팀");
+        else
+            ab.setTitle("관리자 페이지");
         ab.setDisplayUseLogoEnabled(true);
         ab.setDisplayShowHomeEnabled(true);
 
@@ -43,10 +46,21 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
-        FragmentManager manager = getFragmentManager();
-        manager.beginTransaction().replace(R.id.content_main, new ProjectActivity()).commit();
+        if(GlobalVariable.g_user.getAdmin()) {
+            Menu nav_Menu = navigationView.getMenu();
+            nav_Menu.findItem(R.id.adminFirst).setVisible(true);
+            nav_Menu.findItem(R.id.adminSecond).setVisible(true);
+            nav_Menu.findItem(R.id.home).setVisible(false);
+            nav_Menu.findItem(R.id.timeTable).setVisible(false);
+            nav_Menu.findItem(R.id.thirdActivity).setVisible(false);
+            nav_Menu.findItem(R.id.fourthActivity).setVisible(false);
+            FragmentManager manager = getFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main, new AdminActivity()).commit();
+        }
+        else {
+            FragmentManager manager = getFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main, new ProjectActivity()).commit();
+        }
     }
 
     @Override
@@ -92,18 +106,18 @@ public class MainActivity extends AppCompatActivity
         FragmentManager manager = getFragmentManager();
         int id = item.getItemId();
 
-        if (id == R.id.firstActivity) {
+        if (id == R.id.home) {
             manager.beginTransaction().replace(R.id.content_main, new ProjectActivity()).commit();
-        } else if (id == R.id.secondActivity) {
+        } else if (id == R.id.timeTable) {
             Intent intent = new Intent(this, TimetableActivity.class);
             startActivity(intent);
         } else if (id == R.id.thirdActivity) {
             manager.beginTransaction().replace(R.id.content_main, new ThirdActivity()).commit();
         } else if (id == R.id.fourthActivity) {
             manager.beginTransaction().replace(R.id.content_main, new FourthActivity()).commit();
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.adminFirst) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.adminSecond) {
 
         }
 

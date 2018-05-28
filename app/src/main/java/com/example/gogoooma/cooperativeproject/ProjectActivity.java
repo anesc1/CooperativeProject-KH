@@ -33,7 +33,6 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
         v = inflater.inflate(R.layout.activity_project, container, false);
         listView = (ListView) v.findViewById(R.id.teamMemberListView);
         team = GlobalVariable.g_nowTeam;
-        Toast.makeText(v.getContext(), team.getLeader().getPhoneNum(), Toast.LENGTH_SHORT).show();
         Toolbar toolbar = (Toolbar) v.findViewById(R.id.toolbar);
         fab = (FloatingActionButton)v.findViewById(R.id.fab);
         fab1 = (FloatingActionButton)v.findViewById(R.id.fab1);

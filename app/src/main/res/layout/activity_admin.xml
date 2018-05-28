@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstActivity">
+    tools:context=".AdminActivity">
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="admin page"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="99dp" />
 </android.support.constraint.ConstraintLayout>

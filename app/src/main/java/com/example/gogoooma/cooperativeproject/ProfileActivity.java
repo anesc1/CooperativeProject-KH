@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -57,12 +56,11 @@ public class ProfileActivity extends AppCompatActivity {
             teamMember = teamMember + team.getMembers().get(i).getPhoneNum()+"/";
         }
         teamMember = teamMember + newMember;
-        Toast.makeText(this, teamMember, Toast.LENGTH_SHORT).show();
         delete = new DeleteTeam();
         String num = String.valueOf(team.getTeamNum());
         delete.execute(num);
         insert.execute(team.getTeamName(),
-                num, "", "", teamMember);
+                num, team.getLeader().getPhoneNum(), "", teamMember);
         GlobalVariable.g_nowTeam.members.add(member);
         for(int i=0; i<GlobalVariable.g_team.size(); i++){
             if(team.getTeamNum() == GlobalVariable.g_team.get(i).getTeamNum())
