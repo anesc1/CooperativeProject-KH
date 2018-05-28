@@ -64,7 +64,11 @@ public class ProfileActivity extends AppCompatActivity {
         insert.execute(team.getTeamName(),
                 num, "", "", teamMember);
         GlobalVariable.g_nowTeam.members.add(member);
-        GlobalVariable.g_team.get(team.getTeamNum()).members.add(member);
+        for(int i=0; i<GlobalVariable.g_team.size(); i++){
+            if(team.getTeamNum() == GlobalVariable.g_team.get(i).getTeamNum())
+                GlobalVariable.g_team.get(i).members.add(member);
+
+        }
         finish();
     }
 

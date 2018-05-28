@@ -53,8 +53,9 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
     public void init(){
         int num = 0;
         for(int i=0; i<team.getMembers().size(); i++){
-            if(team.getMembers().get(i).getPhoneNum().equals(team.getLeader()))
+            if(team.getMembers().get(i).getPhoneNum().equals(team.getLeader().getPhoneNum())){
                 num = i;
+            }
         }
         adapter = new MemberAdapter(v.getContext(), R.layout.team_member, team.getMembers(), num);
         listView.setAdapter(adapter);
@@ -130,6 +131,8 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
                 startActivityForResult(intent, 22);
             }
         } else if(requestCode == 22){
+            listView.setAdapter(adapter);
+            setListViewHeightBasedOnChildren(listView);
             adapter.notifyDataSetChanged();
         }
     }

@@ -129,7 +129,6 @@ public class LoginActivity extends AppCompatActivity {
                     GlobalVariable.g_team.add(new Team(list, null, callData2.arr.get(i),
                             Integer.parseInt(tempStr), leader, null));
                 }
-
             }
 
             //같은 teamNum에 대한 project할당
