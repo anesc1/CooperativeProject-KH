@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -266,15 +267,25 @@ public class TimetableActivity extends AppCompatActivity {
 
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            // 설정버튼 눌렀을 때
-            if(isStart) {
+            Button button;
+            if (isStart) {
+                button = (Button) findViewById(R.id.button4);
                 startHour = hourOfDay;
                 startMin = minute;
-            }
-            else {
+            } else {
+                button = (Button) findViewById(R.id.button5);
                 endHour = hourOfDay;
                 endMin = minute;
             }
+            String noon = "am";
+            if (hourOfDay > 12) {
+                noon = "pm";
+                hourOfDay -= 12;
+            }
+            String min = "";
+            if (minute == 0)
+                min = "00";
+            button.setText(noon + hourOfDay + ":" + min);
         }
     };
 }
