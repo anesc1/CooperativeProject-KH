@@ -90,7 +90,7 @@ public class AddTeam extends AppCompatActivity {
                 initmember = user.getPhoneNum();
 
                 insert = new RegisterTeam();
-                insert.execute(teamName, teamNum, GlobalVariable.g_user.getPhoneNum(), "", initmember);
+                insert.execute(teamName, teamNum, GlobalVariable.g_user.getPhoneNum(), admin.getPhoneNum(), initmember);
                 List<Member> list = new ArrayList<>();
                 list.add(user);
 
