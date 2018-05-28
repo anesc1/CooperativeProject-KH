@@ -3,4 +3,6 @@
 <color name="colorPrimary">#0f357d</color>
 <color name="colorPrimaryDark">#773181</color>
 <color name="colorAccent">#0f357d</color>
+<color name="colorTimetable1">#00FA9A</color>
+<color name="colorTimetable2">#20B2AA</color>
 </resources>

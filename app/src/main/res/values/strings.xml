@@ -31,6 +31,8 @@
         <item>wednesday</item>
         <item>thursday</item>
         <item>friday</item>
+        <item>saturday</item>
+        <item>sunday</item>
     </string-array>
 
     <string-array name="time">

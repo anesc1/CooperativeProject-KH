@@ -29,6 +29,8 @@ public class TimetableActivity extends AppCompatActivity {
     TextView wednesday[] = new TextView[12];
     TextView thursday[] = new TextView[12];
     TextView friday[] = new TextView[12];
+    TextView saturday[] = new TextView[12];
+    TextView sunday[] = new TextView[12];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,31 +70,43 @@ public class TimetableActivity extends AppCompatActivity {
             case "monday":
                 for (int i = start; i <= end; i++) {
                     monday[i].setText(todo);
-                    monday[i].setBackgroundColor(view.getResources().getColor(R.color.colorPrimary));
+                    monday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable1));
                 }
                 break;
             case "tuesday":
                 for (int i = start; i <= end; i++) {
                     tuesday[i].setText(todo);
-                    tuesday[i].setBackgroundColor(view.getResources().getColor(R.color.colorPrimary));
+                    tuesday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable2));
                 }
                 break;
             case "wednesday":
                 for (int i = start; i <= end; i++) {
                     wednesday[i].setText(todo);
-                    wednesday[i].setBackgroundColor(view.getResources().getColor(R.color.colorPrimary));
+                    wednesday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable1));
                 }
                 break;
             case "thursday":
                 for (int i = start; i <= end; i++) {
                     thursday[i].setText(todo);
-                    thursday[i].setBackgroundColor(view.getResources().getColor(R.color.colorPrimary));
+                    thursday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable2));
                 }
                 break;
             case "friday":
                 for (int i = start; i <= end; i++) {
                     friday[i].setText(todo);
-                    friday[i].setBackgroundColor(view.getResources().getColor(R.color.colorPrimary));
+                    friday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable1));
+                }
+                break;
+            case "saturday":
+                for (int i = start; i <= end; i++) {
+                    saturday[i].setText(todo);
+                    saturday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable2));
+                }
+                break;
+            case "sunday":
+                for (int i = start; i <= end; i++) {
+                    sunday[i].setText(todo);
+                    sunday[i].setBackgroundColor(view.getResources().getColor(R.color.colorTimetable1));
                 }
                 break;
         }
@@ -207,6 +221,32 @@ public class TimetableActivity extends AppCompatActivity {
         friday[9] = (TextView) findViewById(R.id.friday6);
         friday[10] = (TextView) findViewById(R.id.friday7);
         friday[11] = (TextView) findViewById(R.id.friday8);
+
+        saturday[0] = (TextView) findViewById(R.id.saturday9);
+        saturday[1] = (TextView) findViewById(R.id.saturday10);
+        saturday[2] = (TextView) findViewById(R.id.saturday11);
+        saturday[3] = (TextView) findViewById(R.id.saturday12);
+        saturday[4] = (TextView) findViewById(R.id.saturday1);
+        saturday[5] = (TextView) findViewById(R.id.saturday2);
+        saturday[6] = (TextView) findViewById(R.id.saturday3);
+        saturday[7] = (TextView) findViewById(R.id.saturday4);
+        saturday[8] = (TextView) findViewById(R.id.saturday5);
+        saturday[9] = (TextView) findViewById(R.id.saturday6);
+        saturday[10] = (TextView) findViewById(R.id.saturday7);
+        saturday[11] = (TextView) findViewById(R.id.saturday8);
+
+        sunday[0] = (TextView) findViewById(R.id.sunday9);
+        sunday[1] = (TextView) findViewById(R.id.sunday10);
+        sunday[2] = (TextView) findViewById(R.id.sunday11);
+        sunday[3] = (TextView) findViewById(R.id.sunday12);
+        sunday[4] = (TextView) findViewById(R.id.sunday1);
+        sunday[5] = (TextView) findViewById(R.id.sunday2);
+        sunday[6] = (TextView) findViewById(R.id.sunday3);
+        sunday[7] = (TextView) findViewById(R.id.sunday4);
+        sunday[8] = (TextView) findViewById(R.id.sunday5);
+        sunday[9] = (TextView) findViewById(R.id.sunday6);
+        sunday[10] = (TextView) findViewById(R.id.sunday7);
+        sunday[11] = (TextView) findViewById(R.id.sunday8);
     }
 
     public void onClickStart(View view) {
