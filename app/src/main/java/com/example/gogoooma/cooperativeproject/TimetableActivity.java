@@ -1,7 +1,9 @@
 package com.example.gogoooma.cooperativeproject;
 
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +13,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class TimetableActivity extends AppCompatActivity {
     Spinner Weekday;
@@ -33,6 +43,8 @@ public class TimetableActivity extends AppCompatActivity {
     TextView friday[] = new TextView[12];
     TextView saturday[] = new TextView[12];
     TextView sunday[] = new TextView[12];
+
+    InsertTime insertTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +73,16 @@ public class TimetableActivity extends AppCompatActivity {
     }
 
     public void btnClick(View view) {
+        String todo = edittext.getText().toString();
+        insertTime = new InsertTime();
+        insertTime.execute(GlobalVariable.g_user.getPhoneNum(),todo, weekday, String.valueOf(startHour),String.valueOf(startMin),String.valueOf(endHour),String.valueOf(endMin));
+
         if(startHour > 12) startHour -= 12;
-        if(endHour > 12) endHour -= 12;
-        int start = findIndex(startHour);
+            if(endHour > 12) endHour -= 12;
+            int start = findIndex(startHour);
         int end = findIndex(endHour);
 
-        String todo = edittext.getText().toString();
+
 
         switch (weekday) {
             case "monday":
@@ -112,6 +128,7 @@ public class TimetableActivity extends AppCompatActivity {
                 }
                 break;
         }
+
     }
 
     public int findIndex(int time) {
@@ -272,10 +289,12 @@ public class TimetableActivity extends AppCompatActivity {
                 button = (Button) findViewById(R.id.button4);
                 startHour = hourOfDay;
                 startMin = minute;
+                Toast.makeText(getApplicationContext(), String.valueOf(startHour),Toast.LENGTH_SHORT).show();
             } else {
                 button = (Button) findViewById(R.id.button5);
                 endHour = hourOfDay;
                 endMin = minute;
+                Toast.makeText(getApplicationContext(), String.valueOf(endMin ),Toast.LENGTH_SHORT).show();
             }
             String noon = "am";
             if (hourOfDay > 12) {
@@ -288,4 +307,95 @@ public class TimetableActivity extends AppCompatActivity {
             button.setText(noon + hourOfDay + ":" + min);
         }
     };
+
+    class InsertTime extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(TimetableActivity.this,
+                    "Please Wait", null, true, true);
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String phpmember = (String) params[0];
+            String phpdata = (String) params[1];
+            String phpdate = (String) params[2];
+            String phpstartHour = (String) params[3];
+            String phpstartMin = (String) params[4];
+            String phpendHour = (String) params[5];
+            String phpendMin = (String) params[6];
+
+            String serverURL = "http://anesc1.cafe24.com/timetableup.php";
+            String postParameters = "&member=" + phpmember + "&data=" + phpdata + "&date=" + phpdate + "&startHour=" + phpstartHour + "&startMin=" + phpstartMin + "&endHour=" + phpendHour + "&endMin=" + phpendMin;
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                //httpURLConnection.setRequestProperty("content-type", "application/json");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+                return new String("Error: " + e.getMessage());
+            }
+
+        }
+    }
+
 }
