@@ -18,6 +18,7 @@ import java.util.StringTokenizer;
 public class CallData extends AppCompatActivity {
     phpDown get;
     ArrayList<String> arr;
+    boolean flag = false;
 
     CallData(String str){
         String url = "http://anesc1.cafe24.com/" + str + "down.php";
@@ -59,6 +60,7 @@ public class CallData extends AppCompatActivity {
                              }
 
                          }
+                         flag = true;
 
                         br.close();
                     }

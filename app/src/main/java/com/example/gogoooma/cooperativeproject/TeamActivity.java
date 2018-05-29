@@ -9,10 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class TeamActivity extends AppCompatActivity {
     ListView listView;
     TeamAdapter adapter;
+    CallData callData3 = new CallData("project");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +70,36 @@ public class TeamActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                GlobalVariable.g_nowTeam = GlobalVariable.g_team.get(position);
+
+                Thread thread = new Thread(){
+                    @Override
+                    public void run() {
+                        while(callData3.flag);
+                    }
+                };
+                thread.start();
+                try {
+                    thread.join();
+                } catch(Exception e) {
+                }
+
+                //같은 teamNum에 대한 project할당
+                GlobalVariable.g_project.clear();
+                for (int i = 0; i < callData3.arr.size(); i += 4) {
+                    String projectName = callData3.arr.get(i).trim();
+                    Integer projectNum = Integer.parseInt(callData3.arr.get(i + 1).trim());
+                    String agenda = callData3.arr.get(i + 3).trim();
+                    Integer teamNum = Integer.parseInt(callData3.arr.get(i + 2).trim());
+
+                    if (teamNum.equals(GlobalVariable.g_nowTeam.getTeamNum())) {
+                        GlobalVariable.g_project.add(new Project(projectName, projectNum, agenda, teamNum));
+                    }
+                }
+                for(int i=0; i<GlobalVariable.g_project.size(); i++){
+                    Toast.makeText(view.getContext(), GlobalVariable.g_project.get(i).getProjectName(), Toast.LENGTH_SHORT).show();
+                }
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("team", GlobalVariable.g_team.get(position));
                 startActivity(intent);
             }
         });

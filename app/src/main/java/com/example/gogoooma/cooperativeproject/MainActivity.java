@@ -14,42 +14,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
-    CallData callData3 = new CallData("project");
-    Integer check =0;
+        implements NavigationView.OnNavigationItemSelectedListener {
+    Integer check = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        GlobalVariable.g_nowTeam = (Team) intent.getSerializableExtra("team");
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ActionBar ab = getSupportActionBar();
 
-        if(GlobalVariable.g_nowTeam != null)
-            ab.setTitle("\t"+GlobalVariable.g_nowTeam.getTeamName() + " 팀");
+        if (GlobalVariable.g_nowTeam != null)
+            ab.setTitle("\t" + GlobalVariable.g_nowTeam.getTeamName() + " 팀");
         else
             ab.setTitle("관리자 페이지");
         ab.setDisplayUseLogoEnabled(true);
         ab.setDisplayShowHomeEnabled(true);
-
-        //같은 teamNum에 대한 project할당
-        for(int i=0; i<callData3.arr.size(); i+=4){
-            String projectName = callData3.arr.get(i).trim();
-            Integer projectNum = Integer.parseInt(callData3.arr.get(i+1).trim());
-            String agenda = callData3.arr.get(i+3).trim();
-            Integer teamNum = Integer.parseInt(callData3.arr.get(i+2).trim());
-
-                if(teamNum.equals(GlobalVariable.g_nowTeam.getTeamNum()))
-                {
-                    GlobalVariable.g_project.add(new Project(projectName,projectNum,agenda,teamNum));
-                }
-            }
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -61,7 +47,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        if(GlobalVariable.g_user.getAdmin()) {
+        if (GlobalVariable.g_user.getAdmin()) {
             Menu nav_Menu = navigationView.getMenu();
             nav_Menu.findItem(R.id.adminFirst).setVisible(true);
             nav_Menu.findItem(R.id.adminSecond).setVisible(true);
@@ -71,8 +57,7 @@ public class MainActivity extends AppCompatActivity
             nav_Menu.findItem(R.id.fourthActivity).setVisible(false);
             FragmentManager manager = getFragmentManager();
             manager.beginTransaction().replace(R.id.content_main, new AdminActivity()).commit();
-        }
-        else {
+        } else {
             FragmentManager manager = getFragmentManager();
             manager.beginTransaction().replace(R.id.content_main, new ProjectActivity()).commit();
         }
