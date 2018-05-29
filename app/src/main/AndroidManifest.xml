@@ -42,7 +42,8 @@
         />
         <activity android:name=".AddProject" />
         <activity android:name=".AdminActivity" />
-        <activity android:name=".AddAgenda"></activity>
+        <activity android:name=".AddAgenda" />
+        <activity android:name=".TimeIntegrateActivity"></activity>
     </application>
 
 </manifest>

@@ -75,13 +75,12 @@ public class TimetableActivity extends AppCompatActivity {
     public void btnClick(View view) {
         String todo = edittext.getText().toString();
         insertTime = new InsertTime();
-        insertTime.execute(GlobalVariable.g_user.getPhoneNum(),todo, weekday, String.valueOf(startHour),String.valueOf(startMin),String.valueOf(endHour),String.valueOf(endMin));
+        insertTime.execute(GlobalVariable.g_user.getPhoneNum(), todo, weekday, String.valueOf(startHour), String.valueOf(startMin), String.valueOf(endHour), String.valueOf(endMin));
 
-        if(startHour > 12) startHour -= 12;
-            if(endHour > 12) endHour -= 12;
-            int start = findIndex(startHour);
+        if (startHour > 12) startHour -= 12;
+        if (endHour > 12) endHour -= 12;
+        int start = findIndex(startHour);
         int end = findIndex(endHour);
-
 
 
         switch (weekday) {
@@ -289,12 +288,12 @@ public class TimetableActivity extends AppCompatActivity {
                 button = (Button) findViewById(R.id.button4);
                 startHour = hourOfDay;
                 startMin = minute;
-                Toast.makeText(getApplicationContext(), String.valueOf(startHour),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), String.valueOf(startHour), Toast.LENGTH_SHORT).show();
             } else {
                 button = (Button) findViewById(R.id.button5);
                 endHour = hourOfDay;
                 endMin = minute;
-                Toast.makeText(getApplicationContext(), String.valueOf(endMin ),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), String.valueOf(endMin), Toast.LENGTH_SHORT).show();
             }
             String noon = "am";
             if (hourOfDay > 12) {
