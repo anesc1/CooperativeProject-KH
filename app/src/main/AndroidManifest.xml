@@ -33,6 +33,7 @@
         <activity android:name=".CallData" />
         <activity android:name=".TeamActivity" />
         <activity android:name=".ProjectActivity" />
+        <activity android:name=".ScheduleActivity"/>
         <activity
             android:name=".AddTeam"
             android:theme="@style/Theme.MyDialog" />
