@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -21,6 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
     boolean flag;
     RegisterTeam insert;
     DeleteTeam delete;
+    CallData callData = new CallData("timetable");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         }
         finish();
+    }
+
+    public void onTime(View view) {
+        Toast.makeText(getApplicationContext(),callData.arr.toString(),Toast.LENGTH_SHORT).show();
     }
 
     class RegisterTeam extends AsyncTask<String, Void, String> {
