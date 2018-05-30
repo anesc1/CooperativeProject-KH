@@ -10,9 +10,9 @@ public class TimeIntegrateActivity extends AppCompatActivity {
 
     String weekday;
     int startHour;
-    int startMin;
+    //int startMin;
     int endHour;
-    int endMin;
+    //int endMin;
 
     TextView monday[] = new TextView[12];
     TextView tuesday[] = new TextView[12];
