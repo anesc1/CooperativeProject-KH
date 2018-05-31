@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TimeIntegrateActivity extends AppCompatActivity {
     CallData callData = new CallData("timetable");
@@ -24,59 +25,79 @@ public class TimeIntegrateActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                while (callData.flag) ;
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_integrate);
+
         init();
     }
 
     public void init() {
-        for (int j = 0; j < callData.arr.size(); j++) {
-            // 각 줄의 요일, 시작시간, 종료시간을 받음
-            weekday = callData.arr.get(3 + 7 * j).toString();
-            startHour = Integer.parseInt(callData.arr.get(3 + 7 * j));
-            endHour = Integer.parseInt(callData.arr.get(5 + 7 * j));
+        createArray();
 
-            if (startHour > 12) startHour -= 12;
-            if (endHour > 12) endHour -= 12;
-            int start = findIndex(startHour);
-            int end = findIndex(endHour);
+        for (int j = 0; j < callData.arr.size(); j+=7) {
+            for(int k=0; k<GlobalVariable.g_nowTeam.getMembers().size(); k++) {
+                if (callData.arr.get(j).equals(GlobalVariable.g_nowTeam.getMembers().get(k).getPhoneNum())) {
 
-            switch (weekday) {
-                case "monday":
-                    for (int i = start; i <= end; i++) {
-                        monday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                    // 각 줄의 요일, 시작시간, 종료시간을 받음
+                    weekday = callData.arr.get(2 + j).toString();
+                    startHour = Integer.parseInt(callData.arr.get(3 + j));
+                    endHour = Integer.parseInt(callData.arr.get(5 + j));
+
+                    if (startHour > 12) startHour -= 12;
+                    if (endHour > 12) endHour -= 12;
+                    int start = findIndex(startHour);
+                    int end = findIndex(endHour);
+
+                    switch (weekday) {
+                        case "monday":
+                            for (int i = start; i <= end; i++) {
+                                monday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                            }
+                            break;
+                        case "tuesday":
+                            for (int i = start; i <= end; i++) {
+                                tuesday[i].setBackgroundColor(Color.rgb(195, 205, 230));
+                            }
+                            break;
+                        case "wednesday":
+                            for (int i = start; i <= end; i++) {
+                                wednesday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                            }
+                            break;
+                        case "thursday":
+                            for (int i = start; i <= end; i++) {
+                                thursday[i].setBackgroundColor(Color.rgb(195, 205, 230));
+                            }
+                            break;
+                        case "friday":
+                            for (int i = start; i <= end; i++) {
+                                friday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                            }
+                            break;
+                        case "saturday":
+                            for (int i = start; i <= end; i++) {
+                                saturday[i].setBackgroundColor(Color.rgb(195, 205, 230));
+                            }
+                            break;
+                        case "sunday":
+                            for (int i = start; i <= end; i++) {
+                                sunday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                            }
+                            break;
                     }
-                    break;
-                case "tuesday":
-                    for (int i = start; i <= end; i++) {
-                        tuesday[i].setBackgroundColor(Color.rgb(195, 205, 230));
-                    }
-                    break;
-                case "wednesday":
-                    for (int i = start; i <= end; i++) {
-                        wednesday[i].setBackgroundColor(Color.rgb(153, 102, 204));
-                    }
-                    break;
-                case "thursday":
-                    for (int i = start; i <= end; i++) {
-                        thursday[i].setBackgroundColor(Color.rgb(195, 205, 230));
-                    }
-                    break;
-                case "friday":
-                    for (int i = start; i <= end; i++) {
-                        friday[i].setBackgroundColor(Color.rgb(153, 102, 204));
-                    }
-                    break;
-                case "saturday":
-                    for (int i = start; i <= end; i++) {
-                        saturday[i].setBackgroundColor(Color.rgb(195, 205, 230));
-                    }
-                    break;
-                case "sunday":
-                    for (int i = start; i <= end; i++) {
-                        sunday[i].setBackgroundColor(Color.rgb(153, 102, 204));
-                    }
-                    break;
+                }
             }
         }
     }
