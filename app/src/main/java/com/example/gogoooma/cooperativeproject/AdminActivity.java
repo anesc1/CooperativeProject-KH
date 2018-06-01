@@ -3,7 +3,6 @@ package com.example.gogoooma.cooperativeproject;
 // secret vSbrpFnJfY
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -57,7 +56,7 @@ public class AdminActivity extends Fragment {
                 posX = String.valueOf(GlobalVariable.g_long);
                 posY = String.valueOf(GlobalVariable.g_lati);
                 registerPlace = new RegisterPlace();
-                registerPlace.execute(admin, place, startDay, startHour, startMin, endHour, endMin, posX, posY);
+                registerPlace.execute(admin, place, startDay, startHour, startMin, endHour, endMin, posX, posY,"0");
             }
         });
 
@@ -199,10 +198,11 @@ public class AdminActivity extends Fragment {
             String phpendHour = (String) params[5];
             String phpendMin = (String) params[6];
             String phpposX = (String) params[7];
-            String phpposY = (String) params[7];
+            String phpposY = (String) params[8];
+            String phpteams = (String) params[9];
 
             String serverURL = "http://anesc1.cafe24.com/placeup.php";
-            String postParameters = "&admin=" + phpadmin + "&place=" + phpplace + "&startDay=" + phpstartDay + "&startHour=" + phpstartHour + "&startMin=" + phpstartMin + "&endHour=" + phpendHour + "&endMin=" + phpendMin + "&posX=" + phpposX + "&posY=" + phpposY;
+            String postParameters = "&admin=" + phpadmin + "&place=" + phpplace + "&startDay=" + phpstartDay + "&startHour=" + phpstartHour + "&startMin=" + phpstartMin + "&endHour=" + phpendHour + "&endMin=" + phpendMin + "&posX=" + phpposX + "&posY=" + phpposY + "&teams=" + phpteams;
 
 
             try {
