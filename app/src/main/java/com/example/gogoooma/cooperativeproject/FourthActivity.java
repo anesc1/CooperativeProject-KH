@@ -1,19 +1,31 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FourthActivity extends Fragment {
     View v;
     int arr[][] = new int[7][22];
     CallData tt = new CallData("timetable");
     CallData callData = new CallData("place");
+    List<Place> list;
+
+    private RecyclerView recyclerView;
+    private MyAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+
 
     @Nullable
     @Override
@@ -21,21 +33,103 @@ public class FourthActivity extends Fragment {
         Thread thread = new Thread() {
             @Override
             public void run() {
-                while (callData.flag) ;
-                while (tt.flag);
+                while (callData.arr.size() == 0) ;
+                while (tt.arr.size() == 0) ;
             }
         };
-
         thread.start();
         try {
             thread.join();
         } catch (Exception e) {
         }
 
+        list = new ArrayList<>();
+
         v = inflater.inflate(R.layout.activity_fourth, container, false);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
+        layoutManager = new LinearLayoutManager(v.getContext());
+        recyclerView.setLayoutManager(layoutManager);
         getTimetable();
+        getPlace();
+
+        adapter = new MyAdapter(v.getContext(), list);
+        recyclerView.setAdapter(adapter);
+        // 카드뷰를 선택했을 때 WebView가 있는 액티비티로 현재 카드뷰의 link 정보를 전달
+        adapter.setItemClick(new MyAdapter.ItemClick() {
+            public void onClick(View view, int position) {
+            }
+        });
+
 
         return v;
+    }
+
+    public void getPlace() {
+        for (int i = 0; i < callData.arr.size(); i += 10) {
+            if (callData.arr.get(i).equals(GlobalVariable.g_nowTeam.getAdmin().getPhoneNum())) {
+                // 각 줄의 요일, 시작시간, 종료시간을 받음
+                String weekday = callData.arr.get(2 + i).toString();
+                int startHour = Integer.parseInt(callData.arr.get(3 + i));
+                int startMin = Integer.parseInt(callData.arr.get(4 + i));
+                int endHour = Integer.parseInt(callData.arr.get(5 + i));
+                int endMin = Integer.parseInt(callData.arr.get(6 + i));
+                double posX = Double.parseDouble(callData.arr.get(i + 7));
+                double posY = Double.parseDouble(callData.arr.get(i + 8));
+                int day = 0;
+                switch (weekday) {
+                    case "월요일":
+                        day = 0;
+                        break;
+                    case "화요일":
+                        day = 1;
+                        break;
+                    case "수요일":
+                        day = 2;
+                        break;
+                    case "목요일":
+                        day = 3;
+                        break;
+                    case "금요일":
+                        day = 4;
+                        break;
+                    case "토요일":
+                        day = 5;
+                        break;
+                    case "일요일":
+                        day = 6;
+                        break;
+                }
+                int num1 = 2 * (startHour - 9);
+                if (startMin == 30)
+                    num1++;
+                int num2 = 2 * (endHour - 9);
+                if (endMin == 30)
+                    num2++;
+                boolean flag = false;
+                int start = -1;
+                int end = -1;
+                for (int j = num1; j < num2; j++) {
+                    if (arr[day][j] == 0) {
+                        if (flag) {
+                            end = j + 1;
+                            if(arr[day][j+1] == 1 || j == num2 - 1) {
+                                if (start != -1 && end != -1)
+                                    list.add(new Place(GlobalVariable.g_nowTeam.getAdmin(), callData.arr.get(i + 1),
+                                            weekday, (start / 2) + 9, (start % 2) * 30,
+                                            (end / 2) + 9, (end % 2) * 30, posX, posY, null));
+                                flag = false;
+                                continue;
+                            }
+                        }
+                        else {
+                            start = j;
+                            flag = true;
+                        }
+                    }
+                }
+
+            }
+        }
     }
 
     public void getTimetable() {
@@ -83,7 +177,7 @@ public class FourthActivity extends Fragment {
                     if (startMin == 30)
                         num1++;
                     num2 = 2 * (endHour - 9);
-                    if (startMin == 30)
+                    if (endMin == 30)
                         num2++;
                     for (int i = num1; i < num2; i++)
                         arr[day][i] = 1;
