@@ -47,6 +47,7 @@
         <activity android:name=".AdminActivity" />
         <activity android:name=".AddAgenda" />
         <activity android:name=".TimeIntegrateActivity"></activity>
+        <activity android:name=".NoticeActivity"/>
     </application>
 
 </manifest>
