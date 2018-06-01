@@ -35,7 +35,7 @@
         <activity android:name=".CallData" />
         <activity android:name=".TeamActivity" />
         <activity android:name=".ProjectActivity" />
-        <activity android:name=".ScheduleActivity"/>
+        <activity android:name=".ScheduleActivity" />
         <activity
             android:name=".AddTeam"
             android:theme="@style/Theme.MyDialog" />
@@ -46,7 +46,8 @@
         <activity android:name=".AddProject" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".AddAgenda" />
-        <activity android:name=".TimeIntegrateActivity"></activity>
+        <activity android:name=".TimeIntegrateActivity" />
+        <activity android:name=".NoticeActivity"></activity>
     </application>
 
 </manifest>

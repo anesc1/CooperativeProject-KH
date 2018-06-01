@@ -14,12 +14,21 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"
         android:textSize="23dp"
-        android:text="일정 추가"
+        android:text="계획 일정 추가"
         />
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
+        <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
+            android:id="@+id/prj1btn"
+            android:layout_weight="2.3"
+            android:layout_width="2dp"
+            android:onClick="prj1start"
+            android:layout_height="wrap_content"
+            android:text="시작일"/>
     <TextView
         android:gravity="center"
         android:id="@+id/prj1"
@@ -28,17 +37,13 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:textStyle="italic"/>
-    <Button
-        android:id="@+id/prj1btn"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:onClick="prj1start"
-        android:layout_height="wrap_content"
-        android:text="시작일"/>
+
 
         <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
             android:id="@+id/prj1btn_"
-            android:layout_weight="1"
+            android:layout_weight="2.3"
             android:layout_width="0dp"
             android:onClick="prj1end"
             android:layout_height="wrap_content"
@@ -57,6 +62,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
+            android:id="@+id/prj2btn"
+            android:layout_weight="2.3"
+            android:layout_width="0dp"
+            android:onClick="prj2start"
+            android:layout_height="wrap_content"
+            android:text="시작일"/>
         <TextView
             android:gravity="center"
             android:id="@+id/prj2"
@@ -65,17 +79,13 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="italic"/>
-        <Button
-            android:id="@+id/prj2btn"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:onClick="prj2start"
-            android:layout_height="wrap_content"
-            android:text="시작일"/>
+
 
         <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
             android:id="@+id/prj2btn_"
-            android:layout_weight="1"
+            android:layout_weight="2.3"
             android:layout_width="0dp"
             android:onClick="prj2end"
             android:layout_height="wrap_content"
@@ -93,6 +103,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
+            android:id="@+id/prj3btn"
+            android:layout_weight="2.3"
+            android:layout_width="0dp"
+            android:onClick="prj3start"
+            android:layout_height="wrap_content"
+            android:text="시작일"/>
+
         <TextView
             android:gravity="center"
             android:id="@+id/prj3"
@@ -101,17 +121,12 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="italic"/>
-        <Button
-            android:id="@+id/prj3btn"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:onClick="prj3start"
-            android:layout_height="wrap_content"
-            android:text="시작일"/>
 
         <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
             android:id="@+id/prj3btn_"
-            android:layout_weight="1"
+            android:layout_weight="2.3"
             android:layout_width="0dp"
             android:onClick="prj3end"
             android:layout_height="wrap_content"
@@ -129,6 +144,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
+            android:id="@+id/prj4btn"
+            android:layout_weight="2.3"
+            android:layout_width="0dp"
+            android:onClick="prj4start"
+            android:layout_height="wrap_content"
+            android:text="시작일"/>
         <TextView
             android:gravity="center"
             android:id="@+id/prj4"
@@ -137,17 +161,13 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="italic"/>
-        <Button
-            android:id="@+id/prj4btn"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:onClick="prj4start"
-            android:layout_height="wrap_content"
-            android:text="시작일"/>
+
 
         <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
             android:id="@+id/prj4btn_"
-            android:layout_weight="1"
+            android:layout_weight="2.3"
             android:layout_width="0dp"
             android:onClick="prj4end"
             android:layout_height="wrap_content"
@@ -165,6 +185,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
+            android:id="@+id/prj5btn"
+            android:layout_weight="2.3"
+            android:layout_width="0dp"
+            android:onClick="prj5start"
+            android:layout_height="wrap_content"
+            android:text="시작일"/>
         <TextView
             android:gravity="center"
             android:id="@+id/prj5"
@@ -173,17 +202,13 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="italic"/>
-        <Button
-            android:id="@+id/prj5btn"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:onClick="prj5start"
-            android:layout_height="wrap_content"
-            android:text="시작일"/>
+
 
         <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
             android:id="@+id/prj5btn_"
-            android:layout_weight="1"
+            android:layout_weight="2.3"
             android:layout_width="0dp"
             android:onClick="prj5end"
             android:layout_height="wrap_content"
@@ -201,6 +226,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
+            android:id="@+id/prj6btn"
+            android:layout_weight="2.3"
+            android:layout_width="0dp"
+            android:onClick="prj6start"
+            android:layout_height="wrap_content"
+            android:text="시작일"/>
         <TextView
             android:id="@+id/prj6"
             android:layout_weight="3"
@@ -208,17 +242,13 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="italic"/>
-        <Button
-            android:id="@+id/prj6btn"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:onClick="prj6start"
-            android:layout_height="wrap_content"
-            android:text="시작일"/>
+
 
         <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
             android:id="@+id/prj6btn_"
-            android:layout_weight="1"
+            android:layout_weight="2.3"
             android:layout_width="0dp"
             android:onClick="prj6end"
             android:layout_height="wrap_content"
@@ -236,6 +266,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
+            android:id="@+id/prj7btn"
+            android:layout_weight="2.3"
+            android:layout_width="0dp"
+            android:onClick="prj7start"
+            android:layout_height="wrap_content"
+            android:text="시작일"/>
         <TextView
             android:gravity="center"
             android:id="@+id/prj7"
@@ -244,17 +283,13 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="italic"/>
-        <Button
-            android:id="@+id/prj7btn"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:onClick="prj7start"
-            android:layout_height="wrap_content"
-            android:text="시작일"/>
+
 
         <Button
+            android:background="@android:color/holo_purple"
+            android:textColor="@android:color/white"
             android:id="@+id/prj7btn_"
-            android:layout_weight="1"
+            android:layout_weight="2.3"
             android:layout_width="0dp"
             android:onClick="prj7end"
             android:layout_height="wrap_content"
@@ -269,8 +304,10 @@
         android:textSize="10dp"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
         android:text="저장"
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
         android:onClick="agendaSave"/>
 </LinearLayout>

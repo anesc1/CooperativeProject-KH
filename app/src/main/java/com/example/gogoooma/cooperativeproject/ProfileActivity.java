@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -23,6 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
     RegisterTeam insert;
     DeleteTeam delete;
     CallData callData = new CallData("timetable");
+    CallData callData2 = new CallData("team");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +60,20 @@ public class ProfileActivity extends AppCompatActivity {
         teamMember = teamMember + newMember;
         delete = new DeleteTeam();
         String num = String.valueOf(team.getTeamNum());
+        String adminNum = null;
+        for(int i=0; i<callData2.arr.size(); i+=5)
+        {
+            if(callData2.arr.get(i+2).equals(GlobalVariable.g_user.getPhoneNum()))
+            {
+                adminNum = callData2.arr.get(i+3);
+            }
+        }
         delete.execute(num);
-        insert.execute(team.getTeamName(),
-                num, team.getLeader().getPhoneNum(), "", teamMember);
+        insert.execute(team.getTeamName(), num, team.getLeader().getPhoneNum(),adminNum , teamMember);
         GlobalVariable.g_nowTeam.members.add(member);
         for(int i=0; i<GlobalVariable.g_team.size(); i++){
             if(team.getTeamNum() == GlobalVariable.g_team.get(i).getTeamNum())
                 GlobalVariable.g_team.get(i).members.add(member);
-
         }
         finish();
     }

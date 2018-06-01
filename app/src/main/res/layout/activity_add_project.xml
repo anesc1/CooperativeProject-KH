@@ -17,7 +17,7 @@
             android:layout_weight="5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="프로젝트 입력"
+            android:text="프로젝트 계획 입력"
             android:textColor="@color/colorPrimary"
             android:textSize="23dp"
             />
@@ -26,6 +26,9 @@
     </LinearLayout>
 
     <LinearLayout
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -36,12 +39,16 @@
             android:layout_weight="5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:hint="계획1"/>
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -52,12 +59,16 @@
             android:layout_weight="5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:hint="계획2"/>
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -68,11 +79,15 @@
             android:layout_weight="5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:hint="계획3"/>
 
     </LinearLayout>
 
     <LinearLayout
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -83,12 +98,17 @@
             android:layout_weight="5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:hint="계획4"
+            />
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -99,12 +119,16 @@
             android:layout_weight="5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:hint="계획5"/>
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -115,12 +139,16 @@
             android:layout_weight="5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:hint="계획6"/>
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -131,15 +159,18 @@
             android:layout_weight="5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:hint="계획7"/>
 
 
     </LinearLayout>
 
     <Button
         android:id="@+id/insert_project"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
         android:text="저장"
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
         android:onClick="Save"/>
 </LinearLayout>

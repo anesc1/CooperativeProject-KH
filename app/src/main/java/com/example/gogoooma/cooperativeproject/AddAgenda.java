@@ -24,6 +24,7 @@ public class AddAgenda extends AppCompatActivity {
     Integer projectNum,check;
     String projectName1, projectName2, projectName3, projectName4, projectName5, projectName6, projectName7;
     String prj1start,prj1end,prj2start,prj2end,prj3start,prj3end,prj4start,prj4end,prj5start,prj5end,prj6start,prj6end,prj7start,prj7end;
+    Button prj1btn,prj1btn_,prj2btn,prj2btn_,prj3btn,prj3btn_,prj4btn,prj4btn_,prj5btn,prj5btn_,prj6btn,prj6btn_,prj7btn,prj7btn_;
     ArrayList<String> agenda;
     RegisterProject insert;
 
@@ -52,32 +53,32 @@ public class AddAgenda extends AppCompatActivity {
 
 
         TextView prj1 = (TextView) findViewById(R.id.prj1);
-        Button prj1btn = (Button) findViewById(R.id.prj1btn);
-        Button prj1btn_ = (Button) findViewById(R.id.prj1btn_);
+        prj1btn = (Button) findViewById(R.id.prj1btn);
+        prj1btn_ = (Button) findViewById(R.id.prj1btn_);
         TextView prj1agd = (TextView) findViewById(R.id.prj1agd);
         TextView prj2 = (TextView) findViewById(R.id.prj2);
-        Button prj2btn = (Button) findViewById(R.id.prj2btn);
-        Button prj2btn_ = (Button) findViewById(R.id.prj2btn_);
+        prj2btn = (Button) findViewById(R.id.prj2btn);
+        prj2btn_ = (Button) findViewById(R.id.prj2btn_);
         TextView prj2agd = (TextView) findViewById(R.id.prj2agd);
         TextView prj3 = (TextView) findViewById(R.id.prj3);
-        Button prj3btn = (Button) findViewById(R.id.prj3btn);
-        Button prj3btn_ = (Button) findViewById(R.id.prj3btn_);
+        prj3btn = (Button) findViewById(R.id.prj3btn);
+        prj3btn_ = (Button) findViewById(R.id.prj3btn_);
         TextView prj3agd = (TextView) findViewById(R.id.prj3agd);
         TextView prj4 = (TextView) findViewById(R.id.prj4);
-        Button prj4btn = (Button) findViewById(R.id.prj4btn);
-        Button prj4btn_ = (Button) findViewById(R.id.prj4btn_);
+        prj4btn = (Button) findViewById(R.id.prj4btn);
+        prj4btn_ = (Button) findViewById(R.id.prj4btn_);
         TextView prj4agd = (TextView) findViewById(R.id.prj4agd);
         TextView prj5 = (TextView) findViewById(R.id.prj5);
-        Button prj5btn = (Button) findViewById(R.id.prj5btn);
-        Button prj5btn_ = (Button) findViewById(R.id.prj5btn_);
+        prj5btn = (Button) findViewById(R.id.prj5btn);
+        prj5btn_ = (Button) findViewById(R.id.prj5btn_);
         TextView prj5agd = (TextView) findViewById(R.id.prj5agd);
         TextView prj6 = (TextView) findViewById(R.id.prj6);
-        Button prj6btn = (Button) findViewById(R.id.prj6btn);
-        Button prj6btn_ = (Button) findViewById(R.id.prj6btn_);
+        prj6btn = (Button) findViewById(R.id.prj6btn);
+        prj6btn_ = (Button) findViewById(R.id.prj6btn_);
         TextView prj6agd = (TextView) findViewById(R.id.prj6agd);
         TextView prj7 = (TextView) findViewById(R.id.prj7);
-        Button prj7btn = (Button) findViewById(R.id.prj7btn);
-        Button prj7btn_ = (Button) findViewById(R.id.prj7btn_);
+        prj7btn = (Button) findViewById(R.id.prj7btn);
+        prj7btn_ = (Button) findViewById(R.id.prj7btn_);
         TextView prj7agd = (TextView) findViewById(R.id.prj7agd);
 
         prj1.setText(projectName1);
@@ -233,210 +234,322 @@ public class AddAgenda extends AppCompatActivity {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj1start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj1btn.setText(prj1start);
+                    prj1btn.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj1start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj1btn.setText(prj1start);
+                    prj1btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj1start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj1btn.setText(prj1start);
+                    prj1btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj1start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj1btn.setText(prj1start);
+                    prj1btn.setTextSize(13);
                 }
             }else if(check.equals(2))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj1end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj1btn_.setText(prj1end);
+                    prj1btn_.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj1end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj1btn_.setText(prj1end);
+                    prj1btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj1end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj1btn_.setText(prj1end);
+                    prj1btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj1end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj1btn_.setText(prj1end);
+                    prj1btn_.setTextSize(13);
                 }
             }else if(check.equals(3))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj2start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj2btn.setText(prj2start);
+                    prj2btn.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj2start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj2btn.setText(prj2start);
+                    prj2btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj2start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj2btn.setText(prj2start);
+                    prj2btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj2start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj2btn.setText(prj2start);
+                    prj2btn.setTextSize(13);
                 }
             }else if(check.equals(4))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj2end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj2btn_.setText(prj2end);
+                    prj2btn_.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj2end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj2btn_.setText(prj2end);
+                    prj2btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj2end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj2btn_.setText(prj2end);
+                    prj2btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj2end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj2btn_.setText(prj2end);
+                    prj2btn_.setTextSize(13);
                 }
             }else if(check.equals(5))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj3start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj3btn.setText(prj3start);
+                    prj3btn.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj3start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj3btn.setText(prj3start);
+                    prj3btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj3start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj3btn.setText(prj3start);
+                    prj3btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj3start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj3btn.setText(prj3start);
+                    prj3btn.setTextSize(13);
                 }
             }else if(check.equals(6))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj3end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj3btn_.setText(prj3end);
+                    prj3btn_.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj3end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj3btn_.setText(prj3end);
+                    prj3btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj3end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj3btn_.setText(prj3end);
+                    prj3btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj3end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj3btn_.setText(prj3end);
+                    prj3btn_.setTextSize(13);
                 }
             }else if(check.equals(7))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj4start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj4btn.setText(prj4start);
+                    prj4btn.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj4start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj4btn.setText(prj4start);
+                    prj4btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj4start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj4btn.setText(prj4start);
+                    prj4btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj4start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj4btn.setText(prj4start);
+                    prj4btn.setTextSize(13);
                 }
             }else if(check.equals(8))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj4end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj4btn_.setText(prj4end);
+                    prj4btn_.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj4end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj4btn_.setText(prj4end);
+                    prj4btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj4end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj4btn_.setText(prj4end);
+                    prj4btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj4end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj4btn_.setText(prj4end);
+                    prj4btn_.setTextSize(13);
                 }
             }else if(check.equals(9))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj5start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj5btn.setText(prj5start);
+                    prj5btn.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj5start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj5btn.setText(prj5start);
+                    prj5btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj5start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj5btn.setText(prj5start);
+                    prj5btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj5start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj5btn.setText(prj5start);
+                    prj5btn.setTextSize(13);
                 }
             }else if(check.equals(10))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj5end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj5btn_.setText(prj5end);
+                    prj5btn_.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj5end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj5btn_.setText(prj5end);
+                    prj5btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj5end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj5btn_.setText(prj5end);
+                    prj5btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj5end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj5btn_.setText(prj5end);
+                    prj5btn_.setTextSize(13);
                 }
             }else if(check.equals(11))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj6start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj6btn.setText(prj6start);
+                    prj6btn.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj6start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj6btn.setText(prj6start);
+                    prj6btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj6start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj6btn.setText(prj6start);
+                    prj6btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj6start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj6btn.setText(prj6start);
+                    prj6btn.setTextSize(13);
                 }
             }else if(check.equals(12))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj6end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj6btn_.setText(prj6end);
+                    prj6btn_.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj6end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj6btn_.setText(prj6end);
+                    prj6btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj6end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj6btn_.setText(prj6end);
+                    prj6btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj6end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj6btn_.setText(prj6end);
+                    prj6btn_.setTextSize(13);
                 }
             }else if(check.equals(13))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj7start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj7btn.setText(prj7start);
+                    prj7btn.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj7start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj7btn.setText(prj7start);
+                    prj7btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj7start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj7btn.setText(prj7start);
+                    prj7btn.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj7start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj7btn.setText(prj7start);
+                    prj7btn.setTextSize(13);
                 }
             }else if(check.equals(14))
             {
                 if((month/10)==0 && (dayOfMonth/10)==0)
                 {
                     prj7end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj7btn_.setText(prj7end);
+                    prj7btn_.setTextSize(13);
                 }else if((month/10)==0 && (dayOfMonth/10)!=0)
                 {
                     prj7end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj7btn_.setText(prj7end);
+                    prj7btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)==0)
                 {
                     prj7end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+                    prj7btn_.setText(prj7end);
+                    prj7btn_.setTextSize(13);
                 }else if((month/10)!=0 && (dayOfMonth/10)!=0)
                 {
                     prj7end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+                    prj7btn_.setText(prj7end);
+                    prj7btn_.setTextSize(13);
                 }
             }
 
