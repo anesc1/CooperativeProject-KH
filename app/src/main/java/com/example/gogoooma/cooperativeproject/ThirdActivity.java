@@ -16,11 +16,16 @@ public class ThirdActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_third, container, false);
-//        프로젝트 정보가 없을 때 생성
-        if(check.equals(GlobalVariable.g_project.size()))
+//        프로젝트 정보가 없을 때, 리더일 때 생성
+        if(check.equals(GlobalVariable.g_project.size()) && GlobalVariable.g_nowTeam.leader.equals(GlobalVariable.g_user))
         {
             Intent intent = new Intent(getActivity(),AddProjectNum.class);
             startActivityForResult(intent,123);
+            // 프로젝트 정보가 없을 때, 리더가 아닐 때
+        }else if(check.equals(GlobalVariable.g_project.size()) && !(GlobalVariable.g_nowTeam.leader.equals(GlobalVariable.g_user)))
+        {
+            Intent intent2 = new Intent(getActivity(),NoticeActivity.class);
+            startActivity(intent2);
         }
         else //프로젝트 정보가 이미 있을 때 차트
         {

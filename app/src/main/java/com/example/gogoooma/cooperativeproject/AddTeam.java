@@ -88,7 +88,6 @@ public class AddTeam extends AppCompatActivity {
                 teamSize = callData.arr.size() / 5;
                 teamNum = String.valueOf(teamSize);
                 initmember = user.getPhoneNum();
-
                 insert = new RegisterTeam();
                 insert.execute(teamName, teamNum, GlobalVariable.g_user.getPhoneNum(), admin.getPhoneNum(), initmember);
                 List<Member> list = new ArrayList<>();

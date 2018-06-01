@@ -109,9 +109,7 @@ public class AdminActivity extends Fragment {
                 hourOfDay -= 12;
                 ampm = "pm";
             }
-            String min = minute + "";
-            if (minute == 0)
-                min = "00";
+            String min = String.format("%02d", minute);
             if (isStart)
                 startBtn.setText(ampm + hourOfDay + "시 " + min + "분");
             else

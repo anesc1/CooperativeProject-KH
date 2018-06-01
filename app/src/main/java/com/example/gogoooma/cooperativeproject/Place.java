@@ -1,18 +1,20 @@
 package com.example.gogoooma.cooperativeproject;
 
+import java.util.List;
+
 public class Place {
-    String admin;
+    Member admin;
     String place;
     String day;
-    String startHour;
-    String startMin;
-    String endHour;
-    String endMin;
+    int startHour;
+    int startMin;
+    int endHour;
+    int endMin;
     double posX;
     double posY;
+    List<Member> teams;
 
-    public Place(String admin, String place, String day, String startHour, String startMin, String endHour, String endMin
-    , double posX, double posY) {
+    public Place(Member admin, String place, String day, int startHour, int startMin, int endHour, int endMin, double posX, double posY, List<Member> teams) {
         this.admin = admin;
         this.place = place;
         this.day = day;
@@ -22,29 +24,14 @@ public class Place {
         this.endMin = endMin;
         this.posX = posX;
         this.posY = posY;
+        this.teams = teams;
     }
 
-    public double getPosX() {
-        return posX;
-    }
-
-    public void setPosX(double posX) {
-        this.posX = posX;
-    }
-
-    public double getPosY() {
-        return posY;
-    }
-
-    public void setPosY(double posY) {
-        this.posY = posY;
-    }
-
-    public String getAdmin() {
+    public Member getAdmin() {
         return admin;
     }
 
-    public void setAdmin(String admin) {
+    public void setAdmin(Member admin) {
         this.admin = admin;
     }
 
@@ -64,35 +51,59 @@ public class Place {
         this.day = day;
     }
 
-    public String getStartHour() {
+    public int getStartHour() {
         return startHour;
     }
 
-    public void setStartHour(String startHour) {
+    public void setStartHour(int startHour) {
         this.startHour = startHour;
     }
 
-    public String getStartMin() {
+    public int getStartMin() {
         return startMin;
     }
 
-    public void setStartMin(String startMin) {
+    public void setStartMin(int startMin) {
         this.startMin = startMin;
     }
 
-    public String getEndHour() {
+    public int getEndHour() {
         return endHour;
     }
 
-    public void setEndHour(String endHour) {
+    public void setEndHour(int endHour) {
         this.endHour = endHour;
     }
 
-    public String getEndMin() {
+    public int getEndMin() {
         return endMin;
     }
 
-    public void setEndMin(String endMin) {
+    public void setEndMin(int endMin) {
         this.endMin = endMin;
+    }
+
+    public double getPosX() {
+        return posX;
+    }
+
+    public void setPosX(double posX) {
+        this.posX = posX;
+    }
+
+    public double getPosY() {
+        return posY;
+    }
+
+    public void setPosY(double posY) {
+        this.posY = posY;
+    }
+
+    public List<Member> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Member> teams) {
+        this.teams = teams;
     }
 }
