@@ -8,8 +8,11 @@ public class Place {
     String startMin;
     String endHour;
     String endMin;
+    double posX;
+    double posY;
 
-    public Place(String admin, String place, String day, String startHour, String startMin, String endHour, String endMin) {
+    public Place(String admin, String place, String day, String startHour, String startMin, String endHour, String endMin
+    , double posX, double posY) {
         this.admin = admin;
         this.place = place;
         this.day = day;
@@ -17,6 +20,24 @@ public class Place {
         this.startMin = startMin;
         this.endHour = endHour;
         this.endMin = endMin;
+        this.posX = posX;
+        this.posY = posY;
+    }
+
+    public double getPosX() {
+        return posX;
+    }
+
+    public void setPosX(double posX) {
+        this.posX = posX;
+    }
+
+    public double getPosY() {
+        return posY;
+    }
+
+    public void setPosY(double posY) {
+        this.posY = posY;
     }
 
     public String getAdmin() {

@@ -51,12 +51,11 @@ public class AdminActivity extends Fragment {
         placebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), GlobalVariable.g_long +":"+GlobalVariable.g_lati, Toast.LENGTH_SHORT).show();
                 place = edit_place.getText().toString();
                 posX = String.valueOf(GlobalVariable.g_long);
                 posY = String.valueOf(GlobalVariable.g_lati);
                 registerPlace = new RegisterPlace();
-                registerPlace.execute(admin, place, startDay, startHour, startMin, endHour, endMin, posX, posY,"0");
+                registerPlace.execute(admin, place, startDay, startHour, startMin, endHour, endMin, posX, posY, num);
             }
         });
 
@@ -135,7 +134,7 @@ public class AdminActivity extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position > 0)
-                    num = position + "";
+                    num = position + "/";
             }
 
             @Override

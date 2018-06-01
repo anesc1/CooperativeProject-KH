@@ -38,10 +38,8 @@ public class TeamActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 123) {
-            adapter = new TeamAdapter(this, R.layout.row, GlobalVariable.g_team);
-            listView.setAdapter(adapter);
-        }
+        adapter = new TeamAdapter(this, R.layout.row, GlobalVariable.g_team);
+        listView.setAdapter(adapter);
     }
 
     @Override
@@ -72,16 +70,16 @@ public class TeamActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 GlobalVariable.g_nowTeam = GlobalVariable.g_team.get(position);
 
-                Thread thread = new Thread(){
+                Thread thread = new Thread() {
                     @Override
                     public void run() {
-                        while(callData3.flag);
+                        while (callData3.flag) ;
                     }
                 };
                 thread.start();
                 try {
                     thread.join();
-                } catch(Exception e) {
+                } catch (Exception e) {
                 }
 
                 //같은 teamNum에 대한 project할당
@@ -96,7 +94,7 @@ public class TeamActivity extends AppCompatActivity {
                         GlobalVariable.g_project.add(new Project(projectName, projectNum, agenda, teamNum));
                     }
                 }
-                for(int i=0; i<GlobalVariable.g_project.size(); i++){
+                for (int i = 0; i < GlobalVariable.g_project.size(); i++) {
                     Toast.makeText(view.getContext(), GlobalVariable.g_project.get(i).getProjectName(), Toast.LENGTH_SHORT).show();
                 }
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

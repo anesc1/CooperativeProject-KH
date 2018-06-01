@@ -73,7 +73,8 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void onTime(View view) {
-        Toast.makeText(getApplicationContext(),callData.arr.toString(),Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, TimetableActivity.class);
+        startActivity(intent);
     }
 
     class RegisterTeam extends AsyncTask<String, Void, String> {

@@ -1,12 +1,18 @@
 package com.example.gogoooma.cooperativeproject;
 
+import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class TimeIntegrateActivity extends AppCompatActivity {
+public class TimeIntegrateActivity extends Fragment {
     CallData callData = new CallData("timetable");
+    View v;
 
     String weekday;
     int startHour;
@@ -22,8 +28,9 @@ public class TimeIntegrateActivity extends AppCompatActivity {
     TextView saturday[] = new TextView[12];
     TextView sunday[] = new TextView[12];
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -37,10 +44,12 @@ public class TimeIntegrateActivity extends AppCompatActivity {
         } catch (Exception e) {
         }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_time_integrate);
-
+        v = inflater.inflate(R.layout.activity_second, container, false);
         init();
+
+        return v;
     }
+
 
     public void init() {
         createArray();
@@ -146,95 +155,95 @@ public class TimeIntegrateActivity extends AppCompatActivity {
     }
 
     public void createArray() {
-        monday[0] = (TextView) findViewById(R.id.mmonday9);
-        monday[1] = (TextView) findViewById(R.id.mmonday10);
-        monday[2] = (TextView) findViewById(R.id.mmonday11);
-        monday[3] = (TextView) findViewById(R.id.mmonday12);
-        monday[4] = (TextView) findViewById(R.id.mmonday1);
-        monday[5] = (TextView) findViewById(R.id.mmonday2);
-        monday[6] = (TextView) findViewById(R.id.mmonday3);
-        monday[7] = (TextView) findViewById(R.id.mmonday4);
-        monday[8] = (TextView) findViewById(R.id.mmonday5);
-        monday[9] = (TextView) findViewById(R.id.mmonday6);
-        monday[10] = (TextView) findViewById(R.id.mmonday7);
-        monday[11] = (TextView) findViewById(R.id.mmonday8);
+        monday[0] = (TextView) v.findViewById(R.id.mmonday9);
+        monday[1] = (TextView) v.findViewById(R.id.mmonday10);
+        monday[2] = (TextView) v.findViewById(R.id.mmonday11);
+        monday[3] = (TextView) v.findViewById(R.id.mmonday12);
+        monday[4] = (TextView) v.findViewById(R.id.mmonday1);
+        monday[5] = (TextView) v.findViewById(R.id.mmonday2);
+        monday[6] = (TextView) v.findViewById(R.id.mmonday3);
+        monday[7] = (TextView) v.findViewById(R.id.mmonday4);
+        monday[8] = (TextView) v.findViewById(R.id.mmonday5);
+        monday[9] = (TextView) v.findViewById(R.id.mmonday6);
+        monday[10] = (TextView) v.findViewById(R.id.mmonday7);
+        monday[11] = (TextView) v.findViewById(R.id.mmonday8);
 
-        tuesday[0] = (TextView) findViewById(R.id.ttuesday9);
-        tuesday[1] = (TextView) findViewById(R.id.ttuesday10);
-        tuesday[2] = (TextView) findViewById(R.id.ttuesday11);
-        tuesday[3] = (TextView) findViewById(R.id.ttuesday12);
-        tuesday[4] = (TextView) findViewById(R.id.ttuesday1);
-        tuesday[5] = (TextView) findViewById(R.id.ttuesday2);
-        tuesday[6] = (TextView) findViewById(R.id.ttuesday3);
-        tuesday[7] = (TextView) findViewById(R.id.ttuesday4);
-        tuesday[8] = (TextView) findViewById(R.id.ttuesday5);
-        tuesday[9] = (TextView) findViewById(R.id.ttuesday6);
-        tuesday[10] = (TextView) findViewById(R.id.ttuesday7);
-        tuesday[11] = (TextView) findViewById(R.id.ttuesday8);
+        tuesday[0] = (TextView) v.findViewById(R.id.ttuesday9);
+        tuesday[1] = (TextView) v.findViewById(R.id.ttuesday10);
+        tuesday[2] = (TextView) v.findViewById(R.id.ttuesday11);
+        tuesday[3] = (TextView) v.findViewById(R.id.ttuesday12);
+        tuesday[4] = (TextView) v.findViewById(R.id.ttuesday1);
+        tuesday[5] = (TextView) v.findViewById(R.id.ttuesday2);
+        tuesday[6] = (TextView) v.findViewById(R.id.ttuesday3);
+        tuesday[7] = (TextView) v.findViewById(R.id.ttuesday4);
+        tuesday[8] = (TextView) v.findViewById(R.id.ttuesday5);
+        tuesday[9] = (TextView) v.findViewById(R.id.ttuesday6);
+        tuesday[10] = (TextView) v.findViewById(R.id.ttuesday7);
+        tuesday[11] = (TextView) v.findViewById(R.id.ttuesday8);
 
-        wednesday[0] = (TextView) findViewById(R.id.wwednesday9);
-        wednesday[1] = (TextView) findViewById(R.id.wwednesday10);
-        wednesday[2] = (TextView) findViewById(R.id.wwednesday11);
-        wednesday[3] = (TextView) findViewById(R.id.wwednesday12);
-        wednesday[4] = (TextView) findViewById(R.id.wwednesday1);
-        wednesday[5] = (TextView) findViewById(R.id.wwednesday2);
-        wednesday[6] = (TextView) findViewById(R.id.wwednesday3);
-        wednesday[7] = (TextView) findViewById(R.id.wwednesday4);
-        wednesday[8] = (TextView) findViewById(R.id.wwednesday5);
-        wednesday[9] = (TextView) findViewById(R.id.wwednesday6);
-        wednesday[10] = (TextView) findViewById(R.id.wwednesday7);
-        wednesday[11] = (TextView) findViewById(R.id.wwednesday8);
+        wednesday[0] = (TextView) v.findViewById(R.id.wwednesday9);
+        wednesday[1] = (TextView) v.findViewById(R.id.wwednesday10);
+        wednesday[2] = (TextView) v.findViewById(R.id.wwednesday11);
+        wednesday[3] = (TextView) v.findViewById(R.id.wwednesday12);
+        wednesday[4] = (TextView) v.findViewById(R.id.wwednesday1);
+        wednesday[5] = (TextView) v.findViewById(R.id.wwednesday2);
+        wednesday[6] = (TextView) v.findViewById(R.id.wwednesday3);
+        wednesday[7] = (TextView) v.findViewById(R.id.wwednesday4);
+        wednesday[8] = (TextView) v.findViewById(R.id.wwednesday5);
+        wednesday[9] = (TextView) v.findViewById(R.id.wwednesday6);
+        wednesday[10] = (TextView) v.findViewById(R.id.wwednesday7);
+        wednesday[11] = (TextView) v.findViewById(R.id.wwednesday8);
 
-        thursday[0] = (TextView) findViewById(R.id.tthursday9);
-        thursday[1] = (TextView) findViewById(R.id.tthursday10);
-        thursday[2] = (TextView) findViewById(R.id.tthursday11);
-        thursday[3] = (TextView) findViewById(R.id.tthursday12);
-        thursday[4] = (TextView) findViewById(R.id.tthursday1);
-        thursday[5] = (TextView) findViewById(R.id.tthursday2);
-        thursday[6] = (TextView) findViewById(R.id.tthursday3);
-        thursday[7] = (TextView) findViewById(R.id.tthursday4);
-        thursday[8] = (TextView) findViewById(R.id.tthursday5);
-        thursday[9] = (TextView) findViewById(R.id.tthursday6);
-        thursday[10] = (TextView) findViewById(R.id.tthursday7);
-        thursday[11] = (TextView) findViewById(R.id.tthursday8);
+        thursday[0] = (TextView) v.findViewById(R.id.tthursday9);
+        thursday[1] = (TextView) v.findViewById(R.id.tthursday10);
+        thursday[2] = (TextView) v.findViewById(R.id.tthursday11);
+        thursday[3] = (TextView) v.findViewById(R.id.tthursday12);
+        thursday[4] = (TextView) v.findViewById(R.id.tthursday1);
+        thursday[5] = (TextView) v.findViewById(R.id.tthursday2);
+        thursday[6] = (TextView) v.findViewById(R.id.tthursday3);
+        thursday[7] = (TextView) v.findViewById(R.id.tthursday4);
+        thursday[8] = (TextView) v.findViewById(R.id.tthursday5);
+        thursday[9] = (TextView) v.findViewById(R.id.tthursday6);
+        thursday[10] = (TextView) v.findViewById(R.id.tthursday7);
+        thursday[11] = (TextView) v.findViewById(R.id.tthursday8);
 
-        friday[0] = (TextView) findViewById(R.id.ffriday9);
-        friday[1] = (TextView) findViewById(R.id.ffriday10);
-        friday[2] = (TextView) findViewById(R.id.ffriday11);
-        friday[3] = (TextView) findViewById(R.id.ffriday12);
-        friday[4] = (TextView) findViewById(R.id.ffriday1);
-        friday[5] = (TextView) findViewById(R.id.ffriday2);
-        friday[6] = (TextView) findViewById(R.id.ffriday3);
-        friday[7] = (TextView) findViewById(R.id.ffriday4);
-        friday[8] = (TextView) findViewById(R.id.ffriday5);
-        friday[9] = (TextView) findViewById(R.id.ffriday6);
-        friday[10] = (TextView) findViewById(R.id.ffriday7);
-        friday[11] = (TextView) findViewById(R.id.ffriday8);
+        friday[0] = (TextView) v.findViewById(R.id.ffriday9);
+        friday[1] = (TextView) v.findViewById(R.id.ffriday10);
+        friday[2] = (TextView) v.findViewById(R.id.ffriday11);
+        friday[3] = (TextView) v.findViewById(R.id.ffriday12);
+        friday[4] = (TextView) v.findViewById(R.id.ffriday1);
+        friday[5] = (TextView) v.findViewById(R.id.ffriday2);
+        friday[6] = (TextView) v.findViewById(R.id.ffriday3);
+        friday[7] = (TextView) v.findViewById(R.id.ffriday4);
+        friday[8] = (TextView) v.findViewById(R.id.ffriday5);
+        friday[9] = (TextView) v.findViewById(R.id.ffriday6);
+        friday[10] = (TextView) v.findViewById(R.id.ffriday7);
+        friday[11] = (TextView) v.findViewById(R.id.ffriday8);
 
-        saturday[0] = (TextView) findViewById(R.id.ssaturday9);
-        saturday[1] = (TextView) findViewById(R.id.ssaturday10);
-        saturday[2] = (TextView) findViewById(R.id.ssaturday11);
-        saturday[3] = (TextView) findViewById(R.id.ssaturday12);
-        saturday[4] = (TextView) findViewById(R.id.ssaturday1);
-        saturday[5] = (TextView) findViewById(R.id.ssaturday2);
-        saturday[6] = (TextView) findViewById(R.id.ssaturday3);
-        saturday[7] = (TextView) findViewById(R.id.ssaturday4);
-        saturday[8] = (TextView) findViewById(R.id.ssaturday5);
-        saturday[9] = (TextView) findViewById(R.id.ssaturday6);
-        saturday[10] = (TextView) findViewById(R.id.ssaturday7);
-        saturday[11] = (TextView) findViewById(R.id.ssaturday8);
+        saturday[0] = (TextView) v.findViewById(R.id.ssaturday9);
+        saturday[1] = (TextView) v.findViewById(R.id.ssaturday10);
+        saturday[2] = (TextView) v.findViewById(R.id.ssaturday11);
+        saturday[3] = (TextView) v.findViewById(R.id.ssaturday12);
+        saturday[4] = (TextView) v.findViewById(R.id.ssaturday1);
+        saturday[5] = (TextView) v.findViewById(R.id.ssaturday2);
+        saturday[6] = (TextView) v.findViewById(R.id.ssaturday3);
+        saturday[7] = (TextView) v.findViewById(R.id.ssaturday4);
+        saturday[8] = (TextView) v.findViewById(R.id.ssaturday5);
+        saturday[9] = (TextView) v.findViewById(R.id.ssaturday6);
+        saturday[10] = (TextView) v.findViewById(R.id.ssaturday7);
+        saturday[11] = (TextView) v.findViewById(R.id.ssaturday8);
 
-        sunday[0] = (TextView) findViewById(R.id.ssunday9);
-        sunday[1] = (TextView) findViewById(R.id.ssunday10);
-        sunday[2] = (TextView) findViewById(R.id.ssunday11);
-        sunday[3] = (TextView) findViewById(R.id.ssunday12);
-        sunday[4] = (TextView) findViewById(R.id.ssunday1);
-        sunday[5] = (TextView) findViewById(R.id.ssunday2);
-        sunday[6] = (TextView) findViewById(R.id.ssunday3);
-        sunday[7] = (TextView) findViewById(R.id.ssunday4);
-        sunday[8] = (TextView) findViewById(R.id.ssunday5);
-        sunday[9] = (TextView) findViewById(R.id.ssunday6);
-        sunday[10] = (TextView) findViewById(R.id.ssunday7);
-        sunday[11] = (TextView) findViewById(R.id.ssunday8);
+        sunday[0] = (TextView) v.findViewById(R.id.ssunday9);
+        sunday[1] = (TextView) v.findViewById(R.id.ssunday10);
+        sunday[2] = (TextView) v.findViewById(R.id.ssunday11);
+        sunday[3] = (TextView) v.findViewById(R.id.ssunday12);
+        sunday[4] = (TextView) v.findViewById(R.id.ssunday1);
+        sunday[5] = (TextView) v.findViewById(R.id.ssunday2);
+        sunday[6] = (TextView) v.findViewById(R.id.ssunday3);
+        sunday[7] = (TextView) v.findViewById(R.id.ssunday4);
+        sunday[8] = (TextView) v.findViewById(R.id.ssunday5);
+        sunday[9] = (TextView) v.findViewById(R.id.ssunday6);
+        sunday[10] = (TextView) v.findViewById(R.id.ssunday7);
+        sunday[11] = (TextView) v.findViewById(R.id.ssunday8);
     }
 }

@@ -109,13 +109,11 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.home) {
             manager.beginTransaction().replace(R.id.content_main, new ProjectActivity()).commit();
         } else if (id == R.id.timeTable) {
-            Intent intent = new Intent(getApplicationContext(), TimetableActivity.class);
-            startActivity(intent);
+            manager.beginTransaction().replace(R.id.content_main, new TimeIntegrateActivity()).commit();
         } else if (id == R.id.thirdActivity) {
             manager.beginTransaction().replace(R.id.content_main, new ThirdActivity()).commit();
         } else if (id == R.id.fourthActivity) {
-            Intent intent = new Intent(getApplicationContext(), TimeIntegrateActivity.class);
-            startActivity(intent);
+
         } else if (id == R.id.adminFirst) {
 
         } else if (id == R.id.adminSecond) {
