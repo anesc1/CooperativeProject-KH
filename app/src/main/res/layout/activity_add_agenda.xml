@@ -32,7 +32,7 @@
         android:id="@+id/prj1btn"
         android:layout_weight="1"
         android:layout_width="0dp"
-        android:onClick="prj1start"
+        android:onClick="onClick"
         android:layout_height="wrap_content"
         android:text="시작일"/>
 
@@ -40,7 +40,7 @@
             android:id="@+id/prj1btn_"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj1end"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="종료일"/>
 
@@ -69,7 +69,7 @@
             android:id="@+id/prj2btn"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj2start"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="시작일"/>
 
@@ -77,7 +77,7 @@
             android:id="@+id/prj2btn_"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj2end"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="종료일"/>>
 
@@ -105,7 +105,7 @@
             android:id="@+id/prj3btn"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj3start"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="시작일"/>
 
@@ -113,7 +113,7 @@
             android:id="@+id/prj3btn_"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj3end"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="종료일"/>
 
@@ -141,7 +141,7 @@
             android:id="@+id/prj4btn"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj4start"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="시작일"/>
 
@@ -149,7 +149,7 @@
             android:id="@+id/prj4btn_"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj4end"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="종료일"/>
 
@@ -177,7 +177,7 @@
             android:id="@+id/prj5btn"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj5start"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="시작일"/>
 
@@ -185,7 +185,7 @@
             android:id="@+id/prj5btn_"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj5end"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="종료일"/>
 
@@ -212,7 +212,7 @@
             android:id="@+id/prj6btn"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj6start"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="시작일"/>
 
@@ -220,7 +220,7 @@
             android:id="@+id/prj6btn_"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj6end"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="종료일"/>
 
@@ -248,7 +248,7 @@
             android:id="@+id/prj7btn"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj7start"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="시작일"/>
 
@@ -256,7 +256,7 @@
             android:id="@+id/prj7btn_"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:onClick="prj7end"
+            android:onClick="onClick"
             android:layout_height="wrap_content"
             android:text="종료일"/>
 
