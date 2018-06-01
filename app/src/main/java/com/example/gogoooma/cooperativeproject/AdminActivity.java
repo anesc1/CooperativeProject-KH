@@ -1,15 +1,27 @@
 package com.example.gogoooma.cooperativeproject;
+// 지도 아이디 kxLUU44mpaFrMA9m81Dr
+// secret vSbrpFnJfY
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -17,46 +29,143 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class AdminActivity extends Fragment {
     View v;
     RegisterPlace registerPlace;
-    EditText edit_admin,edit_place,edit_startDay,edit_startHour,edit_startMin,edit_endHour,edit_endMin,edit_posX,edit_posY;
-    Button placebtn;
+    EditText edit_place;
+    Button placebtn, startBtn, endBtn;
+    boolean isStart = true;
+    Spinner spinner, daySpinner;
+    String num, admin, place, startDay, startHour, startMin, endHour, endMin, posX, posY;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_admin, container, false);
-        edit_admin = (EditText)v.findViewById(R.id.admin1);
-        edit_place = (EditText)v.findViewById(R.id.admin2);
-        edit_startDay = (EditText)v.findViewById(R.id.admin3);
-        edit_startHour = (EditText)v.findViewById(R.id.admin4);
-        edit_startMin = (EditText)v.findViewById(R.id.admin5);
-        edit_endHour = (EditText)v.findViewById(R.id.admin6);
-        edit_endMin = (EditText)v.findViewById(R.id.admin7);
-        edit_posX = (EditText)v.findViewById(R.id.admin8);
-        edit_posY = (EditText)v.findViewById(R.id.admin9);
+        init_map();
+        init();
 
-        final String admin = edit_admin.getText().toString();
-        final String place = edit_place.getText().toString();
-        final String startDay = edit_startDay.getText().toString();
-        final String startHour = edit_startHour.getText().toString();
-        final String startMin = edit_startMin.getText().toString();
-        final String endHour = edit_endHour.getText().toString();
-        final String endMin = edit_endMin.getText().toString();
-        final String posX = edit_posX.getText().toString();
-        final String posY = edit_posY.getText().toString();
-
-        placebtn = (Button)v.findViewById(R.id.button3);
+        placebtn = (Button) v.findViewById(R.id.addPlace);
         placebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(v.getContext(), GlobalVariable.g_long +":"+GlobalVariable.g_lati, Toast.LENGTH_SHORT).show();
+                place = edit_place.getText().toString();
+                posX = String.valueOf(GlobalVariable.g_long);
+                posY = String.valueOf(GlobalVariable.g_lati);
                 registerPlace = new RegisterPlace();
-                registerPlace.execute(admin,place,startDay,startHour,startMin,endHour,endMin,posX,posY);
+                registerPlace.execute(admin, place, startDay, startHour, startMin, endHour, endMin, posX, posY);
             }
         });
 
+        startBtn = (Button) v.findViewById(R.id.placeStart);
+        endBtn = (Button) v.findViewById(R.id.placeEnd);
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isStart = true;
+                TimePickerDialog dialog = new TimePickerDialog(v.getContext(),
+                        AlertDialog.THEME_HOLO_LIGHT, listener, 12, 0, false);
+                dialog.show();
+            }
+        });
+        endBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isStart = false;
+                TimePickerDialog dialog = new TimePickerDialog(v.getContext(),
+                        AlertDialog.THEME_HOLO_LIGHT, listener, 12, 0, false);
+                dialog.show();
+            }
+        });
         return v;
+    }
+
+    public void init_map() {
+        Fragment1 fragment1 = new Fragment1();
+        fragment1.setArguments(new Bundle());
+        FragmentManager fm = getActivity().getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.add(R.id.fragmentHere, fragment1);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+        
+    }
+
+    private TimePickerDialog.OnTimeSetListener listener = new TimePickerDialog.OnTimeSetListener() {
+
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            if (isStart) {
+                startHour = hourOfDay + "";
+                startMin = minute + "";
+            } else {
+                endHour = hourOfDay + "";
+                endMin = minute + "";
+            }
+            String ampm = "am";
+            if (hourOfDay > 12) {
+                hourOfDay -= 12;
+                ampm = "pm";
+            }
+            String min = minute + "";
+            if (minute == 0)
+                min = "00";
+            if (isStart)
+                startBtn.setText(ampm + hourOfDay + "시 " + min + "분");
+            else
+                endBtn.setText(ampm + hourOfDay + "시 " + min + "분");
+        }
+    };
+
+    public void init() {
+        edit_place = (EditText) v.findViewById(R.id.placeName);
+        spinner = (Spinner) v.findViewById(R.id.spinner2);
+        daySpinner = (Spinner) v.findViewById(R.id.spinner3);
+        ArrayList<String> data = new ArrayList<>();
+        data.add("장소를 사용할 최대 팀 수를 정하세요");
+        for (int i = 0; i < 10; i++)
+            data.add((i + 1) + "팀");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(v.getContext(),
+                android.R.layout.simple_dropdown_item_1line, data);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0)
+                    num = position + "";
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        final ArrayList<String> day = new ArrayList<>();
+        day.add("요일을 설정하세요");
+        day.add("월요일");
+        day.add("화요일");
+        day.add("수요일");
+        day.add("목요일");
+        day.add("금요일");
+        day.add("토요일");
+        day.add("일요일");
+        ArrayAdapter<String> dayAdapter = new ArrayAdapter<String>(v.getContext(),
+                android.R.layout.simple_dropdown_item_1line, day);
+        daySpinner.setAdapter(dayAdapter);
+        daySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position > 0)
+                    startDay = day.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+        admin = GlobalVariable.g_user.getPhoneNum();
     }
 
     class RegisterPlace extends AsyncTask<String, Void, String> {

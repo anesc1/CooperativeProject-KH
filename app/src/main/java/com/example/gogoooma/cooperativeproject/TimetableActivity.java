@@ -1,5 +1,6 @@
 package com.example.gogoooma.cooperativeproject;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
@@ -275,7 +276,8 @@ public class TimetableActivity extends AppCompatActivity {
 
     public void onClickEnd(View view) {
         isStart = false;
-        TimePickerDialog dialog = new TimePickerDialog(this, listener, 12, 0, false);
+        TimePickerDialog dialog = new TimePickerDialog(this,
+                AlertDialog.THEME_HOLO_LIGHT, listener, 12, 0, false);
         dialog.show();
     }
 
