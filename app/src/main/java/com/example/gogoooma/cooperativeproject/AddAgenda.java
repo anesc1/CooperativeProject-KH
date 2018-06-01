@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -18,15 +19,19 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
-public class AddAgenda extends AppCompatActivity {
+public class AddAgenda extends AppCompatActivity implements View.OnClickListener{
     ArrayList<String> projectName;
-    Integer projectNum,check;
+    Integer projectNum;
+    int check;
     String projectName1, projectName2, projectName3, projectName4, projectName5, projectName6, projectName7;
     String prj1start,prj1end,prj2start,prj2end,prj3start,prj3end,prj4start,prj4end,prj5start,prj5end,prj6start,prj6end,prj7start,prj7end;
     ArrayList<String> agenda;
     RegisterProject insert;
-
+    Calendar today;
+    Calendar max;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +54,7 @@ public class AddAgenda extends AppCompatActivity {
         projectName.add(projectName5);
         projectName.add(projectName6);
         projectName.add(projectName7);
-
+        prj1start="";prj1end="";prj2start="";prj2end="";prj3start="";prj3end="";prj4start="";prj4end="";prj5start="";prj5end="";prj6start="";prj6end="";prj7start="";prj7end="";
 
         TextView prj1 = (TextView) findViewById(R.id.prj1);
         Button prj1btn = (Button) findViewById(R.id.prj1btn);
@@ -135,314 +140,136 @@ public class AddAgenda extends AppCompatActivity {
         }
 
 
-
+        today = Calendar.getInstance();
+        max=Calendar.getInstance();
+        max.add(Calendar.MONTH,4);
 
 
     }
 
 
-    public void prj1start(View view) {
-        check =1;
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.prj1btn:check=1;break;
+            case R.id.prj1btn_:check=2;break;
+            case R.id.prj2btn:check=3;break;
+            case R.id.prj2btn_:check=4;break;
+            case R.id.prj3btn:check=5;break;
+            case R.id.prj3btn_:check=6;break;
+            case R.id.prj4btn:check=7;break;
+            case R.id.prj4btn_:check=8;break;
+            case R.id.prj5btn:check=9;break;
+            case R.id.prj5btn_:check=10;break;
+            case R.id.prj6btn:check=11;break;
+            case R.id.prj6btn_:check=12;break;
+            case R.id.prj7btn:check=13;break;
+            case R.id.prj7btn_:check=14;break;
+        }
         DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj1end(View view) {
-    check = 2;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj2start(View view) {
-        check =3;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj2end(View view) {
-        check = 4;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj3start(View view) {
-        check =5;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj3end(View view) {
-        check = 6;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj4start(View view) {
-        check =7;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj4end(View view) {
-        check = 8;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj5start(View view) {
-        check =9;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj5end(View view) {
-        check = 10;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj6start(View view) {
-        check = 11;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj6end(View view) {
-        check = 12;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj7start(View view) {
-        check =13;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
-        dialog.show();
-    }
-
-    public void prj7end(View view) {
-        check = 14;
-        DatePickerDialog dialog = new DatePickerDialog(AddAgenda.this, listener, 2018, 05, 30);
+        dialog.getDatePicker().setMinDate(today.getTimeInMillis());
+        dialog.getDatePicker().setMaxDate(max.getTimeInMillis());
         dialog.show();
     }
 
     private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            if(check.equals(1))
+            if(check==1)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj1start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj1start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj1start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj1start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(2))
+                prj1start=DateStr(year,month,dayOfMonth);
+                prj1start=   CompareWhenSelStart(prj1start,prj1end);
+            }else if(check==2)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj1end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj1end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj1end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj1end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(3))
+                prj1end=DateStr(year,month,dayOfMonth);
+                prj1end=    CompareWhenSelEnd(prj1start,prj1end);
+            }else if(check==3)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj2start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj2start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj2start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj2start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(4))
+                prj2start=DateStr(year,month,dayOfMonth);
+                prj2start=  CompareWhenSelStart(prj2start,prj2end);
+            }else if(check==4)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj2end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj2end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj2end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj2end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(5))
+                prj2end=DateStr(year,month,dayOfMonth);
+                prj2end=   CompareWhenSelEnd(prj2start,prj2end);
+            }else if(check==5)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj3start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj3start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj3start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj3start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(6))
+                prj3start=DateStr(year,month,dayOfMonth);
+
+                prj3start=  CompareWhenSelStart(prj3start,prj3end);
+            }else if(check==6)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj3end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj3end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj3end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj3end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(7))
+                prj3end=DateStr(year,month,dayOfMonth);
+                prj3end=  CompareWhenSelEnd(prj3start,prj3end);
+            }else if(check==7)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj4start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj4start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj4start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj4start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(8))
+                prj4start=DateStr(year,month,dayOfMonth);
+                prj4start=  CompareWhenSelStart(prj4start,prj4end);
+            }else if(check==8)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj4end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj4end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj4end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj4end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(9))
+                prj4end=DateStr(year,month,dayOfMonth);
+                prj4end=   CompareWhenSelEnd(prj4start,prj4end);
+            }else if(check==9)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj5start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj5start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj5start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj5start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(10))
+                prj5start=DateStr(year,month,dayOfMonth);
+                prj5start=   CompareWhenSelStart(prj5start,prj5end);
+            }else if(check==10)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj5end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj5end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj5end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj5end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(11))
+                prj5end=DateStr(year,month,dayOfMonth);
+                prj5end=  CompareWhenSelEnd(prj5start,prj5end);
+            }else if(check==11)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj6start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj6start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj6start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj6start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(12))
+                prj6start=DateStr(year,month,dayOfMonth);
+                prj6start= CompareWhenSelStart(prj6start,prj6end);
+            }else if(check==12)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj6end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj6end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj6end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj6end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(13))
+                prj6end=DateStr(year,month,dayOfMonth);
+                CompareWhenSelEnd(prj6start,prj6end);
+            }else if(check==13)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj7start = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj7start = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj7start = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj7start = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
-            }else if(check.equals(14))
+                prj7start=DateStr(year,month,dayOfMonth);
+                prj7start=  CompareWhenSelStart(prj7start,prj7end);
+            }else if(check==14)
             {
-                if((month/10)==0 && (dayOfMonth/10)==0)
-                {
-                    prj7end = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)==0 && (dayOfMonth/10)!=0)
-                {
-                    prj7end = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)==0)
-                {
-                    prj7end = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
-                }else if((month/10)!=0 && (dayOfMonth/10)!=0)
-                {
-                    prj7end = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
-                }
+                prj7end=DateStr(year,month,dayOfMonth);
+                prj7end=  CompareWhenSelEnd(prj7start,prj7end);
             }
-
         }
-    };
 
+    };
+    public String CompareWhenSelEnd(String start,String end){
+        if(start.compareTo(end)>0){
+                end="";
+            Toast.makeText(this, "날짜가 바르지 않습니다!", Toast.LENGTH_SHORT).show();
+        }
+        return end;
+    }
+    public String CompareWhenSelStart(String start,String end){
+        if(start.compareTo(end)>0){
+            if(!end.equals("")){
+                start="";
+                Toast.makeText(this, "날짜가 바르지 않습니다!", Toast.LENGTH_SHORT).show();
+            }
+        }
+        return start;
+    }
+    public String DateStr(int year, int month, int dayOfMonth){
+
+        String str="";
+        if((month/10)==0 && (dayOfMonth/10)==0)
+        {
+            str = String.valueOf(year)+"-0"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+        }else if((month/10)==0 && (dayOfMonth/10)!=0)
+        {
+            str = String.valueOf(year)+"-0"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+        }else if((month/10)!=0 && (dayOfMonth/10)==0)
+        {
+            str = String.valueOf(year)+"-"+String.valueOf(month)+"-0"+String.valueOf(dayOfMonth);
+        }else if((month/10)!=0 && (dayOfMonth/10)!=0)
+        {
+            str = String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(dayOfMonth);
+        }
+        return str;
+    }
     public void agendaSave(View view) {
         agenda = new ArrayList<>();
         String agenda1 = prj1start+"/"+prj1end;
@@ -470,6 +297,8 @@ public class AddAgenda extends AppCompatActivity {
         setResult(RESULT_OK,intent);
         finish();
     }
+
+
 
 
     class RegisterProject extends AsyncTask<String, Void, String> {
