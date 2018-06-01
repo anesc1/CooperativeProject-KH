@@ -346,7 +346,7 @@ public class AddAgenda extends AppCompatActivity implements View.OnClickListener
                 httpURLConnection.setDoInput(true);
                 httpURLConnection.connect();
 
-
+                //ㄴ
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 outputStream.write(postParameters.getBytes("UTF-8"));
                 outputStream.flush();
