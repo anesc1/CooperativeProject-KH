@@ -24,6 +24,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class TimetableActivity extends AppCompatActivity {
+    CallData callData = new CallData("timetable");
     Spinner Weekday;
     EditText edittext;
 
@@ -36,6 +37,7 @@ public class TimetableActivity extends AppCompatActivity {
     int startMin;
     int endHour;
     int endMin;
+    TimePickerDialog dialog;
 
     TextView monday[] = new TextView[12];
     TextView tuesday[] = new TextView[12];
@@ -49,13 +51,82 @@ public class TimetableActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                while (callData.flag) ;
+            }
+        };
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+        dialog = new TimePickerDialog(this,
+                AlertDialog.THEME_HOLO_LIGHT, listener, 12, 0, false);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
-        init();
         createArray();
-
+        pre_init();
+        init();
     }
 
+    public void pre_init() {
+        for (int j = 0; j < callData.arr.size(); j += 7) {
+            if (callData.arr.get(j).equals(GlobalVariable.g_user.getPhoneNum())) {
+
+                // 각 줄의 요일, 시작시간, 종료시간을 받음
+                weekday = callData.arr.get(2 + j).toString();
+                startHour = Integer.parseInt(callData.arr.get(3 + j));
+                endHour = Integer.parseInt(callData.arr.get(5 + j));
+
+                if (startHour > 12) startHour -= 12;
+                if (endHour > 12) endHour -= 12;
+                int start = findIndex(startHour);
+                int end = findIndex(endHour);
+
+                switch (weekday) {
+                    case "monday":
+                        for (int i = start; i <= end; i++) {
+                            monday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                        }
+                        break;
+                    case "tuesday":
+                        for (int i = start; i <= end; i++) {
+                            tuesday[i].setBackgroundColor(Color.rgb(195, 205, 230));
+                        }
+                        break;
+                    case "wednesday":
+                        for (int i = start; i <= end; i++) {
+                            wednesday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                        }
+                        break;
+                    case "thursday":
+                        for (int i = start; i <= end; i++) {
+                            thursday[i].setBackgroundColor(Color.rgb(195, 205, 230));
+                        }
+                        break;
+                    case "friday":
+                        for (int i = start; i <= end; i++) {
+                            friday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                        }
+                        break;
+                    case "saturday":
+                        for (int i = start; i <= end; i++) {
+                            saturday[i].setBackgroundColor(Color.rgb(195, 205, 230));
+                        }
+                        break;
+                    case "sunday":
+                        for (int i = start; i <= end; i++) {
+                            sunday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                        }
+                        break;
+                }
+            }
+
+        }
+    }
 
     public void init() {
         Weekday = (Spinner) findViewById(R.id.selectDay);
@@ -87,43 +158,36 @@ public class TimetableActivity extends AppCompatActivity {
         switch (weekday) {
             case "monday":
                 for (int i = start; i <= end; i++) {
-                    monday[i].setText(todo);
                     monday[i].setBackgroundColor(Color.rgb(153, 102, 204));
                 }
                 break;
             case "tuesday":
                 for (int i = start; i <= end; i++) {
-                    tuesday[i].setText(todo);
                     tuesday[i].setBackgroundColor(Color.rgb(195, 205, 230));
                 }
                 break;
             case "wednesday":
                 for (int i = start; i <= end; i++) {
-                    wednesday[i].setText(todo);
                     wednesday[i].setBackgroundColor(Color.rgb(153, 102, 204));
                 }
                 break;
             case "thursday":
                 for (int i = start; i <= end; i++) {
-                    thursday[i].setText(todo);
                     thursday[i].setBackgroundColor(Color.rgb(195, 205, 230));
                 }
                 break;
             case "friday":
                 for (int i = start; i <= end; i++) {
-                    friday[i].setText(todo);
                     friday[i].setBackgroundColor(Color.rgb(153, 102, 204));
                 }
                 break;
             case "saturday":
                 for (int i = start; i <= end; i++) {
-                    saturday[i].setText(todo);
                     saturday[i].setBackgroundColor(Color.rgb(195, 205, 230));
                 }
                 break;
             case "sunday":
                 for (int i = start; i <= end; i++) {
-                    sunday[i].setText(todo);
                     sunday[i].setBackgroundColor(Color.rgb(153, 102, 204));
                 }
                 break;
@@ -270,14 +334,11 @@ public class TimetableActivity extends AppCompatActivity {
 
     public void onClickStart(View view) {
         isStart = true;
-        TimePickerDialog dialog = new TimePickerDialog(this, listener, 12, 0, false);
         dialog.show();
     }
 
     public void onClickEnd(View view) {
         isStart = false;
-        TimePickerDialog dialog = new TimePickerDialog(this,
-                AlertDialog.THEME_HOLO_LIGHT, listener, 12, 0, false);
         dialog.show();
     }
 
@@ -290,21 +351,17 @@ public class TimetableActivity extends AppCompatActivity {
                 button = (Button) findViewById(R.id.button4);
                 startHour = hourOfDay;
                 startMin = minute;
-                Toast.makeText(getApplicationContext(), String.valueOf(startHour), Toast.LENGTH_SHORT).show();
             } else {
                 button = (Button) findViewById(R.id.button5);
                 endHour = hourOfDay;
                 endMin = minute;
-                Toast.makeText(getApplicationContext(), String.valueOf(endMin), Toast.LENGTH_SHORT).show();
             }
             String noon = "am";
             if (hourOfDay > 12) {
                 noon = "pm";
                 hourOfDay -= 12;
             }
-            String min = "";
-            if (minute == 0)
-                min = "00";
+            String min = String.format("%02d", minute);
             button.setText(noon + hourOfDay + ":" + min);
         }
     };

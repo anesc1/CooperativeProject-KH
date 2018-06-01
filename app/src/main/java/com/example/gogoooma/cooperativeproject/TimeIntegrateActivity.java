@@ -9,6 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TimeIntegrateActivity extends Fragment {
     CallData callData = new CallData("timetable");
@@ -16,9 +21,9 @@ public class TimeIntegrateActivity extends Fragment {
 
     String weekday;
     int startHour;
-    //int startMin;
+    int startMin;
     int endHour;
-    //int endMin;
+    int endMin;
 
     TextView monday[] = new TextView[12];
     TextView tuesday[] = new TextView[12];
@@ -44,7 +49,7 @@ public class TimeIntegrateActivity extends Fragment {
         } catch (Exception e) {
         }
         super.onCreate(savedInstanceState);
-        v = inflater.inflate(R.layout.activity_second, container, false);
+        v = inflater.inflate(R.layout.activity_time_integrate, container, false);
         init();
 
         return v;
@@ -61,7 +66,9 @@ public class TimeIntegrateActivity extends Fragment {
                     // 각 줄의 요일, 시작시간, 종료시간을 받음
                     weekday = callData.arr.get(2 + j).toString();
                     startHour = Integer.parseInt(callData.arr.get(3 + j));
+                    startMin = Integer.parseInt(callData.arr.get(4 + j));
                     endHour = Integer.parseInt(callData.arr.get(5 + j));
+                    endMin = Integer.parseInt(callData.arr.get(6 + j));
 
                     if (startHour > 12) startHour -= 12;
                     if (endHour > 12) endHour -= 12;
@@ -246,4 +253,6 @@ public class TimeIntegrateActivity extends Fragment {
         sunday[10] = (TextView) v.findViewById(R.id.ssunday7);
         sunday[11] = (TextView) v.findViewById(R.id.ssunday8);
     }
+
+
 }
