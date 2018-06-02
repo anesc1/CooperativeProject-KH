@@ -30,7 +30,7 @@ public class ThirdActivity extends Fragment {
             notice.setArguments(new Bundle());
             FragmentManager fm = getActivity().getFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentHere, notice);
+            fragmentTransaction.replace(R.id.content_main, notice);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
