@@ -14,18 +14,22 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class ProjectActivity extends Fragment implements View.OnClickListener {
     private Boolean isFabOpen = false;
     private FloatingActionButton fab,fab1,fab2;
     private Animation fab_open,fab_close,rotate_forward,rotate_backward;
     Team team;
-    ListView listView;
+    ListView listView,listView1;
     TextView projAdminName, projAdminPhone;
     MemberAdapter adapter;
+    ArrayAdapter adapter1;
     View v;
 
     @Nullable
@@ -33,6 +37,7 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_project, container, false);
         listView = (ListView) v.findViewById(R.id.teamMemberListView);
+        listView1 = (ListView)v.findViewById(R.id.teamProjListView);
         projAdminName = (TextView) v.findViewById(R.id.projAdminName);
         projAdminPhone = (TextView) v.findViewById(R.id.projAdminPhone);
         team = GlobalVariable.g_nowTeam;
@@ -72,6 +77,15 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         });
+
+        ArrayList<Project> temp = new ArrayList<>();
+        for(int i=0; i<GlobalVariable.g_project.size() ;i++)
+        {
+            temp.add(GlobalVariable.g_project.get(i));
+        }
+        adapter1 = new ProjectAdapter(v.getContext(),R.layout.team_project,temp);
+        listView1.setAdapter(adapter1);
+        setListViewHeightBasedOnChildren(listView1);
     }
     @Override
     public boolean onContextItemSelected(MenuItem item) {
