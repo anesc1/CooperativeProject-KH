@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
             nav_Menu.findItem(R.id.timeTable).setVisible(false);
             nav_Menu.findItem(R.id.thirdActivity).setVisible(false);
             nav_Menu.findItem(R.id.fourthActivity).setVisible(false);
-            nav_Menu.findItem(R.id.messageActivity).setVisible(false);
+            nav_Menu.findItem(R.id.pushActivity).setVisible(false);
             FragmentManager manager = getFragmentManager();
             manager.beginTransaction().replace(R.id.content_main, new AdminActivity()).commit();
         } else {
