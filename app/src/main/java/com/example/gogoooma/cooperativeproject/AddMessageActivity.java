@@ -25,6 +25,6 @@ public class AddMessageActivity extends AppCompatActivity {
         String receivername = s.getText().toString();
         String message = m.getText().toString();
 
-        // 이 세개의 string을 DB에 넣어야됨!!
+        // 이 세개의 string을 DB에 넣어야됨!!.
     }
 }
