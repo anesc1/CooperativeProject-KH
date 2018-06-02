@@ -32,7 +32,7 @@ public class ThirdActivity extends Fragment {
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.content_main, notice);
             fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            fragmentTransaction.commit();//
         }
         else //프로젝트 정보가 이미 있을 때 차트
         {
