@@ -47,8 +47,19 @@ public class ThirdActivity extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 123) {
-            Intent intent1 = new Intent(getActivity(),ScheduleActivity.class);
-            startActivity(intent1);
+            if(resultCode == 11) {
+                Intent intent1 = new Intent(getActivity(), ScheduleActivity.class);
+                startActivityForResult(intent1,11);
+            }
+            else {
+                ProjectActivity proj = new ProjectActivity();
+                proj.setArguments(new Bundle());
+                FragmentManager fm = getActivity().getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.content_main, proj);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
         }
         else if(requestCode == 11){
             ProjectActivity proj = new ProjectActivity();

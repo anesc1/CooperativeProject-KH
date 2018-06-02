@@ -1,5 +1,6 @@
 package com.example.gogoooma.cooperativeproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -113,5 +114,12 @@ public class ScheduleActivity extends AppCompatActivity {
         cal.add(Calendar.DATE, -1);
         cur = sdformat.format(cal.getTime());
     return cur;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        setResult(RESULT_OK,intent);
+        finish();
     }
 }
