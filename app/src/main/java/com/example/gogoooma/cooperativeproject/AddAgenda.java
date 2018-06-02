@@ -20,7 +20,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class AddAgenda extends AppCompatActivity implements View.OnClickListener{
     ArrayList<String> projectName;
@@ -28,6 +27,7 @@ public class AddAgenda extends AppCompatActivity implements View.OnClickListener
     int check;
     String projectName1, projectName2, projectName3, projectName4, projectName5, projectName6, projectName7;
     String prj1start,prj1end,prj2start,prj2end,prj3start,prj3end,prj4start,prj4end,prj5start,prj5end,prj6start,prj6end,prj7start,prj7end;
+    Button prj1btn,prj1btn_,prj2btn,prj2btn_,prj3btn,prj3btn_,prj4btn,prj4btn_,prj5btn,prj5btn_,prj6btn,prj6btn_,prj7btn,prj7btn_;
     ArrayList<String> agenda;
     RegisterProject insert;
     Calendar today;
@@ -57,32 +57,32 @@ public class AddAgenda extends AppCompatActivity implements View.OnClickListener
         prj1start="";prj1end="";prj2start="";prj2end="";prj3start="";prj3end="";prj4start="";prj4end="";prj5start="";prj5end="";prj6start="";prj6end="";prj7start="";prj7end="";
 
         TextView prj1 = (TextView) findViewById(R.id.prj1);
-        Button prj1btn = (Button) findViewById(R.id.prj1btn);
-        Button prj1btn_ = (Button) findViewById(R.id.prj1btn_);
+        prj1btn = (Button) findViewById(R.id.prj1btn);
+        prj1btn_ = (Button) findViewById(R.id.prj1btn_);
         TextView prj1agd = (TextView) findViewById(R.id.prj1agd);
         TextView prj2 = (TextView) findViewById(R.id.prj2);
-        Button prj2btn = (Button) findViewById(R.id.prj2btn);
-        Button prj2btn_ = (Button) findViewById(R.id.prj2btn_);
+        prj2btn = (Button) findViewById(R.id.prj2btn);
+        prj2btn_ = (Button) findViewById(R.id.prj2btn_);
         TextView prj2agd = (TextView) findViewById(R.id.prj2agd);
         TextView prj3 = (TextView) findViewById(R.id.prj3);
-        Button prj3btn = (Button) findViewById(R.id.prj3btn);
-        Button prj3btn_ = (Button) findViewById(R.id.prj3btn_);
+        prj3btn = (Button) findViewById(R.id.prj3btn);
+        prj3btn_ = (Button) findViewById(R.id.prj3btn_);
         TextView prj3agd = (TextView) findViewById(R.id.prj3agd);
         TextView prj4 = (TextView) findViewById(R.id.prj4);
-        Button prj4btn = (Button) findViewById(R.id.prj4btn);
-        Button prj4btn_ = (Button) findViewById(R.id.prj4btn_);
+        prj4btn = (Button) findViewById(R.id.prj4btn);
+        prj4btn_ = (Button) findViewById(R.id.prj4btn_);
         TextView prj4agd = (TextView) findViewById(R.id.prj4agd);
         TextView prj5 = (TextView) findViewById(R.id.prj5);
-        Button prj5btn = (Button) findViewById(R.id.prj5btn);
-        Button prj5btn_ = (Button) findViewById(R.id.prj5btn_);
+        prj5btn = (Button) findViewById(R.id.prj5btn);
+        prj5btn_ = (Button) findViewById(R.id.prj5btn_);
         TextView prj5agd = (TextView) findViewById(R.id.prj5agd);
         TextView prj6 = (TextView) findViewById(R.id.prj6);
-        Button prj6btn = (Button) findViewById(R.id.prj6btn);
-        Button prj6btn_ = (Button) findViewById(R.id.prj6btn_);
+        prj6btn = (Button) findViewById(R.id.prj6btn);
+        prj6btn_ = (Button) findViewById(R.id.prj6btn_);
         TextView prj6agd = (TextView) findViewById(R.id.prj6agd);
         TextView prj7 = (TextView) findViewById(R.id.prj7);
-        Button prj7btn = (Button) findViewById(R.id.prj7btn);
-        Button prj7btn_ = (Button) findViewById(R.id.prj7btn_);
+        prj7btn = (Button) findViewById(R.id.prj7btn);
+        prj7btn_ = (Button) findViewById(R.id.prj7btn_);
         TextView prj7agd = (TextView) findViewById(R.id.prj7agd);
 
         prj1.setText(projectName1);
@@ -147,7 +147,6 @@ public class AddAgenda extends AppCompatActivity implements View.OnClickListener
 
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -175,87 +174,97 @@ public class AddAgenda extends AppCompatActivity implements View.OnClickListener
     private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            Button button = null;
             if(check==1)
             {
                 prj1start=DateStr(year,month,dayOfMonth);
                 prj1start=   CompareWhenSelStart(prj1start,prj1end);
-                button = (Button) findViewById(R.id.prj1btn);
+                prj1btn.setText(prj1start);
+                prj1btn.setTextSize(13);
             }else if(check==2)
             {
                 prj1end=DateStr(year,month,dayOfMonth);
                 prj1end=    CompareWhenSelEnd(prj1start,prj1end);
-                button = (Button) findViewById(R.id.prj1btn_);
+                prj1btn_.setText(prj1end);
+                prj1btn_.setTextSize(13);
             }else if(check==3)
             {
                 prj2start=DateStr(year,month,dayOfMonth);
                 prj2start=  CompareWhenSelStart(prj2start,prj2end);
-                button = (Button) findViewById(R.id.prj2btn);
+                prj2btn.setText(prj2start);
+                prj2btn.setTextSize(13);
             }else if(check==4)
             {
                 prj2end=DateStr(year,month,dayOfMonth);
                 prj2end=   CompareWhenSelEnd(prj2start,prj2end);
-                button = (Button) findViewById(R.id.prj2btn_);
+                prj2btn_.setText(prj2end);
+                prj2btn_.setTextSize(13);
             }else if(check==5)
             {
                 prj3start=DateStr(year,month,dayOfMonth);
                 prj3start=  CompareWhenSelStart(prj3start,prj3end);
-                button = (Button) findViewById(R.id.prj3btn);
+                prj3btn.setText(prj3start);
+                prj3btn.setTextSize(13);
             }else if(check==6)
             {
                 prj3end=DateStr(year,month,dayOfMonth);
                 prj3end=  CompareWhenSelEnd(prj3start,prj3end);
-                button = (Button) findViewById(R.id.prj3btn_);
+                prj3btn_.setText(prj3end);
+                prj3btn_.setTextSize(13);
             }else if(check==7)
             {
                 prj4start=DateStr(year,month,dayOfMonth);
                 prj4start=  CompareWhenSelStart(prj4start,prj4end);
-                button = (Button) findViewById(R.id.prj4btn);
+                prj4btn.setText(prj4start);
+                prj4btn.setTextSize(13);
             }else if(check==8)
             {
                 prj4end=DateStr(year,month,dayOfMonth);
-                button = (Button) findViewById(R.id.prj4btn_);
                 prj4end=   CompareWhenSelEnd(prj4start,prj4end);
+                prj4btn_.setText(prj4end);
+                prj4btn_.setTextSize(13);
             }else if(check==9)
             {
                 prj5start=DateStr(year,month,dayOfMonth);
-                button = (Button) findViewById(R.id.prj5btn);
                 prj5start=   CompareWhenSelStart(prj5start,prj5end);
+                prj5btn.setText(prj5start);
+                prj5btn.setTextSize(13);
             }else if(check==10)
             {
                 prj5end=DateStr(year,month,dayOfMonth);
-                button = (Button) findViewById(R.id.prj5btn_);
                 prj5end=  CompareWhenSelEnd(prj5start,prj5end);
+                prj5btn_.setText(prj5end);
+                prj5btn_.setTextSize(13);
             }else if(check==11)
             {
                 prj6start=DateStr(year,month,dayOfMonth);
-                button = (Button) findViewById(R.id.prj6btn);
                 prj6start= CompareWhenSelStart(prj6start,prj6end);
+                prj6btn.setText(prj6start);
+                prj6btn.setTextSize(13);
             }else if(check==12)
             {
-                button = (Button) findViewById(R.id.prj6btn_);
                 prj6end=DateStr(year,month,dayOfMonth);
-                CompareWhenSelEnd(prj6start,prj6end);
+                prj6end=CompareWhenSelEnd(prj6start,prj6end);
+                prj6btn_.setText(prj6end);
+                prj6btn_.setTextSize(13);
             }else if(check==13)
             {
                 prj7start=DateStr(year,month,dayOfMonth);
-                button = (Button) findViewById(R.id.prj7btn);
                 prj7start=  CompareWhenSelStart(prj7start,prj7end);
+                prj7btn.setText(prj7start);
+                prj7btn.setTextSize(13);
             }else if(check==14)
             {
                 prj7end=DateStr(year,month,dayOfMonth);
-                button = (Button) findViewById(R.id.prj7btn_);
                 prj7end=  CompareWhenSelEnd(prj7start,prj7end);
+                prj7btn_.setText(prj7end);
+                prj7btn_.setTextSize(13);
             }
-            String strYear = String.valueOf(year).substring(2,4);
-            button.setText(strYear + "/" + String.format("%02d",(month+1)) +
-                    "/" +String.format("%02d",( dayOfMonth)));
         }
 
     };
     public String CompareWhenSelEnd(String start,String end){
         if(start.compareTo(end)>0){
-                end="";
+            end="";
             Toast.makeText(this, "날짜가 바르지 않습니다!", Toast.LENGTH_SHORT).show();
         }
         return end;
@@ -309,7 +318,7 @@ public class AddAgenda extends AppCompatActivity implements View.OnClickListener
             insert = new AddAgenda.RegisterProject();
             insert.execute(projectName.get(j).toString(), temp, String.valueOf(GlobalVariable.g_nowTeam.getTeamNum()), agenda.get(j).toString());
             GlobalVariable.g_project.add(new Project(projectName.get(j).toString(), j, agenda.get(j).toString(), GlobalVariable.g_nowTeam.getTeamNum()));
-          }
+        }
         Intent intent = new Intent();
         setResult(RESULT_OK,intent);
         finish();
