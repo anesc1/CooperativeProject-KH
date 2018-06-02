@@ -1,5 +1,6 @@
 package com.example.gogoooma.cooperativeproject;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity
             nav_Menu.findItem(R.id.timeTable).setVisible(false);
             nav_Menu.findItem(R.id.thirdActivity).setVisible(false);
             nav_Menu.findItem(R.id.fourthActivity).setVisible(false);
+            nav_Menu.findItem(R.id.messageActivity).setVisible(false);
             FragmentManager manager = getFragmentManager();
             manager.beginTransaction().replace(R.id.content_main, new AdminActivity()).commit();
         } else {
@@ -114,6 +116,8 @@ public class MainActivity extends AppCompatActivity
             manager.beginTransaction().replace(R.id.content_main, new ThirdActivity()).commit();
         } else if (id == R.id.fourthActivity) {
             manager.beginTransaction().replace(R.id.content_main, new FourthActivity()).commit();
+        } else if (id == R.id.pushActivity) {
+            manager.beginTransaction().replace(R.id.content_main, new PushActivity()).commit();
         } else if (id == R.id.adminFirst) {
 
         } else if (id == R.id.adminSecond) {

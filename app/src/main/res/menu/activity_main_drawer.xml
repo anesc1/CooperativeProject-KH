@@ -20,6 +20,10 @@
             android:id="@+id/fourthActivity"
             android:icon="@drawable/ic_menu_manage"
             android:title="미팅 일정" />
+        <item
+            android:id="@+id/pushActivity"
+            android:icon="@drawable/ic_menu_share"
+            android:title="메시지" />
     </group>
 
     <item android:title="관리 목록">

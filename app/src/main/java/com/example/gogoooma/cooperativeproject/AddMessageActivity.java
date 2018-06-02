@@ -51,8 +51,6 @@ public class AddMessageActivity extends AppCompatActivity {
         String message = m.getText().toString();
         sendmsg = new SendMessage();
         sendmsg.execute(sendername,receivername,message,"여기에 msgnum");
-
-        // 이 세개의 string을 DB에 넣어야됨!!.
     }
 
     class SendMessage extends AsyncTask<String, Void, String> {

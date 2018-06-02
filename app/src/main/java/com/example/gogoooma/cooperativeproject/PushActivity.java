@@ -25,8 +25,12 @@ public class PushActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     MessageAdapter adapter;
-    private FloatingActionButton sendm;
     TimerTask timerTask;
+    CallData callData = new CallData("Alarm");
+
+    String send="";
+    String receive="";
+    String mess="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,7 @@ public class PushActivity extends AppCompatActivity {
         notification();
 
         // 메시지 추가
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,20 +50,25 @@ public class PushActivity extends AppCompatActivity {
         });
     }
 
-
     // 수신된 메시지 확인에 관련된 것들
     public void receive() {
         m_data = new ArrayList<MessageData>();
-
-        // to등희  여기서 MessageData에 sender, receiver, message를 담아서 list에 저장해서 recyclerview로 보낼거임
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL,
                 false);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new MessageAdapter(m_data);
 
+        for (int i = 0; i < callData.arr.size(); i += 4) {
+            // 각 줄의 발신자, 수신자, 메시지를 받음
+            send = callData.arr.get(i).toString();
+            receive = callData.arr.get(1 + i).toString();
+            mess = callData.arr.get(2 + i).toString();
+
+            m_data.add(new MessageData(send, receive, mess));
+        }
+
+        adapter = new MessageAdapter(m_data);
         recyclerView.setAdapter(adapter);
     }
 
@@ -83,8 +92,8 @@ public class PushActivity extends AppCompatActivity {
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),
                 R.mipmap.ic_launcher));
         builder.setTicker("메시지");
-        builder.setContentTitle("From" + "보낸 사람"); //보낸 사람을 알려줌 (DB 사용)
-        builder.setContentText("보낼 메시지"); //메시지를 띄워줌 (DB 사용)
+        builder.setContentTitle("From" + receive);
+        builder.setContentText(mess);
         builder.setVibrate(new long[]{0, 3000});
         Uri soundUri = RingtoneManager.getActualDefaultRingtoneUri(this,
                 RingtoneManager.TYPE_NOTIFICATION);
@@ -100,9 +109,5 @@ public class PushActivity extends AppCompatActivity {
 
         Notification notification = builder.build();
         manager.notify(1, notification);
-    }
-
-    public void pushClick(View view) {
-
     }
 }
