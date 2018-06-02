@@ -225,6 +225,14 @@ public class FourthActivity extends Fragment {
                         } else {
                             start = j;
                             flag = true;
+                            end = j + 1;
+                            if (arr[day][j + 1] == 1 || j == num2 - 1) {
+                                if (start != -1 && end != -1)
+                                    list.add(new Place(GlobalVariable.g_nowTeam.getAdmin(), callData.arr.get(i + 1),
+                                            weekday, (start / 2) + 9, (start % 2) * 30,
+                                            (end / 2) + 9, (end % 2) * 30, posX, posY, null));
+                                flag = false;
+                            }
                         }
                     }
                 }

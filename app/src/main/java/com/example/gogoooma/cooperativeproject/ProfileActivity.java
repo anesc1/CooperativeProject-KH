@@ -45,6 +45,8 @@ public class ProfileActivity extends AppCompatActivity {
         if(flag) {
             Button button = (Button) findViewById(R.id.btnInvite);
             button.setVisibility(View.VISIBLE);
+            Button btnTime = (Button) findViewById(R.id.btnTime);
+            btnTime.setVisibility(View.GONE);
         }
     }
 
@@ -70,10 +72,11 @@ public class ProfileActivity extends AppCompatActivity {
         }
         delete.execute(num);
         insert.execute(team.getTeamName(), num, team.getLeader().getPhoneNum(),adminNum , teamMember);
-        GlobalVariable.g_nowTeam.members.add(member);
         for(int i=0; i<GlobalVariable.g_team.size(); i++){
-            if(team.getTeamNum() == GlobalVariable.g_team.get(i).getTeamNum())
+            if(team.getTeamNum() == GlobalVariable.g_team.get(i).getTeamNum()) {
                 GlobalVariable.g_team.get(i).members.add(member);
+                break;
+            }
         }
         finish();
     }

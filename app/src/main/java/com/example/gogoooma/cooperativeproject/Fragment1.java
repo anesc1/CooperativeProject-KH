@@ -1,15 +1,10 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.nhn.android.maps.NMapContext;
 import com.nhn.android.maps.NMapController;
@@ -17,8 +12,6 @@ import com.nhn.android.maps.NMapProjection;
 import com.nhn.android.maps.NMapView;
 import com.nhn.android.maps.maplib.NGeoPoint;
 import com.nhn.android.maps.nmapmodel.NMapError;
-import com.nhn.android.mapviewer.overlay.NMapOverlayManager;
-import com.nhn.android.mapviewer.overlay.NMapResourceProvider;
 
 public class Fragment1 extends Fragment {
     private NMapContext mMapContext;

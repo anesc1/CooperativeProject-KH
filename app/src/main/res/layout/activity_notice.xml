@@ -8,9 +8,11 @@
     tools:context=".NoticeActivity">
 
     <TextView
-        android:gravity="center"
-        android:textSize="20dp"
-        android:text="팀장이 일정을 입력하지 않았습니다!"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="팀장이 프로젝트를 입력하지 않았습니다"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
 </LinearLayout>

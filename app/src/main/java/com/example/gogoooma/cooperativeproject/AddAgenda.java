@@ -175,64 +175,81 @@ public class AddAgenda extends AppCompatActivity implements View.OnClickListener
     private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            Button button = null;
             if(check==1)
             {
                 prj1start=DateStr(year,month,dayOfMonth);
                 prj1start=   CompareWhenSelStart(prj1start,prj1end);
+                button = (Button) findViewById(R.id.prj1btn);
             }else if(check==2)
             {
                 prj1end=DateStr(year,month,dayOfMonth);
                 prj1end=    CompareWhenSelEnd(prj1start,prj1end);
+                button = (Button) findViewById(R.id.prj1btn_);
             }else if(check==3)
             {
                 prj2start=DateStr(year,month,dayOfMonth);
                 prj2start=  CompareWhenSelStart(prj2start,prj2end);
+                button = (Button) findViewById(R.id.prj2btn);
             }else if(check==4)
             {
                 prj2end=DateStr(year,month,dayOfMonth);
                 prj2end=   CompareWhenSelEnd(prj2start,prj2end);
+                button = (Button) findViewById(R.id.prj2btn_);
             }else if(check==5)
             {
                 prj3start=DateStr(year,month,dayOfMonth);
-
                 prj3start=  CompareWhenSelStart(prj3start,prj3end);
+                button = (Button) findViewById(R.id.prj3btn);
             }else if(check==6)
             {
                 prj3end=DateStr(year,month,dayOfMonth);
                 prj3end=  CompareWhenSelEnd(prj3start,prj3end);
+                button = (Button) findViewById(R.id.prj3btn_);
             }else if(check==7)
             {
                 prj4start=DateStr(year,month,dayOfMonth);
                 prj4start=  CompareWhenSelStart(prj4start,prj4end);
+                button = (Button) findViewById(R.id.prj4btn);
             }else if(check==8)
             {
                 prj4end=DateStr(year,month,dayOfMonth);
+                button = (Button) findViewById(R.id.prj4btn_);
                 prj4end=   CompareWhenSelEnd(prj4start,prj4end);
             }else if(check==9)
             {
                 prj5start=DateStr(year,month,dayOfMonth);
+                button = (Button) findViewById(R.id.prj5btn);
                 prj5start=   CompareWhenSelStart(prj5start,prj5end);
             }else if(check==10)
             {
                 prj5end=DateStr(year,month,dayOfMonth);
+                button = (Button) findViewById(R.id.prj5btn_);
                 prj5end=  CompareWhenSelEnd(prj5start,prj5end);
             }else if(check==11)
             {
                 prj6start=DateStr(year,month,dayOfMonth);
+                button = (Button) findViewById(R.id.prj6btn);
                 prj6start= CompareWhenSelStart(prj6start,prj6end);
             }else if(check==12)
             {
+                button = (Button) findViewById(R.id.prj6btn_);
                 prj6end=DateStr(year,month,dayOfMonth);
                 CompareWhenSelEnd(prj6start,prj6end);
             }else if(check==13)
             {
                 prj7start=DateStr(year,month,dayOfMonth);
+                button = (Button) findViewById(R.id.prj7btn);
                 prj7start=  CompareWhenSelStart(prj7start,prj7end);
             }else if(check==14)
             {
                 prj7end=DateStr(year,month,dayOfMonth);
+                button = (Button) findViewById(R.id.prj7btn_);
                 prj7end=  CompareWhenSelEnd(prj7start,prj7end);
             }
+            String strYear = String.valueOf(year).substring(2,4);
+            button.setText(strYear + "/" + String.format("%02d",(month+1)) +
+                    "/" +String.format("%02d",( dayOfMonth)));
         }
 
     };

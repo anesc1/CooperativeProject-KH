@@ -1,6 +1,8 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,13 +26,18 @@ public class ThirdActivity extends Fragment {
             // 프로젝트 정보가 없을 때, 리더가 아닐 때
         }else if(check.equals(GlobalVariable.g_project.size()) && !(GlobalVariable.g_nowTeam.leader.equals(GlobalVariable.g_user)))
         {
-            Intent intent2 = new Intent(getActivity(),NoticeActivity.class);
-            startActivity(intent2);
+            NoticeActivity notice = new NoticeActivity();
+            notice.setArguments(new Bundle());
+            FragmentManager fm = getActivity().getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentHere, notice);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         }
         else //프로젝트 정보가 이미 있을 때 차트
         {
             Intent intent1 = new Intent(getActivity(),ScheduleActivity.class);
-            startActivity(intent1);
+            startActivityForResult(intent1, 11);
         }
         return v;
     }
@@ -42,6 +49,15 @@ public class ThirdActivity extends Fragment {
         if (requestCode == 123) {
             Intent intent1 = new Intent(getActivity(),ScheduleActivity.class);
             startActivity(intent1);
+        }
+        else if(requestCode == 11){
+            ProjectActivity proj = new ProjectActivity();
+            proj.setArguments(new Bundle());
+            FragmentManager fm = getActivity().getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.content_main, proj);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 }
