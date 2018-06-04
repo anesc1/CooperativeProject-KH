@@ -1,29 +1,22 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -171,13 +164,8 @@ public class FourthActivity extends AppCompatActivity {
                                         , nowP.getEndHour()+"", nowP.getEndMin()+"",
                                         nowP.getPosX()+"", nowP.getPosY()+"", GlobalVariable.g_nowTeam.getTeamNum()+"");
 
-                                ProjectActivity proj = new ProjectActivity();
-                                proj.setArguments(new Bundle());
-                                FragmentManager fm = getFragmentManager();
-                                FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                                fragmentTransaction.replace(R.id.content_main, proj);
-                                fragmentTransaction.addToBackStack(null);
-                                fragmentTransaction.commit();
+                              Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                              startActivity(intent);
                             }
 
                         })
