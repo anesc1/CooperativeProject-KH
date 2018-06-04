@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="팀장이 프로젝트를 입력하지 않았습니다!"
-        android:textSize="20sp"
+        android:textSize="17sp"
         android:textStyle="bold" />
 
 </LinearLayout>
