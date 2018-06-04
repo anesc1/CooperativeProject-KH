@@ -47,6 +47,8 @@ public class ProfileActivity extends AppCompatActivity {
             button.setVisibility(View.VISIBLE);
             Button btnTime = (Button) findViewById(R.id.btnTime);
             btnTime.setVisibility(View.GONE);
+            Button btnAddress = (Button) findViewById(R.id.btnAddress);
+            btnAddress.setVisibility(View.GONE);
         }
     }
 
@@ -83,6 +85,12 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void onTime(View view) {
         Intent intent = new Intent(this, TimetableActivity.class);
+        startActivity(intent);
+    }
+
+    public void onAddress(View view) {
+        Intent intent = new Intent(this, AddressActivity.class);
+        intent.putExtra("isProfile", true);
         startActivity(intent);
     }
 

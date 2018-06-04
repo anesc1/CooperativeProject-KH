@@ -33,4 +33,13 @@
         android:typeface="monospace"
         android:textStyle="italic"
         android:textColor="@android:color/holo_orange_dark"/>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone"
+        android:text="" />
 </LinearLayout>

@@ -69,17 +69,30 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     </LinearLayout>
+
     <Button
         android:id="@+id/btnTime"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_marginBottom="10dp"
         android:layout_marginHorizontal="40dp"
+        android:layout_weight="1"
         android:background="@color/colorAccent"
         android:onClick="onTime"
-        android:text="시간표"
-        android:textColor="@android:color/white"/>
+        android:text="시간표 등록"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnAddress"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_weight="1"
+        android:background="@color/colorAccent"
+        android:onClick="onAddress"
+        android:text="주소 등록"
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/btnInvite"

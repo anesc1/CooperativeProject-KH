@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddressActivity">
+
+    <LinearLayout
+        android:id="@+id/fragmentHere2"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cafeLinear"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/cafeText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="장소를 설정하세요" />
+
+        <EditText
+            android:id="@+id/cafeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="장소 설명"
+            android:inputType="textPersonName"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/cafeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="시작시간과 종료시간을 설정하세요" />
+
+        <Spinner
+            android:id="@+id/cafeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_margin="5dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cafeStart"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@color/ic_launcher_background"
+                android:text="시작시간"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/cafeEnd"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@color/ic_launcher_background"
+                android:text="종료시간"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/addAddress3"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/ic_launcher_background"
+        android:onClick="addAddress"
+        android:text="장소 등록"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

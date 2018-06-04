@@ -16,11 +16,14 @@ public class TeamAdapter extends ArrayAdapter<Team> {
     Context context;
     List<Team> list;
     Team now;
+    List<String> place;
 
-    public TeamAdapter(@NonNull Context context, int resource, @NonNull List<Team> objects) {
+    public TeamAdapter(@NonNull Context context, int resource, @NonNull List<Team> objects
+    , List<String> place) {
         super(context, resource, objects);
         this.context = context;
         list = objects;
+        this.place = place;
     }
 
     @NonNull
@@ -34,6 +37,17 @@ public class TeamAdapter extends ArrayAdapter<Team> {
         TextView teamMember = (TextView) v.findViewById(R.id.teamMember);
         teamName.setText(now.getTeamName());
         teamMember.setText(now.printMember());
+        TextView teamPlace = (TextView) v.findViewById(R.id.textView8);
+        for(int i=0; i<place.size(); i+=7){
+            if(place.get(i).equals(now.getTeamNum()+"")){
+                teamPlace.setVisibility(View.VISIBLE);
+                String str = teamPlace.getText().toString() + "\n" + place.get(i+1) +" - "
+                        + place.get(i+2) +" " +place.get(i+3) + ":" +
+                        String.format("%02d", Integer.parseInt(place.get(i+4)))+" ~ "
+                        + place.get(i+5) + ":" + String.format("%02d", Integer.parseInt(place.get(i+6)));
+                teamPlace.setText(str);
+            }
+        }
 
         return v;
     }

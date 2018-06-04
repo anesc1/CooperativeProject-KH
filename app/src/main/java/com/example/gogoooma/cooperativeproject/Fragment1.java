@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.nhn.android.maps.NMapContext;
 import com.nhn.android.maps.NMapController;
@@ -68,7 +69,8 @@ public class Fragment1 extends Fragment {
 
         @Override
         public void onMapCenterChange(NMapView nMapView, NGeoPoint nGeoPoint) {
-            //Toast.makeText(view.getContext(),nGeoPoint.latitude +":"+ nGeoPoint.longitude, Toast.LENGTH_SHORT).show();
+            GlobalVariable.g_long = nGeoPoint.longitude;
+            GlobalVariable.g_lati = nGeoPoint.latitude;
         }
 
         @Override
