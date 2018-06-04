@@ -129,7 +129,7 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
                 break;
             case R.id.fab1:
                 // 프로젝트 생성 버튼 클릭
-                Intent intent = new Intent(getActivity(),AddProjectNum.class);
+                Intent intent = new Intent(getActivity(),TempActivity.class);
                 startActivityForResult(intent,123);
                 break;
             case R.id.fab2:

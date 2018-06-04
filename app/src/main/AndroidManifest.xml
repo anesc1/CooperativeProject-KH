@@ -54,7 +54,8 @@
         <activity android:name=".AddMessageActivity" />
         <activity android:name=".AddressActivity" />
         <activity android:name=".TeamActivity" />
-        <activity android:name=".PlaceActivity"></activity>
+        <activity android:name=".PlaceActivity" />
+        <activity android:name=".TempActivity"></activity>
     </application>
 
 </manifest>

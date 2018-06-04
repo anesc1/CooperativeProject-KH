@@ -1,20 +1,15 @@
 package com.example.gogoooma.cooperativeproject;
 
-import android.app.Fragment;
-import android.support.annotation.Nullable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v7.app.AppCompatActivity;
 
-public class NoticeActivity extends Fragment {
-    View v;
-
-    @Nullable
+public class NoticeActivity extends AppCompatActivity {
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.activity_notice, container, false);
-        return v;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_notice);
+
     }
 
 }
+
