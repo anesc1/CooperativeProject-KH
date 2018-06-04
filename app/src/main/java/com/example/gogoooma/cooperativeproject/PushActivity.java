@@ -117,7 +117,7 @@ public class PushActivity extends Fragment {
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),
                 R.mipmap.ic_launcher));
         builder.setTicker("메시지");
-        builder.setContentTitle("From" + receive);
+        builder.setContentTitle("From " + send);
         builder.setContentText(mess);
         builder.setVibrate(new long[]{0, 3000});
         Uri soundUri = RingtoneManager.getActualDefaultRingtoneUri(v.getContext(),
