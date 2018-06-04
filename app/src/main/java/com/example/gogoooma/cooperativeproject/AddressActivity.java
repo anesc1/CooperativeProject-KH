@@ -45,7 +45,7 @@ public class AddressActivity extends AppCompatActivity {
         if(!isProfile){
             LinearLayout linearLayout = (LinearLayout) findViewById(R.id.cafeLinear);
             linearLayout.setVisibility(View.VISIBLE);
-            Button button = (Button) findViewById(R.id.btnAddress);
+            Button button = (Button) findViewById(R.id.addAddress3);
             button.setText("등록");
         }
         startBtn = (Button) findViewById(R.id.cafeStart);
@@ -121,6 +121,7 @@ public class AddressActivity extends AppCompatActivity {
             registerPlace.execute(team, edit_place.getText().toString(),
                     startDay, startHour, startMin, endHour, endMin,
                     String.valueOf(GlobalVariable.g_long), String.valueOf(GlobalVariable.g_lati), team);
+            finish();
         }
     }
 

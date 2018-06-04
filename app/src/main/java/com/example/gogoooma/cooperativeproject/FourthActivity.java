@@ -72,6 +72,16 @@ public class FourthActivity extends Fragment {
         list = new ArrayList<>();
 
         v = inflater.inflate(R.layout.activity_fourth, container, false);
+
+        Button otherPlace = (Button) v.findViewById(R.id.otherPlace);
+        otherPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), AddressActivity.class);
+                intent.putExtra("isProfile", false);
+                startActivity(intent);
+            }
+        });
         spinner = (Spinner) v.findViewById(R.id.spinnerPlc);
         final ArrayList<String> day = new ArrayList<>();
         day.add("전체");
