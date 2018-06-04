@@ -15,7 +15,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class AddMessageActivity extends AppCompatActivity {
-    EditText s;
     EditText r;
     EditText m;
     SendMessage sendmsg;
@@ -37,19 +36,17 @@ public class AddMessageActivity extends AppCompatActivity {
             thread.join();
         } catch (Exception e) {
         }
-        //Toast.makeText(getApplicationContext(),callData.arr.toString(),Toast.LENGTH_SHORT).show();
 
-        s = (EditText) findViewById(R.id.senderName);
         r = (EditText) findViewById(R.id.receiverName);
         m = (EditText) findViewById(R.id.Message);
     }
 
     public void Send(View view) {
-        String sendername = s.getText().toString();
+        String sendername = GlobalVariable.g_user.getName();
         String receivername = r.getText().toString();
         String message = m.getText().toString();
         sendmsg = new SendMessage();
-        sendmsg.execute(sendername,receivername,message,"여기에 msgnum");
+        sendmsg.execute(sendername, receivername, message, "여기에 msgnum");
     }
 
     class SendMessage extends AsyncTask<String, Void, String> {
