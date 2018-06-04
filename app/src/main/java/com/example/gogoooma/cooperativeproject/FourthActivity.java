@@ -163,7 +163,7 @@ public class FourthActivity extends AppCompatActivity {
                                         , nowP.getPlace(), nowP.getDay(), nowP.getStartHour()+"", nowP.getStartMin()+""
                                         , nowP.getEndHour()+"", nowP.getEndMin()+"",
                                         nowP.getPosX()+"", nowP.getPosY()+"", GlobalVariable.g_nowTeam.getTeamNum()+"");
-
+                                    GlobalVariable.g_nowTeam.places.add(nowP);
                               Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                               startActivity(intent);
                             }
