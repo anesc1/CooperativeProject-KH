@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            finish();
+           Intent intent = new Intent(getApplicationContext(),TeamActivity.class);
+           startActivity(intent);
         }
     }
 

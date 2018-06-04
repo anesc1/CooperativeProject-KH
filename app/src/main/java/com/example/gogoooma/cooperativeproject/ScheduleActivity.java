@@ -118,8 +118,8 @@ public class ScheduleActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent();
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
         setResult(RESULT_OK,intent);
-        finish();
+        startActivity(intent);
     }
 }
