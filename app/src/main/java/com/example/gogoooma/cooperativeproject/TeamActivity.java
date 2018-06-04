@@ -17,9 +17,8 @@ import java.util.List;
 public class TeamActivity extends AppCompatActivity {
     ListView listView;
     TeamAdapter adapter;
-    CallData callData3 = new CallData("project");
     List<String> list = new ArrayList<>();
-
+    CallData callData3 = new CallData("project");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +64,7 @@ public class TeamActivity extends AppCompatActivity {
     }
 
     public void init() {
+
         listView = (ListView) findViewById(R.id.listView);
         adapter = new TeamAdapter(this, R.layout.row, GlobalVariable.g_team, list);
         listView.setAdapter(adapter);

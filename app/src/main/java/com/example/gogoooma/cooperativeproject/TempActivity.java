@@ -25,17 +25,20 @@ public class TempActivity extends AppCompatActivity {
             Intent intent1 = new Intent(TempActivity.this,ScheduleActivity.class);
             startActivityForResult(intent1, 11);
         }
+        finish();
     }
 
-    // 모두 입력후 차트
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 11){
-            Intent intent1 = new Intent(TempActivity.this,MainActivity.class);
-            startActivity(intent1);
+            if(resultCode==12){
+
+            }
+
         }
     }
+
 }
 

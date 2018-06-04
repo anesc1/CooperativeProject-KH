@@ -319,7 +319,7 @@ public class AddAgenda extends AppCompatActivity implements View.OnClickListener
             insert.execute(projectName.get(j).toString(), temp, String.valueOf(GlobalVariable.g_nowTeam.getTeamNum()), agenda.get(j).toString());
             GlobalVariable.g_project.add(new Project(projectName.get(j).toString(), j, agenda.get(j).toString(), GlobalVariable.g_nowTeam.getTeamNum()));
         }
-        Intent intent = new Intent();
+        Intent intent = new Intent(AddAgenda.this, MainActivity.class);
         setResult(RESULT_OK,intent);
         finish();
     }

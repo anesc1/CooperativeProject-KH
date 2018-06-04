@@ -87,7 +87,5 @@ public class AddProject extends AppCompatActivity {
         }
     }
 
-
-//
 }
 
