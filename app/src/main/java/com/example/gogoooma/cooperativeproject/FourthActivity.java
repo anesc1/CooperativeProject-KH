@@ -34,8 +34,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FourthActivity extends Fragment {
-    View v;
+public class FourthActivity extends AppCompatActivity {
     int arr[][] = new int[7][23];
     CallData tt = new CallData("timetable");
     CallData callData = new CallData("place");
@@ -51,11 +50,9 @@ public class FourthActivity extends Fragment {
     private RecyclerView recyclerView;
     private MyAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-
-
-    @Nullable
+    
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -68,21 +65,25 @@ public class FourthActivity extends Fragment {
             thread.join();
         } catch (Exception e) {
         }
+        
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_fourth);
+
+        
 
         list = new ArrayList<>();
 
-        v = inflater.inflate(R.layout.activity_fourth, container, false);
 
-        Button otherPlace = (Button) v.findViewById(R.id.otherPlace);
+        Button otherPlace = (Button) findViewById(R.id.otherPlace);
         otherPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), AddressActivity.class);
+                Intent intent = new Intent(FourthActivity.this, AddressActivity.class);
                 intent.putExtra("isProfile", false);
                 startActivity(intent);
             }
         });
-        spinner = (Spinner) v.findViewById(R.id.spinnerPlc);
+        spinner = (Spinner) findViewById(R.id.spinnerPlc);
         final ArrayList<String> day = new ArrayList<>();
         day.add("전체");
         day.add("월요일");
@@ -92,7 +93,7 @@ public class FourthActivity extends Fragment {
         day.add("금요일");
         day.add("토요일");
         day.add("일요일");
-        ArrayAdapter<String> dayAdapter = new ArrayAdapter<String>(v.getContext(),
+        ArrayAdapter<String> dayAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, day);
         spinner.setAdapter(dayAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -105,27 +106,27 @@ public class FourthActivity extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-        startBtn = (Button) v.findViewById(R.id.startPlc);
+        startBtn = (Button) findViewById(R.id.startPlc);
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isStart = true;
-                TimePickerDialog dialog = new TimePickerDialog(v.getContext(),
+                TimePickerDialog dialog = new TimePickerDialog(FourthActivity.this,
                         AlertDialog.THEME_HOLO_LIGHT, listener, 12, 0, false);
                 dialog.show();
             }
         });
-        endBtn = (Button) v.findViewById(R.id.endPlc);
+        endBtn = (Button) findViewById(R.id.endPlc);
         endBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isStart = false;
-                TimePickerDialog dialog = new TimePickerDialog(v.getContext(),
+                TimePickerDialog dialog = new TimePickerDialog(FourthActivity.this,
                         AlertDialog.THEME_HOLO_LIGHT, listener, 12, 0, false);
                 dialog.show();
             }
         });
-        searchBtn = (ImageButton) v.findViewById(R.id.btnSearch);
+        searchBtn = (ImageButton) findViewById(R.id.btnSearch);
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,29 +136,29 @@ public class FourthActivity extends Fragment {
                         if (list.get(i).getDay().equals(findDay))
                             tempList.add(list.get(i));
                     }
-                    adapter = new MyAdapter(v.getContext(), tempList);
+                    adapter = new MyAdapter(FourthActivity.this, tempList);
                     recyclerView.setAdapter(adapter);
                 }else{
-                    adapter = new MyAdapter(v.getContext(), list);
+                    adapter = new MyAdapter(FourthActivity.this, list);
                     recyclerView.setAdapter(adapter);
                 }
 
             }
         });
 
-        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
-        layoutManager = new LinearLayoutManager(v.getContext());
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         getTimetable();
         getPlace();
 
-        adapter = new MyAdapter(v.getContext(), list);
+        adapter = new MyAdapter(this, list);
         recyclerView.setAdapter(adapter);
         // 카드뷰를 선택했을 때
         adapter.setItemClick(new MyAdapter.ItemClick() {
             public void onClick(View view, int position) {
                 final int pos = position;
-                new android.support.v7.app.AlertDialog.Builder(v.getContext())
+                new android.support.v7.app.AlertDialog.Builder(FourthActivity.this)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setTitle("등록")
                         .setMessage("등록하시겠습니까?")
@@ -172,7 +173,7 @@ public class FourthActivity extends Fragment {
 
                                 ProjectActivity proj = new ProjectActivity();
                                 proj.setArguments(new Bundle());
-                                FragmentManager fm = getActivity().getFragmentManager();
+                                FragmentManager fm = getFragmentManager();
                                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                                 fragmentTransaction.replace(R.id.content_main, proj);
                                 fragmentTransaction.addToBackStack(null);
@@ -185,8 +186,6 @@ public class FourthActivity extends Fragment {
             }
         });
 
-
-        return v;
     }
 
     private TimePickerDialog.OnTimeSetListener listener = new TimePickerDialog.OnTimeSetListener() {
@@ -349,7 +348,7 @@ public class FourthActivity extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progressDialog = ProgressDialog.show(v.getContext(),
+            progressDialog = ProgressDialog.show(FourthActivity.this,
                     "Please Wait", null, true, true);
         }
 

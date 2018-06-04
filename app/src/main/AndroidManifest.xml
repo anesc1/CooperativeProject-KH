@@ -52,7 +52,9 @@
         <activity android:name=".NoticeActivity" />
         <activity android:name=".PushActivity" />
         <activity android:name=".AddMessageActivity" />
-        <activity android:name=".AddressActivity"></activity>
+        <activity android:name=".AddressActivity" />
+        <activity android:name=".TeamActivity" />
+        <activity android:name=".PlaceActivity"></activity>
     </application>
 
 </manifest>
