@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -38,7 +37,7 @@ public class AddMessageActivity extends AppCompatActivity {
             thread.join();
         } catch (Exception e) {
         }
-        Toast.makeText(getApplicationContext(),callData.arr.toString(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),callData.arr.toString(),Toast.LENGTH_SHORT).show();
 
         s = (EditText) findViewById(R.id.senderName);
         r = (EditText) findViewById(R.id.receiverName);
@@ -47,7 +46,7 @@ public class AddMessageActivity extends AppCompatActivity {
 
     public void Send(View view) {
         String sendername = s.getText().toString();
-        String receivername = s.getText().toString();
+        String receivername = r.getText().toString();
         String message = m.getText().toString();
         sendmsg = new SendMessage();
         sendmsg.execute(sendername,receivername,message,"여기에 msgnum");

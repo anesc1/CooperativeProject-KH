@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -30,12 +29,12 @@ public class PushActivity extends Fragment {
     RecyclerView.LayoutManager layoutManager;
     MessageAdapter adapter;
     TimerTask timerTask;
-    CallData callData = new CallData("Alarm");
+    CallData callData = new CallData("alarm");
     View v;
 
-    String send="";
-    String receive="";
-    String mess="";
+    String send = "";
+    String receive = "";
+    String mess = "";
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_push, container, false);
@@ -82,7 +81,8 @@ public class PushActivity extends Fragment {
         timerTask = new TimerTask() {
             @Override
             public void run() {
-                makeNotification();
+                if (receive != "")
+                    makeNotification();
             }
         };
         Timer timer = new Timer();
