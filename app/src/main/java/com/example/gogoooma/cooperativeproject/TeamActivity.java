@@ -18,27 +18,13 @@ public class TeamActivity extends AppCompatActivity {
     ListView listView;
     TeamAdapter adapter;
     CallData callData3 = new CallData("project");
-    CallData call = new CallData("place");
     List<String> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                while (call.arr.size() == 0);
-            }
-        };
-        thread.start();
-        try {
-            thread.join();
-        } catch (Exception e) {
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team);
 
-        setPlace();
         init();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -50,21 +36,6 @@ public class TeamActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    public void setPlace(){
-        for(int i=0; i<GlobalVariable.g_team.size(); i++){
-            for(int j=0; j<call.arr.size(); j+=10){
-                if(GlobalVariable.g_team.get(i).getTeamNum() == Integer.parseInt(call.arr.get(j))){
-                    for(int k=0; k<7; k++) {
-                        String item = call.arr.get(j+k);
-                        list.add(item);
-                    }
-                    Toast.makeText(this, call.arr.get(j), Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        }
     }
 
     @Override

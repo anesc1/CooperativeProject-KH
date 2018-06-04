@@ -30,6 +30,12 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Intent intent = getIntent();
         member = (Member)intent.getSerializableExtra("member");
+        if(!member.getPhoneNum().equals(GlobalVariable.g_user.getPhoneNum())){
+            Button btnTime = (Button) findViewById(R.id.btnTime);
+            btnTime.setVisibility(View.GONE);
+            Button btnAddress = (Button) findViewById(R.id.btnAddress);
+            btnAddress.setVisibility(View.GONE);
+        }
         flag = intent.getBooleanExtra("flag", false);
         init();
     }

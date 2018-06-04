@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.thirdActivity) {
             manager.beginTransaction().replace(R.id.content_main, new ThirdActivity()).commit();
         } else if (id == R.id.fourthActivity) {
-            manager.beginTransaction().replace(R.id.content_main, new FourthActivity()).commit();
+            manager.beginTransaction().replace(R.id.content_main, new PlaceActivity()).commit();
         } else if (id == R.id.pushActivity) {
             manager.beginTransaction().replace(R.id.content_main, new PushActivity()).commit();
         } else if (id == R.id.adminFirst) {
