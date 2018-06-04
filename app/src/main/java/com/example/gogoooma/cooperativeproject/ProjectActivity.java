@@ -1,6 +1,8 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -127,6 +129,8 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
                 break;
             case R.id.fab1:
                 // 프로젝트 생성 버튼 클릭
+                Intent intent = new Intent(getActivity(),AddProjectNum.class);
+                startActivityForResult(intent,123);
                 break;
             case R.id.fab2:
                 // 팀원 추가 버튼 클릭
@@ -152,6 +156,20 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
             listView.setAdapter(adapter);
             setListViewHeightBasedOnChildren(listView);
             adapter.notifyDataSetChanged();
+        } else if (requestCode == 123) {
+            if(resultCode == 11) {
+                Intent intent1 = new Intent(getActivity(), ScheduleActivity.class);
+                startActivityForResult(intent1,11);
+            }
+            else {
+                ProjectActivity proj = new ProjectActivity();
+                proj.setArguments(new Bundle());
+                FragmentManager fm = getActivity().getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.content_main, proj);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
         }
     }
 

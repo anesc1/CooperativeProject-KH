@@ -21,8 +21,13 @@ public class ThirdActivity extends Fragment {
 //        프로젝트 정보가 없을 때, 리더일 때 생성
         if(check.equals(GlobalVariable.g_project.size()) && GlobalVariable.g_nowTeam.leader.equals(GlobalVariable.g_user))
         {
-            Intent intent = new Intent(getActivity(),AddProjectNum.class);
-            startActivityForResult(intent,123);
+            NoticeActivity notice = new NoticeActivity();
+            notice.setArguments(new Bundle());
+            FragmentManager fm = getActivity().getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.content_main, notice);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();//
             // 프로젝트 정보가 없을 때, 리더가 아닐 때
         }else if(check.equals(GlobalVariable.g_project.size()) && !(GlobalVariable.g_nowTeam.leader.equals(GlobalVariable.g_user)))
         {
@@ -46,22 +51,8 @@ public class ThirdActivity extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 123) {
-            if(resultCode == 11) {
-                Intent intent1 = new Intent(getActivity(), ScheduleActivity.class);
-                startActivityForResult(intent1,11);
-            }
-            else {
-                ProjectActivity proj = new ProjectActivity();
-                proj.setArguments(new Bundle());
-                FragmentManager fm = getActivity().getFragmentManager();
-                FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.replace(R.id.content_main, proj);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        }
-        else if(requestCode == 11){
+
+        if(requestCode == 11){
             ProjectActivity proj = new ProjectActivity();
             proj.setArguments(new Bundle());
             FragmentManager fm = getActivity().getFragmentManager();
