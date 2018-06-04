@@ -30,6 +30,7 @@ public class PushActivity extends Fragment {
     MessageAdapter adapter;
     TimerTask timerTask;
     CallData callData = new CallData("alarm");
+    CallData callData2 = new CallData("member");
     View v;
 
     String send = "";
@@ -37,6 +38,18 @@ public class PushActivity extends Fragment {
     String mess = "";
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                while (callData.arr.size() == 0) ;
+                while (callData2.arr.size() == 0) ;
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
         v = inflater.inflate(R.layout.activity_push, container, false);
         receive();
         notification();
@@ -54,6 +67,8 @@ public class PushActivity extends Fragment {
         return v;
     }
 
+    //if(receive.equals(callData.arr.get(j + 1))){
+
     // 수신된 메시지 확인에 관련된 것들
     public void receive() {
         m_data = new ArrayList<MessageData>();
@@ -66,10 +81,15 @@ public class PushActivity extends Fragment {
         for (int i = 0; i < callData.arr.size(); i += 4) {
             // 각 줄의 발신자, 수신자, 메시지를 받음
             send = callData.arr.get(i).toString();
+
             receive = callData.arr.get(1 + i).toString();
+
             mess = callData.arr.get(2 + i).toString();
 
-            m_data.add(new MessageData(send, receive, mess));
+            // 수신자가 현재 사용자일 경우만 데이터 리스트에 추가
+            if (receive.equals(GlobalVariable.g_user.getPhoneNum())) {
+                m_data.add(new MessageData(send, receive, mess));
+            }
         }
 
         adapter = new MessageAdapter(m_data);

@@ -22,24 +22,7 @@
         android:layout_height="20dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="발신자의 이름을 적어주세요"
-        android:textColor="@color/colorPrimary"
-        android:textSize="17dp" />
-
-    <EditText
-        android:id="@+id/senderName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="10dp"
-        android:hint="발신자" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="수신자의 이름을 적어주세요"
+        android:text="수신자의 번호를 적어주세요"
         android:textColor="@color/colorPrimary"
         android:textSize="17dp" />
 
