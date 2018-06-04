@@ -36,7 +36,7 @@ public class PlaceActivity extends Fragment {
                 startActivity(addPlace);
             }
         });
-
+    //
         return v;
     }
 }
