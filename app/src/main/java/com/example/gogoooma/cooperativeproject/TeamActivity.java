@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,9 +95,6 @@ public class TeamActivity extends AppCompatActivity {
                     if (teamNum.equals(GlobalVariable.g_nowTeam.getTeamNum())) {
                         GlobalVariable.g_project.add(new Project(projectName, projectNum, agenda, teamNum));
                     }
-                }
-                for (int i = 0; i < GlobalVariable.g_project.size(); i++) {
-                    Toast.makeText(view.getContext(), GlobalVariable.g_project.get(i).getProjectName(), Toast.LENGTH_SHORT).show();
                 }
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);

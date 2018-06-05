@@ -3,7 +3,6 @@ package com.example.gogoooma.cooperativeproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.anychart.anychart.AnyChart;
 import com.anychart.anychart.AnyChartView;
@@ -41,8 +40,6 @@ public class ScheduleActivity extends AppCompatActivity {
             thread.join();
         } catch(Exception e) {
         }
-
-        Toast.makeText(getApplicationContext(),callData.arr.get(1),Toast.LENGTH_SHORT).show();
         for (int i =0;i<callData.arr.size();i+=4){
 
             if (Integer.parseInt(callData.arr.get(i+2))==GlobalVariable.g_nowTeam.getTeamNum()){

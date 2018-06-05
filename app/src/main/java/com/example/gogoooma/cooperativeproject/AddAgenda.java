@@ -93,7 +93,54 @@ public class AddAgenda extends AppCompatActivity implements View.OnClickListener
         prj6.setText(projectName6);
         prj7.setText(projectName7);
 
-        if (projectNum == 3) {
+
+        if (projectNum == 1) {
+            prj2.setVisibility(View.INVISIBLE);
+            prj2btn.setVisibility(View.INVISIBLE);
+            prj2btn_.setVisibility(View.INVISIBLE);
+            prj2agd.setVisibility(View.INVISIBLE);
+            prj3.setVisibility(View.INVISIBLE);
+            prj3btn.setVisibility(View.INVISIBLE);
+            prj3btn_.setVisibility(View.INVISIBLE);
+            prj3agd.setVisibility(View.INVISIBLE);
+            prj4.setVisibility(View.INVISIBLE);
+            prj4btn.setVisibility(View.INVISIBLE);
+            prj4btn_.setVisibility(View.INVISIBLE);
+            prj4agd.setVisibility(View.INVISIBLE);
+            prj5.setVisibility(View.INVISIBLE);
+            prj5btn.setVisibility(View.INVISIBLE);
+            prj5btn_.setVisibility(View.INVISIBLE);
+            prj5agd.setVisibility(View.INVISIBLE);
+            prj6.setVisibility(View.INVISIBLE);
+            prj6btn.setVisibility(View.INVISIBLE);
+            prj6btn_.setVisibility(View.INVISIBLE);
+            prj6agd.setVisibility(View.INVISIBLE);
+            prj7.setVisibility(View.INVISIBLE);
+            prj7btn.setVisibility(View.INVISIBLE);
+            prj7btn_.setVisibility(View.INVISIBLE);
+            prj7agd.setVisibility(View.INVISIBLE);
+        }else if (projectNum == 2) {
+            prj3.setVisibility(View.INVISIBLE);
+            prj3btn.setVisibility(View.INVISIBLE);
+            prj3btn_.setVisibility(View.INVISIBLE);
+            prj3agd.setVisibility(View.INVISIBLE);
+            prj4.setVisibility(View.INVISIBLE);
+            prj4btn.setVisibility(View.INVISIBLE);
+            prj4btn_.setVisibility(View.INVISIBLE);
+            prj4agd.setVisibility(View.INVISIBLE);
+            prj5.setVisibility(View.INVISIBLE);
+            prj5btn.setVisibility(View.INVISIBLE);
+            prj5btn_.setVisibility(View.INVISIBLE);
+            prj5agd.setVisibility(View.INVISIBLE);
+            prj6.setVisibility(View.INVISIBLE);
+            prj6btn.setVisibility(View.INVISIBLE);
+            prj6btn_.setVisibility(View.INVISIBLE);
+            prj6agd.setVisibility(View.INVISIBLE);
+            prj7.setVisibility(View.INVISIBLE);
+            prj7btn.setVisibility(View.INVISIBLE);
+            prj7btn_.setVisibility(View.INVISIBLE);
+            prj7agd.setVisibility(View.INVISIBLE);
+        } else if (projectNum == 3) {
             prj4.setVisibility(View.INVISIBLE);
             prj4btn.setVisibility(View.INVISIBLE);
             prj4btn_.setVisibility(View.INVISIBLE);

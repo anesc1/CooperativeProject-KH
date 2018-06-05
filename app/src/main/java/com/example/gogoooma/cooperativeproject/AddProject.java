@@ -1,3 +1,4 @@
+
 package com.example.gogoooma.cooperativeproject;
 
 import android.content.Intent;
@@ -32,7 +33,23 @@ public class AddProject extends AppCompatActivity {
         projectName6 = (EditText)findViewById(R.id.projectName6);
         projectName7 = (EditText)findViewById(R.id.projectName7);
 
-        if(projectNum==3)
+
+        if(projectNum==1)
+        {
+            projectName2.setVisibility(View.INVISIBLE);
+            projectName3.setVisibility(View.INVISIBLE);
+            projectName4.setVisibility(View.INVISIBLE);
+            projectName5.setVisibility(View.INVISIBLE);
+            projectName6.setVisibility(View.INVISIBLE);
+            projectName7.setVisibility(View.INVISIBLE);
+        }else if(projectNum==2)
+        {
+            projectName3.setVisibility(View.INVISIBLE);
+            projectName4.setVisibility(View.INVISIBLE);
+            projectName5.setVisibility(View.INVISIBLE);
+            projectName6.setVisibility(View.INVISIBLE);
+            projectName7.setVisibility(View.INVISIBLE);
+        }else if(projectNum==3)
         {
             projectName4.setVisibility(View.INVISIBLE);
             projectName5.setVisibility(View.INVISIBLE);
@@ -88,4 +105,21 @@ public class AddProject extends AppCompatActivity {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
