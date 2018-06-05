@@ -1,6 +1,8 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,23 +21,23 @@ public class ThirdActivity extends Fragment {
 //        프로젝트 정보가 없을 때, 리더일 때 생성
         if(check.equals(GlobalVariable.g_project.size()) && GlobalVariable.g_nowTeam.leader.equals(GlobalVariable.g_user))
         {
-//            NoticeActivity notice = new NoticeActivity();
-//            notice.setArguments(new Bundle());
-//            FragmentManager fm = getActivity().getFragmentManager();
-//            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-//            fragmentTransaction.replace(R.id.content_main, notice);
-//            fragmentTransaction.addToBackStack(null);
-//            fragmentTransaction.commit();//
+            NoticeActivity notice = new NoticeActivity();
+            notice.setArguments(new Bundle());
+            FragmentManager fm = getActivity().getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.content_main, notice);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();//
             // 프로젝트 정보가 없을 때, 리더가 아닐 때
         }else if(check.equals(GlobalVariable.g_project.size()) && !(GlobalVariable.g_nowTeam.leader.equals(GlobalVariable.g_user)))
         {
-//            NoticeActivity notice = new NoticeActivity();
-//            notice.setArguments(new Bundle());
-//            FragmentManager fm = getActivity().getFragmentManager();
-//            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-//            fragmentTransaction.replace(R.id.content_main, notice);
-//            fragmentTransaction.addToBackStack(null);
-//            fragmentTransaction.commit();//
+            NoticeActivity notice = new NoticeActivity();
+            notice.setArguments(new Bundle());
+            FragmentManager fm = getActivity().getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.content_main, notice);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();//
         }
         else //프로젝트 정보가 이미 있을 때 차트
         {
@@ -51,13 +53,13 @@ public class ThirdActivity extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 11){
-//            ProjectActivity proj = new ProjectActivity();
-//            proj.setArguments(new Bundle());
-//            FragmentManager fm = getActivity().getFragmentManager();
-//            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-//            fragmentTransaction.replace(R.id.content_main, proj);
-//            fragmentTransaction.addToBackStack(null);
-//            fragmentTransaction.commit();
+            ProjectActivity proj = new ProjectActivity();
+            proj.setArguments(new Bundle());
+            FragmentManager fm = getActivity().getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.content_main, proj);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         }
     }
 }
