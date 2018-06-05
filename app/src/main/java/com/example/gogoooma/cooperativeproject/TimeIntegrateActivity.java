@@ -39,7 +39,7 @@ public class TimeIntegrateActivity extends Fragment {
         Thread thread = new Thread() {
             @Override
             public void run() {
-                while (callData.flag) ;
+                while (callData.arr.size() == 0 || callData.arr.size()%7!=0) ;
             }
         };
 

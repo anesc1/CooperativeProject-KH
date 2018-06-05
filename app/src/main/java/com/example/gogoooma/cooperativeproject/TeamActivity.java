@@ -76,7 +76,7 @@ public class TeamActivity extends AppCompatActivity {
                 Thread thread = new Thread() {
                     @Override
                     public void run() {
-                        while (callData3.flag) ;
+                        while (callData3.arr.size() == 0 || callData3.arr.size()%4!=0);
                     }
                 };
                 thread.start();

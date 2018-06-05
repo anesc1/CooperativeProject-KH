@@ -49,8 +49,8 @@ public class FourthActivity extends AppCompatActivity {
         Thread thread = new Thread() {
             @Override
             public void run() {
-                while (callData.arr.size() == 0) ;
-                while (tt.arr.size() == 0) ;
+                while (callData.arr.size() == 0 || callData.arr.size()%10!=0) ;
+                while (tt.arr.size() == 0 || tt.arr.size()%7!=0) ;
             }
         };
         thread.start();

@@ -33,7 +33,7 @@ public class ScheduleActivity extends AppCompatActivity {
         Thread thread = new Thread(){
             @Override
             public void run() {
-                while(callData.flag);
+                while(callData.arr.size() == 0 || callData.arr.size()%4!=0) ;
             }
         };
         thread.start();

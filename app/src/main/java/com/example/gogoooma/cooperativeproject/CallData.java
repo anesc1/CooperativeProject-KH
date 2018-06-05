@@ -60,7 +60,6 @@ public class CallData extends AppCompatActivity {
                              }
 
                          }
-                         flag = true;
 
                         br.close();
                     }
@@ -74,6 +73,7 @@ public class CallData extends AppCompatActivity {
         }
 
         protected void onPostExecute(String str) {
+            flag = true;
         }
     }
 
