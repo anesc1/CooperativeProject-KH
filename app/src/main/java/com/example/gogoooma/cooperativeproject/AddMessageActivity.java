@@ -19,7 +19,7 @@ public class AddMessageActivity extends AppCompatActivity {
     EditText m;
     SendMessage sendmsg;
     CallData callData = new CallData("alarm");
-
+    int incnum=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,15 @@ public class AddMessageActivity extends AppCompatActivity {
         } catch (Exception e) {
         }
 
+        for(int i = 0;i<callData.arr.size(); i+=4)
+        {
+            int temp = Integer.parseInt(callData.arr.get(i+3));
+            if(temp>=incnum)
+            {
+                incnum = temp;
+            }
+        }
+
         r = (EditText) findViewById(R.id.receiverName);
         m = (EditText) findViewById(R.id.Message);
     }
@@ -46,7 +55,7 @@ public class AddMessageActivity extends AppCompatActivity {
         String receivername = r.getText().toString();
         String message = m.getText().toString();
         sendmsg = new SendMessage();
-        sendmsg.execute(sendername, receivername, message, "여기에 msgnum");
+        sendmsg.execute(sendername, receivername, message, String.valueOf(incnum+1));
     }
 
     class SendMessage extends AsyncTask<String, Void, String> {
