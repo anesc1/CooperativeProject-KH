@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -26,7 +25,7 @@ import java.net.URL;
 public class TimetableActivity extends AppCompatActivity {
     CallData callData = new CallData("timetable");
     Spinner Weekday;
-    EditText edittext;
+    EditText ToDo;
 
     Boolean isStart = true;
     String weekday;
@@ -81,6 +80,8 @@ public class TimetableActivity extends AppCompatActivity {
                 startHour = Integer.parseInt(callData.arr.get(3 + j));
                 endHour = Integer.parseInt(callData.arr.get(5 + j));
 
+                String td = callData.arr.get(1 + j).toString();
+
                 if (startHour > 12) startHour -= 12;
                 if (endHour > 12) endHour -= 12;
                 int start = findIndex(startHour);
@@ -90,47 +91,53 @@ public class TimetableActivity extends AppCompatActivity {
                     case "monday":
                         for (int i = start; i <= end; i++) {
                             monday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                            monday[i].setText(td);
                         }
                         break;
                     case "tuesday":
                         for (int i = start; i <= end; i++) {
                             tuesday[i].setBackgroundColor(Color.rgb(195, 205, 230));
+                            tuesday[i].setText(td);
                         }
                         break;
                     case "wednesday":
                         for (int i = start; i <= end; i++) {
                             wednesday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                            wednesday[i].setText(td);
                         }
                         break;
                     case "thursday":
                         for (int i = start; i <= end; i++) {
                             thursday[i].setBackgroundColor(Color.rgb(195, 205, 230));
+                            thursday[i].setText(td);
                         }
                         break;
                     case "friday":
                         for (int i = start; i <= end; i++) {
                             friday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                            friday[i].setText(td);
                         }
                         break;
                     case "saturday":
                         for (int i = start; i <= end; i++) {
                             saturday[i].setBackgroundColor(Color.rgb(195, 205, 230));
+                            saturday[i].setText(td);
                         }
                         break;
                     case "sunday":
                         for (int i = start; i <= end; i++) {
                             sunday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                            sunday[i].setText(td);
                         }
                         break;
                 }
             }
-
         }
     }
 
     public void init() {
         Weekday = (Spinner) findViewById(R.id.selectDay);
-        edittext = (EditText) findViewById(R.id.editText);
+        ToDo = (EditText) findViewById(R.id.editText);
 
         Weekday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -145,7 +152,7 @@ public class TimetableActivity extends AppCompatActivity {
     }
 
     public void btnClick(View view) {
-        String todo = edittext.getText().toString();
+        String todo = ToDo.getText().toString();
         insertTime = new InsertTime();
         insertTime.execute(GlobalVariable.g_user.getPhoneNum(), todo, weekday, String.valueOf(startHour), String.valueOf(startMin), String.valueOf(endHour), String.valueOf(endMin));
 
@@ -154,45 +161,50 @@ public class TimetableActivity extends AppCompatActivity {
         int start = findIndex(startHour);
         int end = findIndex(endHour);
 
-
         switch (weekday) {
             case "monday":
                 for (int i = start; i <= end; i++) {
                     monday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                    monday[i].setText(todo);
                 }
                 break;
             case "tuesday":
                 for (int i = start; i <= end; i++) {
                     tuesday[i].setBackgroundColor(Color.rgb(195, 205, 230));
+                    tuesday[i].setText(todo);
                 }
                 break;
             case "wednesday":
                 for (int i = start; i <= end; i++) {
                     wednesday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                    wednesday[i].setText(todo);
                 }
                 break;
             case "thursday":
                 for (int i = start; i <= end; i++) {
                     thursday[i].setBackgroundColor(Color.rgb(195, 205, 230));
+                    thursday[i].setText(todo);
                 }
                 break;
             case "friday":
                 for (int i = start; i <= end; i++) {
                     friday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                    friday[i].setText(todo);
                 }
                 break;
             case "saturday":
                 for (int i = start; i <= end; i++) {
                     saturday[i].setBackgroundColor(Color.rgb(195, 205, 230));
+                    saturday[i].setText(todo);
                 }
                 break;
             case "sunday":
                 for (int i = start; i <= end; i++) {
                     sunday[i].setBackgroundColor(Color.rgb(153, 102, 204));
+                    sunday[i].setText(todo);
                 }
                 break;
         }
-
     }
 
     public int findIndex(int time) {
@@ -377,14 +389,12 @@ public class TimetableActivity extends AppCompatActivity {
                     "Please Wait", null, true, true);
         }
 
-
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
             progressDialog.dismiss();
         }
-
 
         @Override
         protected String doInBackground(String... params) {
@@ -400,12 +410,9 @@ public class TimetableActivity extends AppCompatActivity {
             String serverURL = "http://anesc1.cafe24.com/timetableup.php";
             String postParameters = "&member=" + phpmember + "&data=" + phpdata + "&date=" + phpdate + "&startHour=" + phpstartHour + "&startMin=" + phpstartMin + "&endHour=" + phpendHour + "&endMin=" + phpendMin;
 
-
             try {
-
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
 
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
@@ -414,12 +421,10 @@ public class TimetableActivity extends AppCompatActivity {
                 httpURLConnection.setDoInput(true);
                 httpURLConnection.connect();
 
-
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 outputStream.write(postParameters.getBytes("UTF-8"));
                 outputStream.flush();
                 outputStream.close();
-
 
                 int responseStatusCode = httpURLConnection.getResponseCode();
 
@@ -429,7 +434,6 @@ public class TimetableActivity extends AppCompatActivity {
                 } else {
                     inputStream = httpURLConnection.getErrorStream();
                 }
-
 
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
