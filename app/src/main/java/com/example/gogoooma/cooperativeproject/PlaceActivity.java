@@ -33,10 +33,18 @@ public class PlaceActivity extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent addPlace = new Intent(v.getContext(), FourthActivity.class);
-                startActivity(addPlace);
+                startActivityForResult(addPlace, 123);
             }
         });
     //
         return v;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 123){
+            adapter.notifyDataSetChanged();
+        }
     }
 }

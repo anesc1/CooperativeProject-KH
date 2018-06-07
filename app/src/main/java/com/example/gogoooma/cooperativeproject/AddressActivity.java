@@ -1,5 +1,6 @@
 package com.example.gogoooma.cooperativeproject;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
@@ -35,6 +36,7 @@ public class AddressActivity extends AppCompatActivity {
     String startDay, startHour, startMin, endHour, endMin;
     boolean isStart;
     Button startBtn, endBtn;
+    TimePickerDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +50,25 @@ public class AddressActivity extends AppCompatActivity {
             Button button = (Button) findViewById(R.id.addAddress3);
             button.setText("등록");
         }
+        dialog = new TimePickerDialog(this,
+                AlertDialog.THEME_HOLO_LIGHT, listener, 12, 0, false);
         startBtn = (Button) findViewById(R.id.cafeStart);
         endBtn = (Button) findViewById(R.id.cafeEnd);
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isStart = true;
+                dialog.show();
+            }
+        });
+        endBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                isStart = false;
+                dialog.show();
+            }
+        });
+        init();
 
         init_map();
     }
@@ -118,9 +137,14 @@ public class AddressActivity extends AppCompatActivity {
             Toast.makeText(this, "주소가 등록되었습니다", Toast.LENGTH_SHORT).show();
             finish();
         } else {
+            registerPlace = new RegisterPlace();
             registerPlace.execute(team, edit_place.getText().toString(),
                     startDay, startHour, startMin, endHour, endMin,
                     String.valueOf(GlobalVariable.g_long), String.valueOf(GlobalVariable.g_lati), team);
+            GlobalVariable.g_nowTeam.places.add(new Place(GlobalVariable.g_nowTeam.getAdmin(),
+                    edit_place.getText().toString(), startDay, Integer.parseInt(startHour),
+                    Integer.parseInt(startMin), Integer.parseInt(endHour), Integer.parseInt(endMin),
+                    GlobalVariable.g_long, GlobalVariable.g_lati, null));
             finish();
         }
     }
