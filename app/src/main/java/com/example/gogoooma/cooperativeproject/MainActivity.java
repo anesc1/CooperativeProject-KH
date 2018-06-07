@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.timeTable) {
             manager.beginTransaction().replace(R.id.content_main, new TimeIntegrateActivity()).commit();
         } else if (id == R.id.thirdActivity) {
-            manager.beginTransaction().replace(R.id.content_main, new PieChartActivity()).commit();
+            manager.beginTransaction().replace(R.id.content_main, new BarChartFrag()).commit();
         } else if (id == R.id.fourthActivity) {
             manager.beginTransaction().replace(R.id.content_main, new PlaceActivity()).commit();
         } else if (id == R.id.pushActivity) {
