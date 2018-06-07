@@ -3,6 +3,7 @@ package com.example.gogoooma.cooperativeproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.anychart.anychart.AnyChart;
 import com.anychart.anychart.AnyChartView;
@@ -20,7 +21,7 @@ import java.util.List;
 public class ScheduleActivity extends AppCompatActivity {
     CallData callData = new CallData("project");
     List<Activity> activityList;
-    List<String >dateList;
+    List<String > dateList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

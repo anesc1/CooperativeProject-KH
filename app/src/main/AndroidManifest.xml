@@ -51,12 +51,14 @@
         <activity android:name=".TimeIntegrateActivity" />
         <activity android:name=".NoticeActivity" />
         <activity android:name=".PushActivity" />
-        <activity android:name=".AddMessageActivity"
-            android:theme="@style/Theme.MyDialog"/>
+        <activity
+            android:name=".AddMessageActivity"
+            android:theme="@style/Theme.MyDialog" />
         <activity android:name=".AddressActivity" />
         <activity android:name=".TeamActivity" />
         <activity android:name=".PlaceActivity" />
-        <activity android:name=".TempActivity"></activity>
+        <activity android:name=".TempActivity" />
+        <activity android:name=".PieChartActivity"></activity>
     </application>
 
 </manifest>
