@@ -37,6 +37,9 @@ public class PushActivity extends Fragment {
     String receive = "";
     String mess = "";
 
+    String sendPush="";
+    String messPush="";
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         Thread thread = new Thread() {
             @Override
@@ -89,6 +92,8 @@ public class PushActivity extends Fragment {
             // 수신자가 현재 사용자일 경우만 데이터 리스트에 추가
             if (receive.equals(GlobalVariable.g_user.getPhoneNum())) {
                 m_data.add(new MessageData(send, receive, mess));
+                sendPush = send;
+                messPush = mess;
             }
         }
 
@@ -117,8 +122,8 @@ public class PushActivity extends Fragment {
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),
                 R.mipmap.ic_launcher));
         builder.setTicker("메시지");
-        builder.setContentTitle("From " + send);
-        builder.setContentText(mess);
+        builder.setContentTitle("From " + sendPush);
+        builder.setContentText(messPush);
         builder.setVibrate(new long[]{0, 3000});
         Uri soundUri = RingtoneManager.getActualDefaultRingtoneUri(v.getContext(),
                 RingtoneManager.TYPE_NOTIFICATION);
