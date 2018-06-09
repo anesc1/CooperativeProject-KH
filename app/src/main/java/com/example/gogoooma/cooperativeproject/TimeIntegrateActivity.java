@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TimeIntegrateActivity extends Fragment {
     CallData callData = new CallData("timetable");
+    CallData callData2 = new CallData("place");
     View v;
 
     String weekday;
@@ -33,7 +35,8 @@ public class TimeIntegrateActivity extends Fragment {
         Thread thread = new Thread() {
             @Override
             public void run() {
-                while (callData.arr.size() == 0 || callData.arr.size()%7!=0) ;
+                while (callData.arr.size() == 0 || callData.arr.size() % 7 != 0) ;
+                while (callData2.arr.size() == 0 || callData2.arr.size() % 10 != 0) ;
             }
         };
 
@@ -45,6 +48,7 @@ public class TimeIntegrateActivity extends Fragment {
         super.onCreate(savedInstanceState);
         v = inflater.inflate(R.layout.activity_time_integrate, container, false);
         init();
+        init2();
 
         return v;
     }
@@ -53,8 +57,8 @@ public class TimeIntegrateActivity extends Fragment {
     public void init() {
         createArray();
 
-        for (int j = 0; j < callData.arr.size(); j+=7) {
-            for(int k=0; k<GlobalVariable.g_nowTeam.getMembers().size(); k++) {
+        for (int j = 0; j < callData.arr.size(); j += 7) {
+            for (int k = 0; k < GlobalVariable.g_nowTeam.getMembers().size(); k++) {
                 if (callData.arr.get(j).equals(GlobalVariable.g_nowTeam.getMembers().get(k).getPhoneNum())) {
 
                     // 각 줄의 요일, 시작시간, 종료시간을 받음
@@ -106,6 +110,109 @@ public class TimeIntegrateActivity extends Fragment {
                             }
                             break;
                     }
+                }
+            }
+        }
+    }
+
+    public void init2() {
+        // createArray();
+
+        for (int j = 0; j < callData2.arr.size(); j += 10) {
+            if (callData2.arr.get(j).equals(GlobalVariable.g_nowTeam.getTeamNum() + "")) {
+
+                // 각 줄의 요일, 시작시간, 종료시간을 받음
+                weekday = callData2.arr.get(2 + j).toString();
+                startHour = Integer.parseInt(callData2.arr.get(3 + j));
+                startMin = Integer.parseInt(callData2.arr.get(4 + j));
+                endHour = Integer.parseInt(callData2.arr.get(5 + j));
+                endMin = Integer.parseInt(callData2.arr.get(6 + j));
+
+                if (startHour > 12) startHour -= 12;
+                if (endHour > 12) endHour -= 12;
+                int start = findIndex(startHour);
+                int end = findIndex(endHour);
+                String placeStr = callData2.arr.get(j + 1);
+
+
+                switch (weekday) {
+                    case "월요일":
+                        for (int i = start; i <= end; i++) {
+                            monday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            if (placeStr.length() > 2 * (i - start)) {
+                                int last = 2;
+                                if (placeStr.length() < 2 * (i - start) + 2)
+                                    last = 1;
+                                monday[i].setText(placeStr.substring((i - start) * 2, (i - start) * 2 + last));
+                            }
+                        }
+                        break;
+                    case "화요일":
+                        for (int i = start; i <= end; i++) {
+                            tuesday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            if (placeStr.length() > 2 * (i - start)) {
+                                int last = 2;
+                                if (placeStr.length() < 2 * (i - start) + 2)
+                                    last = 1;
+                                tuesday[i].setText(placeStr.substring((i - start) * 2, (i - start) * 2 + last));
+                            }
+                        }
+                        break;
+                    case "수요일":
+                        for (int i = start; i <= end; i++) {
+                            wednesday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            if (placeStr.length() > 2 * (i - start)) {
+                                int last = 2;
+                                if (placeStr.length() < 2 * (i - start) + 2)
+                                    last = 1;
+                                wednesday[i].setText(placeStr.substring((i - start) * 2, (i - start) * 2 + last));
+                            }
+                        }
+                        break;
+                    case "목요일":
+                        for (int i = start; i <= end; i++) {
+                            thursday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            if (placeStr.length() > 2 * (i - start)) {
+                                int last = 2;
+                                if (placeStr.length() < 2 * (i - start) + 2)
+                                    last = 1;
+                                thursday[i].setText(placeStr.substring((i - start) * 2, (i - start) * 2 + last));
+                            }
+                        }
+                        break;
+                    case "금요일":
+                        for (int i = start; i <= end; i++) {
+                            friday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            if (placeStr.length() > 2 * (i - start)) {
+                                int last = 2;
+                                if (placeStr.length() < 2 * (i - start) + 2)
+                                    last = 1;
+                                friday[i].setText(placeStr.substring((i - start) * 2, (i - start) * 2 + last));
+                            }
+                        }
+                        break;
+                    case "토요일":
+                        for (int i = start; i <= end; i++) {
+                            saturday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            if (placeStr.length() > 2 * (i - start)) {
+                                int last = 2;
+                                if (placeStr.length() < 2 * (i - start) + 2)
+                                    last = 1;
+                                saturday[i].setText(placeStr.substring((i - start) * 2, (i - start) * 2 + last));
+                            }
+                        }
+                        break;
+                    case "일요일":
+                        for (int i = start; i <= end; i++) {
+                            sunday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            if (placeStr.length() > 2 * (i - start)) {
+                                int last = 2;
+                                if (placeStr.length() < 2 * (i - start) + 2)
+                                    last = 1;
+                                sunday[i].setText(placeStr.substring((i - start) * 2, (i - start) * 2 + last));
+                            }
+                        }
+                        break;
                 }
             }
         }
