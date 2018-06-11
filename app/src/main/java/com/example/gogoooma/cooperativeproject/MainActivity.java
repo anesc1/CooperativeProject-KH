@@ -4,7 +4,6 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -114,7 +113,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.timeTable) {
             manager.beginTransaction().replace(R.id.content_main, new TimeIntegrateActivity()).commit();
         } else if (id == R.id.thirdActivity) {
-            manager.beginTransaction().replace(R.id.content_main, new ChartFragment()).commit();
+            manager.beginTransaction().replace(R.id.content_main, new ThirdActivity()).commit();
         } else if (id == R.id.fourthActivity) {
             manager.beginTransaction().replace(R.id.content_main, new PlaceActivity()).commit();
         } else if (id == R.id.pushActivity) {

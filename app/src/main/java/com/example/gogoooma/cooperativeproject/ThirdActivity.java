@@ -1,6 +1,7 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -29,8 +30,8 @@ public class ThirdActivity extends Fragment {
         }
         else //프로젝트 정보가 이미 있을 때 차트
         {
-            Intent intent1 = new Intent(getActivity(),ScheduleActivity.class);
-            startActivity(intent1);
+            FragmentManager manager = getFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main,new ChartFragment()).commit();
         }
         return v;
     }

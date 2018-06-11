@@ -2,8 +2,6 @@ package com.example.gogoooma.cooperativeproject;
 
 import android.app.Fragment;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -15,17 +13,20 @@ import android.view.ViewGroup;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 
-public class PieChartActivity extends SimpleFragment {
+import java.util.ArrayList;
 
+public class PieChartActivity extends SimpleFragment {
+    CallData callData = new CallData("project");
     public static Fragment newInstance() {
         return new PieChartActivity();
     }
-
+    ArrayList<String> proname;
     private PieChart mChart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_pie_chart, container, false);
+
 
         mChart = v.findViewById(R.id.pieChart1);
         mChart.getDescription().setEnabled(false);
