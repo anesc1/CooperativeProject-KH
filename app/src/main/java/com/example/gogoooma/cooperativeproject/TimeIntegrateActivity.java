@@ -1,6 +1,9 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class TimeIntegrateActivity extends Fragment {
     CallData callData = new CallData("timetable");
@@ -52,7 +54,6 @@ public class TimeIntegrateActivity extends Fragment {
 
         return v;
     }
-
 
     public void init() {
         createArray();
@@ -138,7 +139,7 @@ public class TimeIntegrateActivity extends Fragment {
                 switch (weekday) {
                     case "월요일":
                         for (int i = start; i <= end; i++) {
-                            monday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            monday[i].setBackgroundColor(Color.rgb(255, 165, 0));
                             if (placeStr.length() > 2 * (i - start)) {
                                 int last = 2;
                                 if (placeStr.length() < 2 * (i - start) + 2)
@@ -149,7 +150,7 @@ public class TimeIntegrateActivity extends Fragment {
                         break;
                     case "화요일":
                         for (int i = start; i <= end; i++) {
-                            tuesday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            tuesday[i].setBackgroundColor(Color.rgb(255, 165, 0));
                             if (placeStr.length() > 2 * (i - start)) {
                                 int last = 2;
                                 if (placeStr.length() < 2 * (i - start) + 2)
@@ -160,7 +161,7 @@ public class TimeIntegrateActivity extends Fragment {
                         break;
                     case "수요일":
                         for (int i = start; i <= end; i++) {
-                            wednesday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            wednesday[i].setBackgroundColor(Color.rgb(255, 165, 0));
                             if (placeStr.length() > 2 * (i - start)) {
                                 int last = 2;
                                 if (placeStr.length() < 2 * (i - start) + 2)
@@ -171,7 +172,7 @@ public class TimeIntegrateActivity extends Fragment {
                         break;
                     case "목요일":
                         for (int i = start; i <= end; i++) {
-                            thursday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            thursday[i].setBackgroundColor(Color.rgb(255, 165, 0));
                             if (placeStr.length() > 2 * (i - start)) {
                                 int last = 2;
                                 if (placeStr.length() < 2 * (i - start) + 2)
@@ -182,7 +183,7 @@ public class TimeIntegrateActivity extends Fragment {
                         break;
                     case "금요일":
                         for (int i = start; i <= end; i++) {
-                            friday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            friday[i].setBackgroundColor(Color.rgb(255, 165, 0));
                             if (placeStr.length() > 2 * (i - start)) {
                                 int last = 2;
                                 if (placeStr.length() < 2 * (i - start) + 2)
@@ -193,7 +194,7 @@ public class TimeIntegrateActivity extends Fragment {
                         break;
                     case "토요일":
                         for (int i = start; i <= end; i++) {
-                            saturday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            saturday[i].setBackgroundColor(Color.rgb(255, 165, 0));
                             if (placeStr.length() > 2 * (i - start)) {
                                 int last = 2;
                                 if (placeStr.length() < 2 * (i - start) + 2)
@@ -204,7 +205,7 @@ public class TimeIntegrateActivity extends Fragment {
                         break;
                     case "일요일":
                         for (int i = start; i <= end; i++) {
-                            sunday[i].setBackgroundColor(Color.rgb(0, 0, 255));
+                            sunday[i].setBackgroundColor(Color.rgb(255, 165, 0));
                             if (placeStr.length() > 2 * (i - start)) {
                                 int last = 2;
                                 if (placeStr.length() < 2 * (i - start) + 2)
@@ -260,6 +261,20 @@ public class TimeIntegrateActivity extends Fragment {
                 break;
         }
         return ind;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 111){
+            TimeIntegrateActivity proj = new TimeIntegrateActivity();
+            proj.setArguments(new Bundle());
+            FragmentManager fm = getActivity().getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.content_main, proj);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
     }
 
     public void createArray() {
@@ -353,6 +368,62 @@ public class TimeIntegrateActivity extends Fragment {
         sunday[9] = (TextView) v.findViewById(R.id.ssunday6);
         sunday[10] = (TextView) v.findViewById(R.id.ssunday7);
         sunday[11] = (TextView) v.findViewById(R.id.ssunday8);
+
+        for(int i=0; i<12; i++){
+            final int pos = i;
+            monday[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tempFunc(1, pos);
+                }
+            });
+            tuesday[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tempFunc(2, pos);
+                }
+            });
+            wednesday[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tempFunc(3, pos);
+
+                }
+            });
+            thursday[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tempFunc(4, pos);
+
+                }
+            });
+            friday[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tempFunc(5, pos);
+                }
+            });
+            saturday[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tempFunc(6, pos);
+                }
+            });
+            sunday[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tempFunc(7, pos);
+                }
+            });
+        }
+    }
+
+    public void tempFunc(int nowDay, int nowH){
+        Intent intent = new Intent(v.getContext(), AddressActivity.class);
+        intent.putExtra("isTime", true);
+        intent.putExtra("nowDay", nowDay);
+        intent.putExtra("nowH", nowH + 9);
+        startActivityForResult(intent, 111);
     }
 
 

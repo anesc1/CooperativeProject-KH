@@ -34,9 +34,10 @@ public class AddressActivity extends AppCompatActivity {
     EditText edit_place;
     String team;
     String startDay, startHour, startMin, endHour, endMin;
-    boolean isStart;
+    boolean isStart, isTime = false;
     Button startBtn, endBtn;
     TimePickerDialog dialog;
+    int num = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,9 @@ public class AddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_address);
         Intent intent = getIntent();
         isProfile = intent.getBooleanExtra("isProfile", true);
+        isTime = intent.getBooleanExtra("isTime", false);
+        if(isTime)
+            isProfile = false;
         if(!isProfile){
             LinearLayout linearLayout = (LinearLayout) findViewById(R.id.cafeLinear);
             linearLayout.setVisibility(View.VISIBLE);
@@ -68,6 +72,41 @@ public class AddressActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+        if(isTime){
+            int nowD = intent.getIntExtra("nowDay", 0);
+            int nowH = intent.getIntExtra("nowH", 0);
+            startBtn.setText(String.format("%02d", nowH) + ":00");
+            endBtn.setText(String.format("%02d", nowH+1) + ":00");
+            num = nowD;
+            team = GlobalVariable.g_nowTeam.getTeamNum()+"";
+            switch(nowD){
+                case 1:
+                    startDay = "월요일";
+                    break;
+                case 2:
+                    startDay = "화요일";
+                    break;
+                case 3:
+                    startDay = "수요일";
+                    break;
+                case 4:
+                    startDay = "목요일";
+                    break;
+                case 5:
+                    startDay = "금요일";
+                    break;
+                case 6:
+                    startDay = "토요일";
+                    break;
+                case 7:
+                    startDay = "일요일";
+                    break;
+            }
+            startHour = nowH+"";
+            startMin = 0+"";
+            endHour = (nowH+1) + "";
+            endMin = 0+"";
+        }
         init();
 
         init_map();
@@ -124,6 +163,8 @@ public class AddressActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
+        if(isTime)
+            spinner.setSelection(num);
         team = GlobalVariable.g_nowTeam.getTeamNum()+"";
     }
 
