@@ -42,10 +42,59 @@ public abstract class SimpleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     protected BarData generateBarData(int dataSets, float range, int count) {
+        Thread thread = new Thread(){
+            @Override
+            public void run() {
+                while(callData.arr.size() == 0 || callData.arr.size()%4!=0) ;
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch(Exception e) {
+        }
+        proname = new ArrayList<>();
+        for (int i =0;i<callData.arr.size();i+=4){
+
+            if (Integer.parseInt(callData.arr.get(i+2))==GlobalVariable.g_nowTeam.getTeamNum()){
+                proname.add(callData.arr.get(i));
+            }
+        }
+
+        for (int i =0;i<callData.arr.size();i+=4){
+
+            if (Integer.parseInt(callData.arr.get(i+2))==GlobalVariable.g_nowTeam.getTeamNum()){
+                proagenda.add(callData.arr.get(i+3));
+            }
+        }
+        for(int i = 0;i<proagenda.size();i++)
+        {
+            String start = proagenda.get(i).split("/")[0];
+            String end = proagenda.get(i).split("/")[1];
+            int startyear = Integer.parseInt(start.split("-")[0]);
+            int startmonth = Integer.parseInt(start.split("-")[1]);
+            int startday = Integer.parseInt(start.split("-")[2]);
+            int endyear = Integer.parseInt(end.split("-")[0]);
+            int endmonth = Integer.parseInt(end.split("-")[1]);
+            int endday = Integer.parseInt(end.split("-")[2]);
+            subday.add(GetDifferenceOfDate(endyear,endmonth,endday,startyear,startmonth,startday));
+        }
+
+
+        int all=0;
+        for(int i=0;i<subday.size();i++)
+        {
+            all = all+subday.get(i);
+        }
+        for(int i=0;i<subday.size();i++)
+        {
+            subday.set(i,subday.get(i)*100/all);
+        }
 
         ArrayList<IBarDataSet> sets = new ArrayList<IBarDataSet>();
 
@@ -55,11 +104,11 @@ public abstract class SimpleFragment extends Fragment {
 
 //            entries = FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "stacked_bars.txt");
 
-            for(int j = 0; j < count; j++) {
-                entries.add(new BarEntry(j, (float) (Math.random() * range) + range / 4));
+            for(int j = 0; j < proname.size(); j++) {
+                entries.add(new BarEntry(j,(float) subday.get(j)));
             }
 
-            BarDataSet ds = new BarDataSet(entries, getLabel(i));
+            BarDataSet ds = new BarDataSet(entries, proname.get(i));
             ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
             sets.add(ds);
         }
@@ -104,48 +153,11 @@ public abstract class SimpleFragment extends Fragment {
 
         int count = 4;
 
-        Thread thread = new Thread(){
-            @Override
-            public void run() {
-                while(callData.arr.size() == 0 || callData.arr.size()%4!=0) ;
-            }
-        };
-        thread.start();
-        try {
-            thread.join();
-        } catch(Exception e) {
-        }
-        proname = new ArrayList<>();
-        for (int i =0;i<callData.arr.size();i+=4){
-
-            if (Integer.parseInt(callData.arr.get(i+2))==GlobalVariable.g_nowTeam.getTeamNum()){
-                proname.add(callData.arr.get(i));
-            }
-        }
-
-        for (int i =0;i<callData.arr.size();i+=4){
-
-            if (Integer.parseInt(callData.arr.get(i+2))==GlobalVariable.g_nowTeam.getTeamNum()){
-                proagenda.add(callData.arr.get(i+3));
-            }
-        }
-        for(int i = 0;i<proagenda.size();i++)
-        {
-            String start = proagenda.get(i).split("/")[0];
-            String end = proagenda.get(i).split("/")[1];
-            int startyear = Integer.parseInt(start.split("-")[0]);
-            int startmonth = Integer.parseInt(start.split("-")[1]);
-            int startday = Integer.parseInt(start.split("-")[2]);
-            int endyear = Integer.parseInt(end.split("-")[0]);
-            int endmonth = Integer.parseInt(end.split("-")[1]);
-            int endday = Integer.parseInt(end.split("-")[2]);
-            subday.add(GetDifferenceOfDate(startyear,startmonth,startday,endyear,endmonth,endday));
-        }
-
         ArrayList<PieEntry> entries1 = new ArrayList<PieEntry>();
 
-        for(int i = 0; i < proname.size(); i++) {
-            entries1.add(new PieEntry((float) (Math.random() + 40), proname.get(i)));
+
+        for(int i = 0; i < GlobalVariable.g_nowTeam.getMembers().size(); i++) {
+            entries1.add(new PieEntry((float)(Math.random()*60+40), GlobalVariable.g_nowTeam.getMembers().get(i)));
         }
 
         PieDataSet ds1 = new PieDataSet(entries1, GlobalVariable.g_nowTeam.getTeamName()+" 2018");
@@ -229,7 +241,7 @@ public abstract class SimpleFragment extends Fragment {
 //    private String[] mXVals = new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec" };
 
     private String getLabel(int i) {
-        return mLabels[i];
+        return proname.get(i);
     }
 
     public int GetDifferenceOfDate ( int nYear1, int nMonth1, int nDate1, int nYear2, int nMonth2, int nDate2 ) {

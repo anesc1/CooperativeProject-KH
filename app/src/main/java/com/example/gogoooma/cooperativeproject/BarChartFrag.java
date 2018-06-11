@@ -1,7 +1,6 @@
 package com.example.gogoooma.cooperativeproject;
 
 import android.app.Fragment;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,7 +39,7 @@ public class BarChartFrag extends SimpleFragment implements OnChartGestureListen
 
        // Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),"OpenSans-Light.ttf");
 
-        mChart.setData(generateBarData(1, 20000, 12));
+        mChart.setData(generateBarData(1, 100, 12));
 
         Legend l = mChart.getLegend();
         //l.setTypeface(tf);
