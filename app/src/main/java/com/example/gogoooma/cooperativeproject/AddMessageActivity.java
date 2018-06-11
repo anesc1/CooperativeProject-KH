@@ -19,7 +19,8 @@ public class AddMessageActivity extends AppCompatActivity {
     EditText m;
     SendMessage sendmsg;
     CallData callData = new CallData("alarm");
-    int incnum=1;
+    int incnum = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class AddMessageActivity extends AppCompatActivity {
         Thread thread = new Thread() {
             @Override
             public void run() {
-                while (callData.arr.size() == 0 || callData.arr.size()%4!=0) ;
+                while (callData.arr.size() == 0 || callData.arr.size() % 4 != 0) ;
             }
         };
 
@@ -37,14 +38,12 @@ public class AddMessageActivity extends AppCompatActivity {
         } catch (Exception e) {
         }
 
-        for(int i = 0;i<callData.arr.size(); i+=4)
-        {
-            int temp = Integer.parseInt(callData.arr.get(i+3));
-            if(temp>=incnum)
-            {
-                incnum = temp;
-            }
-        }
+//        for (int i = 0; i < callData.arr.size(); i += 4) {
+//            int temp = Integer.parseInt(callData.arr.get(i + 3)); // 여기서 에러 발생!!
+//            if (temp >= incnum) {
+//                incnum = temp;
+//            }
+//        }
 
         r = (EditText) findViewById(R.id.receiverName);
         m = (EditText) findViewById(R.id.Message);
@@ -55,7 +54,7 @@ public class AddMessageActivity extends AppCompatActivity {
         String receivername = r.getText().toString();
         String message = m.getText().toString();
         sendmsg = new SendMessage();
-        sendmsg.execute(sendername, receivername, message, String.valueOf(incnum+1));
+        sendmsg.execute(sendername, receivername, message, String.valueOf(incnum + 1));
     }
 
     class SendMessage extends AsyncTask<String, Void, String> {
