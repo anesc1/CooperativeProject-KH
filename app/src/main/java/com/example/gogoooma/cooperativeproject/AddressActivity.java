@@ -29,6 +29,9 @@ import java.util.ArrayList;
 
 public class AddressActivity extends AppCompatActivity {
     RegisterPlace registerPlace;
+    AddVer addVer;
+    SendMessage sendMessage;
+    DeleteTeam deleteTeam;
     boolean isProfile;
     Spinner spinner;
     EditText edit_place;
@@ -38,12 +41,28 @@ public class AddressActivity extends AppCompatActivity {
     Button startBtn, endBtn;
     TimePickerDialog dialog;
     int num = 0;
+    CallData callData2 = new CallData("team");
+    int tempver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
         Intent intent = getIntent();
+
+        Thread thread2 = new Thread() {
+            @Override
+            public void run() {
+                while (callData2.arr.size() == 0 || callData2.arr.size()%6!=0) ;
+            }
+        };
+
+        thread2.start();
+        try {
+            thread2.join();
+        } catch (Exception e) {
+        }
+
         isProfile = intent.getBooleanExtra("isProfile", true);
         isTime = intent.getBooleanExtra("isTime", false);
         if(isTime)
@@ -182,6 +201,27 @@ public class AddressActivity extends AppCompatActivity {
             registerPlace.execute(team, edit_place.getText().toString(),
                     startDay, startHour, startMin, endHour, endMin,
                     String.valueOf(GlobalVariable.g_long), String.valueOf(GlobalVariable.g_lati), team);
+            addVer = new AddVer();
+            deleteTeam = new DeleteTeam();
+
+            for(int i=0;i<callData2.arr.size();i+=6)
+            {
+                String tempteam = callData2.arr.get(i+1).toString();
+                if(GlobalVariable.g_nowTeam.getTeamNum()==Integer.parseInt(tempteam))
+                {
+                    tempver = Integer.parseInt(callData2.arr.get(i+5).toString());
+                    tempver = tempver+1;
+                    deleteTeam.execute(tempteam);
+                    addVer.execute(callData2.arr.get(i).toString(),callData2.arr.get(i+1).toString(),callData2.arr.get(i+2).toString(),callData2.arr.get(i+3).toString(),callData2.arr.get(i+4).toString(),String.valueOf(tempver));
+                }
+            }
+
+            for(int i=0;i<GlobalVariable.g_nowTeam.getMembers().size();i++)
+            {
+                String teammembers = GlobalVariable.g_nowTeam.getMembers().get(i).getPhoneNum();
+                sendMessage = new SendMessage();
+                sendMessage.execute(GlobalVariable.g_user.getName(),teammembers,"버전이 "+ String.valueOf(tempver)+"로 바뀌었습니다.","msgnum");
+            }
             GlobalVariable.g_nowTeam.places.add(new Place(GlobalVariable.g_nowTeam.getAdmin(),
                     edit_place.getText().toString(), startDay, Integer.parseInt(startHour),
                     Integer.parseInt(startMin), Integer.parseInt(endHour), Integer.parseInt(endMin),
@@ -237,6 +277,266 @@ public class AddressActivity extends AppCompatActivity {
 
             String serverURL = "http://anesc1.cafe24.com/placeup.php";
             String postParameters = "&admin=" + phpadmin + "&place=" + phpplace + "&startDay=" + phpstartDay + "&startHour=" + phpstartHour + "&startMin=" + phpstartMin + "&endHour=" + phpendHour + "&endMin=" + phpendMin + "&posX=" + phpposX + "&posY=" + phpposY + "&teams=" + phpteams;
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                //httpURLConnection.setRequestProperty("content-type", "application/json");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+                return new String("Error: " + e.getMessage());
+            }
+
+        }
+    }
+
+    class AddVer extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(AddressActivity.this,
+                    "Please Wait", null, true, true);
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String phpteamName = (String) params[0];
+            String phpteamNum = (String) params[1];
+            String phpleader = (String) params[2];
+            String phpadmin = (String) params[3];
+            String phpmember = (String) params[4];
+            String phpver = (String)params[5];
+
+            String serverURL = "http://anesc1.cafe24.com/teamup.php";
+            String postParameters = "&teamName=" + phpteamName + "&teamNum=" + phpteamNum + "&leader=" + phpleader + "&admin=" + phpadmin + "&member=" + phpmember + "&ver=" + phpver;
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                //httpURLConnection.setRequestProperty("content-type", "application/json");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+                return new String("Error: " + e.getMessage());
+            }
+
+        }
+    }
+
+    class DeleteTeam extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(AddressActivity.this,
+                    "Please Wait", null, true, true);
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String phpteamNum1 = (String) params[0];
+
+            String serverURL = "http://anesc1.cafe24.com/teamup1.php";
+            String postParameters = "&teamNum=" + phpteamNum1;
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                //httpURLConnection.setRequestProperty("content-type", "application/json");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+                return new String("Error: " + e.getMessage());
+            }
+
+        }
+    }
+
+    class SendMessage extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(AddressActivity.this,
+                    "Please Wait", null, true, true);
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String phpsender = (String) params[0];
+            String phpreceiver = (String) params[1];
+            String phpmessage = (String) params[2];
+            String phpmsgnum = (String) params[3];
+
+            String serverURL = "http://anesc1.cafe24.com/alarmup.php";
+            String postParameters = "&sender=" + phpsender + "&receiver=" + phpreceiver + "&message=" + phpmessage + "&msgnum=" + phpmsgnum;
 
 
             try {

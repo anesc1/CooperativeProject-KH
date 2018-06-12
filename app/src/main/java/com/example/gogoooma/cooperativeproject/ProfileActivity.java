@@ -37,6 +37,20 @@ public class ProfileActivity extends AppCompatActivity {
             btnAddress.setVisibility(View.GONE);
         }
         flag = intent.getBooleanExtra("flag", false);
+
+        Thread thread2 = new Thread() {
+            @Override
+            public void run() {
+                while (callData2.arr.size() == 0 || callData2.arr.size()%6!=0) ;
+            }
+        };
+
+        thread2.start();
+        try {
+            thread2.join();
+        } catch (Exception e) {
+        }
+
         init();
     }
 
@@ -71,15 +85,17 @@ public class ProfileActivity extends AppCompatActivity {
         delete = new DeleteTeam();
         String num = String.valueOf(team.getTeamNum());
         String adminNum = null;
-        for(int i=0; i<callData2.arr.size(); i+=5)
+        String timever=null;
+        for(int i=0; i<callData2.arr.size(); i+=6)
         {
             if(callData2.arr.get(i+2).equals(GlobalVariable.g_user.getPhoneNum()))
             {
                 adminNum = callData2.arr.get(i+3);
+                timever = callData2.arr.get(i+5).toString();
             }
         }
         delete.execute(num);
-        insert.execute(team.getTeamName(), num, team.getLeader().getPhoneNum(),adminNum , teamMember);
+        insert.execute(team.getTeamName(), num, team.getLeader().getPhoneNum(),adminNum , teamMember,timever);
         for(int i=0; i<GlobalVariable.g_team.size(); i++){
             if(team.getTeamNum() == GlobalVariable.g_team.get(i).getTeamNum()) {
                 GlobalVariable.g_team.get(i).members.add(member);
@@ -128,9 +144,10 @@ public class ProfileActivity extends AppCompatActivity {
             String phpleader = (String) params[2];
             String phpadmin = (String) params[3];
             String phpmember = (String) params[4];
+            String phpver = (String )params[5];
 
             String serverURL = "http://anesc1.cafe24.com/teamup.php";
-            String postParameters = "&teamName=" + phpteamName + "&teamNum=" + phpteamNum + "&leader=" + phpleader + "&admin=" + phpadmin + "&member=" + phpmember;
+            String postParameters = "&teamName=" + phpteamName + "&teamNum=" + phpteamNum + "&leader=" + phpleader + "&admin=" + phpadmin + "&member=" + phpmember +"&ver=" + phpver;
 
 
             try {

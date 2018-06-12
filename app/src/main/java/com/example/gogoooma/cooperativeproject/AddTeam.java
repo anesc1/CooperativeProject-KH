@@ -85,11 +85,11 @@ public class AddTeam extends AppCompatActivity {
                 Toast.makeText(view.getContext(), "없는 번호입니다", Toast.LENGTH_SHORT).show();
             if(isadmin) {
                 teamName = editText.getText().toString();
-                teamSize = callData.arr.size() / 5;
+                teamSize = callData.arr.size() / 6;
                 teamNum = String.valueOf(teamSize);
                 initmember = user.getPhoneNum();
                 insert = new RegisterTeam();
-                insert.execute(teamName, teamNum, GlobalVariable.g_user.getPhoneNum(), admin.getPhoneNum(), initmember);
+                insert.execute(teamName, teamNum, GlobalVariable.g_user.getPhoneNum(), admin.getPhoneNum(), initmember,"1");
                 List<Member> list = new ArrayList<>();
                 list.add(user);
 
@@ -170,9 +170,10 @@ public class AddTeam extends AppCompatActivity {
             String phpleader = (String) params[2];
             String phpadmin = (String) params[3];
             String phpmember = (String) params[4];
+            String phpver = (String)params[5];
 
             String serverURL = "http://anesc1.cafe24.com/teamup.php";
-            String postParameters = "&teamName=" + phpteamName + "&teamNum=" + phpteamNum + "&leader=" + phpleader + "&admin=" + phpadmin + "&member=" + phpmember;
+            String postParameters = "&teamName=" + phpteamName + "&teamNum=" + phpteamNum + "&leader=" + phpleader + "&admin=" + phpadmin + "&member=" + phpmember + "&ver=" + phpver;
 
 
             try {

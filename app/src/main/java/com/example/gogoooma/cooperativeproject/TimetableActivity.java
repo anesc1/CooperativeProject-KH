@@ -38,6 +38,7 @@ public class TimetableActivity extends AppCompatActivity {
     int endMin;
     TimePickerDialog dialog;
 
+
     TextView monday[] = new TextView[12];
     TextView tuesday[] = new TextView[12];
     TextView wednesday[] = new TextView[12];
@@ -62,6 +63,8 @@ public class TimetableActivity extends AppCompatActivity {
             thread.join();
         } catch (Exception e) {
         }
+
+
         dialog = new TimePickerDialog(this,
                 AlertDialog.THEME_HOLO_LIGHT, listener, 12, 0, false);
         super.onCreate(savedInstanceState);
@@ -155,6 +158,7 @@ public class TimetableActivity extends AppCompatActivity {
         String todo = ToDo.getText().toString();
         insertTime = new InsertTime();
         insertTime.execute(GlobalVariable.g_user.getPhoneNum(), todo, weekday, String.valueOf(startHour), String.valueOf(startMin), String.valueOf(endHour), String.valueOf(endMin));
+
 
         if (startHour > 12) startHour -= 12;
         if (endHour > 12) endHour -= 12;
@@ -459,5 +463,7 @@ public class TimetableActivity extends AppCompatActivity {
 
         }
     }
+
+
 
 }

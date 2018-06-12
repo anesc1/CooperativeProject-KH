@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                 GlobalVariable.g_user = new Member(name, age, phoneNum, pass, false, null);
 
 
-            for (int i = 0; i < callData2.arr.size(); i += 5) {
+            for (int i = 0; i < callData2.arr.size(); i += 6) {
                 int indexOf = callData2.arr.get(i + 4).indexOf(phoneNum);
                 if (indexOf > -1) {
                     String tempStr = callData2.arr.get(i + 1).replaceAll(" ", "");
