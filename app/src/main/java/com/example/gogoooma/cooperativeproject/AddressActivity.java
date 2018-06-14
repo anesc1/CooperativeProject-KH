@@ -19,6 +19,9 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -43,12 +46,14 @@ public class AddressActivity extends AppCompatActivity {
     int num = 0;
     CallData callData2 = new CallData("team");
     int tempver;
+    DatabaseReference db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
         Intent intent = getIntent();
+        db = FirebaseDatabase.getInstance().getReference("FireMsg");
 
         Thread thread2 = new Thread() {
             @Override
@@ -226,6 +231,14 @@ public class AddressActivity extends AppCompatActivity {
                     edit_place.getText().toString(), startDay, Integer.parseInt(startHour),
                     Integer.parseInt(startMin), Integer.parseInt(endHour), Integer.parseInt(endMin),
                     GlobalVariable.g_long, GlobalVariable.g_lati, null));
+            ArrayList<String> str1 = new ArrayList<>();
+            ArrayList<String> str2 = new ArrayList<>();
+            ArrayList<String> str3 = new ArrayList<>();
+            str1.add("새로운 일정");
+            str2.add(edit_place.getText().toString() +", "+startDay + " " + startHour+ ":" + startMin + " - " + endHour + ":" + endMin);
+            str3.add(GlobalVariable.g_user.getPhoneNum());
+            FireMsg fireMsg = new FireMsg(GlobalVariable.g_nowTeam.getTeamNum()+"", str1, str2, str3);
+            db.push().setValue(fireMsg);
             finish();
         }
     }

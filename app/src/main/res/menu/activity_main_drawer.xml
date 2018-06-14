@@ -32,12 +32,12 @@
                 android:id="@+id/adminFirst"
                 android:visible="false"
                 android:icon="@drawable/ic_menu_share"
-                android:title="1" />
+                android:title="장소관리" />
             <item
                 android:id="@+id/adminSecond"
                 android:visible="false"
                 android:icon="@drawable/ic_menu_send"
-                android:title="2" />
+                android:title="팀관리" />
         </menu>
     </item>
 

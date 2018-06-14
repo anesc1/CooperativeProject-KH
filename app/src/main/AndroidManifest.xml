@@ -30,12 +30,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".TimetableActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".SecondActivity" />
-        <activity android:name=".ThirdActivity" />
         <activity android:name=".FourthActivity" />
-        <activity android:name=".CallData" />
         <activity android:name=".TeamActivity" />
-        <activity android:name=".ProjectActivity" />
         <activity
             android:name=".ScheduleActivity"
             android:screenOrientation="landscape" />
@@ -47,19 +43,40 @@
             android:theme="@style/Theme.MyDialog" />
         />
         <activity android:name=".AddProject" />
-        <activity android:name=".AdminActivity" />
         <activity android:name=".AddAgenda" />
-        <activity android:name=".TimeIntegrateActivity" />
         <activity android:name=".NoticeActivity" />
-        <activity android:name=".PushActivity" />
         <activity
             android:name=".AddMessageActivity"
             android:theme="@style/Theme.MyDialog" />
         <activity android:name=".AddressActivity" />
-        <activity android:name=".TeamActivity" />
-        <activity android:name=".PlaceActivity" />
+        <activity android:name=".GCMActivity" />
         <activity android:name=".TempActivity" />
-        <activity android:name=".PieChartActivity"></activity>
+        <service
+            android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <!-- [END firebase_service] -->
+        <!-- [START firebase_iid_service] -->
+        <service
+            android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_ic_notification" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id"/>
+
     </application>
 
 </manifest>
