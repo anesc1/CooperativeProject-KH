@@ -38,6 +38,11 @@
                 android:visible="false"
                 android:icon="@drawable/ic_menu_send"
                 android:title="팀관리" />
+            <item
+                android:id="@+id/adminMsg"
+                android:visible="false"
+                android:icon="@drawable/new_msg"
+                android:title="메시지" />
         </menu>
     </item>
 

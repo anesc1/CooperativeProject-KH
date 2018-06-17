@@ -100,11 +100,11 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         if (GlobalVariable.g_user.getAdmin())
-
         {
             Menu nav_Menu = navigationView.getMenu();
             nav_Menu.findItem(R.id.adminFirst).setVisible(true);
             nav_Menu.findItem(R.id.adminSecond).setVisible(true);
+            nav_Menu.findItem(R.id.adminMsg).setVisible(true);
             nav_Menu.findItem(R.id.home).setVisible(false);
             nav_Menu.findItem(R.id.timeTable).setVisible(false);
             nav_Menu.findItem(R.id.thirdActivity).setVisible(false);
@@ -218,6 +218,8 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.adminSecond) {
 
+        } else if (id == R.id.adminMsg) {
+            manager.beginTransaction().replace(R.id.content_main, new MsgFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
