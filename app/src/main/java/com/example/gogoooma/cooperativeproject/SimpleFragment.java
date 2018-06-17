@@ -36,9 +36,18 @@ public abstract class SimpleFragment extends Fragment {
     ArrayList<String> proagenda = new ArrayList<>();
     ArrayList<Integer> subday = new ArrayList<>();
     public SimpleFragment() {
-
-    }
-
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                while (callData.arr.size() == 0 || callData.arr.size()%4!=0);
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+        }
+}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
@@ -46,23 +55,15 @@ public abstract class SimpleFragment extends Fragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    protected BarData generateBarData(int dataSets, float range, int count) {
-        Thread thread = new Thread(){
-            @Override
-            public void run() {
-                while(callData.arr.size() == 0 || callData.arr.size()%4!=0) ;
-            }
-        };
-        thread.start();
-        try {
-            thread.join();
-        } catch(Exception e) {
-        }
+    protected BarData generateBarData() {
+
         proname = new ArrayList<>();
+         int count=0;
         for (int i =0;i<callData.arr.size();i+=4){
 
             if (Integer.parseInt(callData.arr.get(i+2))==GlobalVariable.g_nowTeam.getTeamNum()){
                 proname.add(callData.arr.get(i));
+                count++;
             }
         }
 
@@ -98,18 +99,19 @@ public abstract class SimpleFragment extends Fragment {
 
         ArrayList<IBarDataSet> sets = new ArrayList<IBarDataSet>();
 
-        for(int i = 0; i < dataSets; i++) {
-
+        for(int i = 0; i < count; i++) {
             ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-
-//            entries = FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "stacked_bars.txt");
-
-            for(int j = 0; j < proname.size(); j++) {
-                entries.add(new BarEntry(j,(float) subday.get(j)));
-            }
-
+            entries.add(new BarEntry(i,(float) subday.get(i)));
             BarDataSet ds = new BarDataSet(entries, proname.get(i));
-            ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
+            switch(i%6)
+            {
+                case 0:ds.setColor(Color.rgb(200,20,20));break;
+                case 1:ds.setColor(Color.rgb(20 ,200,20));break;
+                case 2:ds.setColor(Color.rgb(20,20,200));break;
+                case 3:ds.setColor(Color.rgb(200,200,20));break;
+                case 4:ds.setColor(Color.rgb(20 ,200,200));break;
+                case 5:ds.setColor(Color.rgb(200,20,200));break;
+            }
             sets.add(ds);
         }
 
@@ -118,32 +120,7 @@ public abstract class SimpleFragment extends Fragment {
         return d;
     }
 
-    protected ScatterData generateScatterData(int dataSets, float range, int count) {
 
-        ArrayList<IScatterDataSet> sets = new ArrayList<IScatterDataSet>();
-
-        ScatterChart.ScatterShape[] shapes = ScatterChart.ScatterShape.getAllDefaultShapes();
-
-        for(int i = 0; i < dataSets; i++) {
-
-            ArrayList<Entry> entries = new ArrayList<Entry>();
-
-            for(int j = 0; j < count; j++) {
-                entries.add(new Entry(j, (float) (Math.random() * range) + range / 4));
-            }
-
-            ScatterDataSet ds = new ScatterDataSet(entries, getLabel(i));
-            ds.setScatterShapeSize(12f);
-            ds.setScatterShape(shapes[i % shapes.length]);
-            ds.setColors(ColorTemplate.COLORFUL_COLORS);
-            ds.setScatterShapeSize(9f);
-            sets.add(ds);
-        }
-
-        ScatterData d = new ScatterData(sets);
-        d.setValueTypeface(tf);
-        return d;
-    }
 
     /**
      * generates less data (1 DataSet, 4 values)
@@ -172,77 +149,8 @@ public abstract class SimpleFragment extends Fragment {
         return d;
     }
 
-    protected LineData generateLineData() {
-
-        ArrayList<ILineDataSet> sets = new ArrayList<ILineDataSet>();
-
-        LineDataSet ds1 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "sine.txt"), "Sine function");
-        LineDataSet ds2 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "cosine.txt"), "Cosine function");
-
-        ds1.setLineWidth(2f);
-        ds2.setLineWidth(2f);
-
-        ds1.setDrawCircles(false);
-        ds2.setDrawCircles(false);
-
-        ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        ds2.setColor(ColorTemplate.VORDIPLOM_COLORS[1]);
-
-        // load DataSets from textfiles in assets folders
-        sets.add(ds1);
-        sets.add(ds2);
-
-        LineData d = new LineData(sets);
-        d.setValueTypeface(tf);
-        return d;
-    }
-
-    protected LineData getComplexity() {
-
-        ArrayList<ILineDataSet> sets = new ArrayList<ILineDataSet>();
-
-        LineDataSet ds1 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "n.txt"), "O(n)");
-        LineDataSet ds2 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "nlogn.txt"), "O(nlogn)");
-        LineDataSet ds3 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "square.txt"), "O(n\u00B2)");
-        LineDataSet ds4 = new LineDataSet(FileUtils.loadEntriesFromAssets(getActivity().getAssets(), "three.txt"), "O(n\u00B3)");
-
-        ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        ds2.setColor(ColorTemplate.VORDIPLOM_COLORS[1]);
-        ds3.setColor(ColorTemplate.VORDIPLOM_COLORS[2]);
-        ds4.setColor(ColorTemplate.VORDIPLOM_COLORS[3]);
-
-        ds1.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        ds2.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[1]);
-        ds3.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[2]);
-        ds4.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[3]);
-
-        ds1.setLineWidth(2.5f);
-        ds1.setCircleRadius(3f);
-        ds2.setLineWidth(2.5f);
-        ds2.setCircleRadius(3f);
-        ds3.setLineWidth(2.5f);
-        ds3.setCircleRadius(3f);
-        ds4.setLineWidth(2.5f);
-        ds4.setCircleRadius(3f);
 
 
-        // load DataSets from textfiles in assets folders
-        sets.add(ds1);
-        sets.add(ds2);
-        sets.add(ds3);
-        sets.add(ds4);
-
-        LineData d = new LineData(sets);
-        d.setValueTypeface(tf);
-        return d;
-    }
-
-    private String[] mLabels = new String[] { "Company A", "Company B", "Company C", "Company D", "Company E", "Company F" };
-//    private String[] mXVals = new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec" };
-
-    private String getLabel(int i) {
-        return proname.get(i);
-    }
 
     public int GetDifferenceOfDate ( int nYear1, int nMonth1, int nDate1, int nYear2, int nMonth2, int nDate2 ) {
         Calendar cal = Calendar.getInstance ( );
