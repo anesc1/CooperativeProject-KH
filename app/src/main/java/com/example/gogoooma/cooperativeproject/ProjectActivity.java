@@ -140,7 +140,6 @@ public class ProjectActivity extends Fragment implements View.OnClickListener {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     HashMap<String, Object> map = (HashMap<String, Object>) snapshot.getValue();
                     if (((String) map.get("teamNum")).equals(GlobalVariable.g_nowTeam.getTeamNum()+"")){
-                        Toast.makeText(v.getContext(), "ok", Toast.LENGTH_SHORT).show();
                         ArrayList<String> tempL = new ArrayList<>((ArrayList<String>) map.get("checking"));
                         adapter1 = new ProjectAdapter(v.getContext(), R.layout.team_project, temp, tempL);
                         listView1.setAdapter(adapter1);

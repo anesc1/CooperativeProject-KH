@@ -39,7 +39,7 @@ public class BarChartFrag extends SimpleFragment implements OnChartGestureListen
 
        // Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),"OpenSans-Light.ttf");
 
-        mChart.setData(generateBarData(1, 100, 12));
+        mChart.setData(generateBarData());
 
         Legend l = mChart.getLegend();
         //l.setTypeface(tf);

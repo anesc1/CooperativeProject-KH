@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,6 +17,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +31,7 @@ import java.util.List;
 public class MsgFragment extends Fragment {
     View v;
     DatabaseReference db;
-    AdminMsg msg;
+    AdminMsg msg = null;
     ListView adminMsgList;
     ProjectAdapter adapter;
     String nowStr;
@@ -50,7 +53,7 @@ public class MsgFragment extends Fragment {
                 // snapshot이 현재 DB의 snapshot 데이터만큼 읽어옴
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     HashMap<String, Object> map = (HashMap<String, Object>) snapshot.getValue();
-                    if (((String) map.get("admin")).equals(GlobalVariable.g_user.getPhoneNum())){
+                    if (((String) map.get("admin")).equals(GlobalVariable.g_user.getPhoneNum())) {
                         nowStr = snapshot.getKey();
                         msg = new AdminMsg((String) map.get("admin"),
                                 (String) map.get("check"), (String) map.get("teamNum"),
@@ -58,12 +61,22 @@ public class MsgFragment extends Fragment {
                                 (ArrayList<String>) map.get("checking"));
                     }
                 }
-                ArrayList<Project> list = new ArrayList<>();
-                for(int i=0; i<msg.pNames.size(); i++){
-                    list.add(new Project(msg.pNames.get(i), 0, msg.pAgendas.get(i), 0));
+                if(msg != null) {
+
+                    ArrayList<Project> list = new ArrayList<>();
+                    for (int i = 0; i < msg.pNames.size(); i++) {
+                        list.add(new Project(msg.pNames.get(i), 0, msg.pAgendas.get(i), 0));
+                    }
+                    adapter = new ProjectAdapter(v.getContext(), R.layout.team_project, list, msg.checking);
+                    adminMsgList.setAdapter(adapter);
                 }
-                adapter = new ProjectAdapter(v.getContext(), R.layout.team_project, list, msg.checking);
-                adminMsgList.setAdapter(adapter);
+                else if(msg == null){
+                    TextView adminTeam = (TextView) v.findViewById(R.id.adminMsgTeam);
+                    adminTeam.setVisibility(View.INVISIBLE);
+                    adminMsgList.setVisibility(View.INVISIBLE);
+                    TextView adminTitle = (TextView) v.findViewById(R.id.textView9);
+                    adminTitle.setText("메시지가 없습니다.");
+                }
             }
 
             @Override
@@ -78,9 +91,11 @@ public class MsgFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 msg.checking.set(position, "f");
                 db.child(nowStr).child("checking").setValue(msg.checking);
+                db.child(nowStr).child("check").setValue("t");
                 adapter.notifyDataSetChanged();
             }
         });
+
 
         return v;
     }

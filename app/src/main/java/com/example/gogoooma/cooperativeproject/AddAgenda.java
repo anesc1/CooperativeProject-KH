@@ -221,6 +221,7 @@ public class AddAgenda extends AppCompatActivity implements View.OnClickListener
     private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            month ++;
             if(check==1)
             {
                 prj1start=DateStr(year,month,dayOfMonth);

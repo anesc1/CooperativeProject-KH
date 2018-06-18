@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginHorizontal="10dp"
     tools:context=".MsgFragment">
 
 
@@ -11,13 +12,15 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Message!" />
+        android:textColor="@color/colorAccent"
+        android:text="New Message!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/adminMsgTeam"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="team" />
+        android:text="산협프 팀에서 확인을 요구한 메시지입니다." />
 
     <ListView
         android:id="@+id/adminMsgList"
